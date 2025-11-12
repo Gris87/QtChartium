@@ -1,4 +1,6 @@
 TEMPLATE = subdirs
 
 SUBDIRS = \
-  demo/demo.pro
+  barseries/barseries.pro \
+  demo/demo.pro \
+  lineseries/lineseries.pro \
