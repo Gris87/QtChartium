@@ -16,4 +16,6 @@ public:
 
     ChartiumView(const ChartiumView& another)            = delete;
     ChartiumView& operator=(const ChartiumView& another) = delete;
+
+    void setChart(IChartiumChart* chart) override;
 };

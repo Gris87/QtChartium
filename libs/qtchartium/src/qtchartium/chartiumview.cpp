@@ -10,3 +10,7 @@ ChartiumView::ChartiumView(QWidget* parent) :
 ChartiumView::~ChartiumView()
 {
 }
+
+void ChartiumView::setChart(IChartiumChart* /*chart*/)
+{
+}

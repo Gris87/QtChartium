@@ -8,7 +8,7 @@ PATH_TO_QT_CHARTIUM_PRO="libs/qtchartium/qtchartium.pro"
 
 ########################################################################################################################
 
-echo "QT += widgets"                                                                                                       >> ${PATH_TO_QT_CHARTIUM_PRO}
+echo "QT += widgets"                                                                                                       >  ${PATH_TO_QT_CHARTIUM_PRO}
 echo ""                                                                                                                    >> ${PATH_TO_QT_CHARTIUM_PRO}
 echo "CONFIG += c++20"                                                                                                     >> ${PATH_TO_QT_CHARTIUM_PRO}
 echo "CONFIG += staticlib"                                                                                                 >> ${PATH_TO_QT_CHARTIUM_PRO}

@@ -12,8 +12,7 @@ MainWindow::MainWindow(QWidget* parent) :
 {
     ui->setupUi(this);
 
-    /*
-    auto series = new QLineSeries;
+    ChartiumLineSeries* series = new ChartiumLineSeries();
 
     series->append(0, 6);
     series->append(2, 4);
@@ -22,7 +21,7 @@ MainWindow::MainWindow(QWidget* parent) :
     series->append(10, 5);
     *series << QPointF(11, 1) << QPointF(13, 3) << QPointF(17, 6) << QPointF(18, 3) << QPointF(20, 2);
 
-    auto chart = new QChart;
+    ChartiumChart* chart = new ChartiumChart();
     chart->legend()->hide();
     chart->addSeries(series);
     chart->createDefaultAxes();
@@ -30,7 +29,6 @@ MainWindow::MainWindow(QWidget* parent) :
 
     ui->chartiumView->setChart(chart);
     ui->chartiumView->setRenderHint(QPainter::Antialiasing);
-    */
 }
 
 MainWindow::~MainWindow()

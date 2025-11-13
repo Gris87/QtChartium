@@ -4,6 +4,8 @@
 
 #include <QGraphicsView>
 
+#include "src/qtchartium/ichartiumchart.h"
+
 
 
 class IChartiumView : public QGraphicsView
@@ -19,4 +21,6 @@ public:
 
     IChartiumView(const IChartiumView& another)            = delete;
     IChartiumView& operator=(const IChartiumView& another) = delete;
+
+    virtual void setChart(IChartiumChart* chart) = 0;
 };
