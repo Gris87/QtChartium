@@ -1,3 +1,4 @@
+# Generated with generate_sources.sh
 QT += widgets
 
 CONFIG += c++20
@@ -33,12 +34,17 @@ UI_DIR      = build/gen/$${TARGET}/ui
 
 
 
+# find libs/qtchartium/ -name \*.cpp | sort | sed "s/libs\/qtchartium\///g" | sed "s/\.cpp/\.cpp \\\/g"
 SOURCES += \
     src/qtchartium/chartiumchart.cpp \
     src/qtchartium/chartiumlineseries.cpp \
-    src/qtchartium/chartiumview.cpp
+    src/qtchartium/chartiumview.cpp \
 
+# find libs/qtchartium/ -name \*.h | sort | sed "s/libs\/qtchartium\///g" | sed "s/\.h/\.h \\\/g"
 HEADERS += \
     src/qtchartium/chartiumchart.h \
     src/qtchartium/chartiumlineseries.h \
-    src/qtchartium/chartiumview.h
+    src/qtchartium/chartiumview.h \
+    src/qtchartium/ichartiumchart.h \
+    src/qtchartium/ichartiumlineseries.h \
+    src/qtchartium/ichartiumview.h \
