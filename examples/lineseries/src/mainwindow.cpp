@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget* parent) :
 {
     ui->setupUi(this);
 
+    /*
     auto series = new QLineSeries;
 
     series->append(0, 6);
@@ -29,6 +30,7 @@ MainWindow::MainWindow(QWidget* parent) :
 
     ui->chartiumView->setChart(chart);
     ui->chartiumView->setRenderHint(QPainter::Antialiasing);
+    */
 }
 
 MainWindow::~MainWindow()

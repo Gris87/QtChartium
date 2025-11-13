@@ -2,11 +2,11 @@
 
 
 
-#include <QGraphicsView>
+#include "src/qtchartium/ichartiumview.h"
 
 
 
-class ChartiumView : public QGraphicsView
+class ChartiumView : public IChartiumView
 {
     Q_OBJECT
 

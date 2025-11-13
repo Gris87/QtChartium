@@ -3,7 +3,7 @@
 
 
 ChartiumView::ChartiumView(QWidget* parent) :
-    QGraphicsView(parent)
+    IChartiumView(parent)
 {
 }
 
