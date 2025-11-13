@@ -34,7 +34,11 @@ UI_DIR      = build/gen/$${TARGET}/ui
 
 
 SOURCES += \
-    src/qtchartium/qtchartium.cpp
+    src/qtchartium/chartiumchart.cpp \
+    src/qtchartium/chartiumlineseries.cpp \
+    src/qtchartium/chartiumview.cpp
 
 HEADERS += \
-    src/qtchartium/qtchartium.h
+    src/qtchartium/chartiumchart.h \
+    src/qtchartium/chartiumlineseries.h \
+    src/qtchartium/chartiumview.h

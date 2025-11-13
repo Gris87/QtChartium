@@ -5,5 +5,5 @@ INCLUDEPATH += \
     $${PWD}/../libs/qtchartium
 
 LIBS += \
-    -L$${OUT_PWD}/../libs/qtchartium/build \
+    -L$${OUT_PWD}/../../libs/qtchartium/build \
     -lqtchartium
