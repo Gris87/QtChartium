@@ -25,6 +25,9 @@ public:
     ~MainWindow();
 
 private:
+    void createChartiumChart();
+    void createQtChart();
+
     Ui::MainWindow* ui;
 };
 
