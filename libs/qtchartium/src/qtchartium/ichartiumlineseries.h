@@ -16,7 +16,7 @@ public:
         IChartiumSeries()
     {
     }
-    virtual ~IChartiumLineSeries() = default;
+    ~IChartiumLineSeries() override = default;
 
     IChartiumLineSeries(const IChartiumLineSeries& another)            = delete;
     IChartiumLineSeries& operator=(const IChartiumLineSeries& another) = delete;

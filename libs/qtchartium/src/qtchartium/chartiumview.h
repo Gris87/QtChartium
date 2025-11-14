@@ -17,5 +17,15 @@ public:
     ChartiumView(const ChartiumView& another)            = delete;
     ChartiumView& operator=(const ChartiumView& another) = delete;
 
+    IChartiumChart* chart() override;
     void setChart(IChartiumChart* chart) override;
+
+protected:
+    void resizeEvent(QResizeEvent* event) override;
+
+private:
+    void resize();
+
+    QGraphicsScene* mScene;
+    IChartiumChart* mChart;
 };

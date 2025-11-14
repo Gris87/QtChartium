@@ -11,7 +11,7 @@
 class ChartiumChart : public IChartiumChart
 {
 public:
-    explicit ChartiumChart();
+    explicit ChartiumChart(QGraphicsItem* parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
     ~ChartiumChart() override;
 
     ChartiumChart(const ChartiumChart& another)            = delete;

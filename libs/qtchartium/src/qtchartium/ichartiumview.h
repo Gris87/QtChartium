@@ -22,5 +22,6 @@ public:
     IChartiumView(const IChartiumView& another)            = delete;
     IChartiumView& operator=(const IChartiumView& another) = delete;
 
-    virtual void setChart(IChartiumChart* chart) = 0;
+    virtual IChartiumChart* chart()                         = 0;
+    virtual void            setChart(IChartiumChart* chart) = 0;
 };

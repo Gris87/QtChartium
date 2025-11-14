@@ -2,17 +2,22 @@
 
 
 
-#include <QString>
+#include <QGraphicsWidget>
 
 #include "src/qtchartium/ichartiumlegend.h"
 #include "src/qtchartium/ichartiumseries.h"
 
 
 
-class IChartiumChart
+class IChartiumChart : public QGraphicsWidget
 {
+    Q_OBJECT
+
 public:
-    IChartiumChart()          = default;
+    explicit IChartiumChart(QGraphicsItem* parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags()) :
+        QGraphicsWidget(parent, wFlags)
+    {
+    }
     virtual ~IChartiumChart() = default;
 
     IChartiumChart(const IChartiumChart& another)            = delete;

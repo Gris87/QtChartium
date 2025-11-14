@@ -2,8 +2,8 @@
 
 
 
-ChartiumChart::ChartiumChart() :
-    IChartiumChart(),
+ChartiumChart::ChartiumChart(QGraphicsItem* parent, Qt::WindowFlags wFlags) :
+    IChartiumChart(parent, wFlags),
     mLegend(new ChartiumLegend())
 {
 }

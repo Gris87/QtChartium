@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
 
 SUBDIRS = \
-  examples/examples.pro \
-  libs/qtchartium/qtchartium.pro
+  libs/qtchartium/qtchartium.pro \
+  examples/examples.pro
