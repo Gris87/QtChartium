@@ -22,11 +22,18 @@ public:
     void                    removeAllSeries() override;
     QList<IChartiumSeries*> series() override;
 
+    void addAxis(IChartiumAxis* axis, Qt::Alignment alignment) override;
+    void removeAxis(IChartiumAxis* axis) override;
+    QList<IChartiumAxis*>
+    axes(Qt::Orientations orientation = Qt::Horizontal | Qt::Vertical, IChartiumSeries* series = nullptr) override;
+
+    void createDefaultAxes() override;
+
     IChartiumLegend* legend() override;
-    void             createDefaultAxes() override;
     void             setTitle(const QString& title) override;
 
 private:
     ChartiumLegend*         mLegend;
     QList<IChartiumSeries*> mSeries;
+    QList<IChartiumAxis*>   mAxes;
 };

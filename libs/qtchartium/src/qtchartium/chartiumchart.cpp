@@ -5,18 +5,14 @@
 ChartiumChart::ChartiumChart(QGraphicsItem* parent, Qt::WindowFlags wFlags) :
     IChartiumChart(parent, wFlags),
     mLegend(new ChartiumLegend()),
-    mSeries()
+    mSeries(),
+    mAxes()
 {
 }
 
 ChartiumChart::~ChartiumChart()
 {
     delete mLegend;
-
-    for (IChartiumSeries* s : mSeries)
-    {
-        delete s;
-    }
 }
 
 void ChartiumChart::addSeries(IChartiumSeries* series)
@@ -56,13 +52,44 @@ QList<IChartiumSeries*> ChartiumChart::series()
     return mSeries;
 }
 
-IChartiumLegend* ChartiumChart::legend()
+void ChartiumChart::addAxis(IChartiumAxis* axis, Qt::Alignment alignment)
 {
-    return mLegend;
+    if (mAxes.contains(axis))
+    {
+        return;
+    }
+
+    mAxes.append(axis);
+}
+
+void ChartiumChart::removeAxis(IChartiumAxis* axis)
+{
+    if (!mAxes.contains(axis))
+    {
+        return;
+    }
+
+    mAxes.removeAll(axis);
+}
+
+QList<IChartiumAxis*> ChartiumChart::axes(Qt::Orientations orientation, IChartiumSeries* series)
+{
+    QList<IChartiumAxis*> res;
+
+    return res;
 }
 
 void ChartiumChart::createDefaultAxes()
 {
+    if (mSeries.isEmpty())
+    {
+        return;
+    }
+}
+
+IChartiumLegend* ChartiumChart::legend()
+{
+    return mLegend;
 }
 
 void ChartiumChart::setTitle(const QString& /*title*/)

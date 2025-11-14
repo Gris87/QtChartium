@@ -4,6 +4,7 @@
 
 #include <QGraphicsWidget>
 
+#include "src/qtchartium/ichartiumaxis.h"
 #include "src/qtchartium/ichartiumlegend.h"
 #include "src/qtchartium/ichartiumseries.h"
 
@@ -28,7 +29,13 @@ public:
     virtual void                    removeAllSeries()                     = 0;
     virtual QList<IChartiumSeries*> series()                              = 0;
 
+    virtual void addAxis(IChartiumAxis* axis, Qt::Alignment alignment) = 0;
+    virtual void removeAxis(IChartiumAxis* axis)                       = 0;
+    virtual QList<IChartiumAxis*>
+    axes(Qt::Orientations orientation = Qt::Horizontal | Qt::Vertical, IChartiumSeries* series = nullptr) = 0;
+
+    virtual void createDefaultAxes() = 0;
+
     virtual IChartiumLegend* legend()                       = 0;
-    virtual void             createDefaultAxes()            = 0;
     virtual void             setTitle(const QString& title) = 0;
 };
