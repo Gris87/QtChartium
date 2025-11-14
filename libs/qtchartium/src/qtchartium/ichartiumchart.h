@@ -23,8 +23,12 @@ public:
     IChartiumChart(const IChartiumChart& another)            = delete;
     IChartiumChart& operator=(const IChartiumChart& another) = delete;
 
-    virtual IChartiumLegend* legend()                           = 0;
-    virtual void             addSeries(IChartiumSeries* series) = 0;
-    virtual void             createDefaultAxes()                = 0;
-    virtual void             setTitle(const QString& title)     = 0;
+    virtual void                    addSeries(IChartiumSeries* series)    = 0;
+    virtual void                    removeSeries(IChartiumSeries* series) = 0;
+    virtual void                    removeAllSeries()                     = 0;
+    virtual QList<IChartiumSeries*> series()                              = 0;
+
+    virtual IChartiumLegend* legend()                       = 0;
+    virtual void             createDefaultAxes()            = 0;
+    virtual void             setTitle(const QString& title) = 0;
 };

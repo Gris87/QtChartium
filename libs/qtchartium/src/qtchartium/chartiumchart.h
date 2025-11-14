@@ -17,11 +17,16 @@ public:
     ChartiumChart(const ChartiumChart& another)            = delete;
     ChartiumChart& operator=(const ChartiumChart& another) = delete;
 
+    void                    addSeries(IChartiumSeries* series) override;
+    void                    removeSeries(IChartiumSeries* series) override;
+    void                    removeAllSeries() override;
+    QList<IChartiumSeries*> series() override;
+
     IChartiumLegend* legend() override;
-    void             addSeries(IChartiumSeries* series) override;
     void             createDefaultAxes() override;
     void             setTitle(const QString& title) override;
 
 private:
-    ChartiumLegend* mLegend;
+    ChartiumLegend*         mLegend;
+    QList<IChartiumSeries*> mSeries;
 };
