@@ -19,7 +19,7 @@ public:
         QGraphicsWidget(parent, wFlags)
     {
     }
-    virtual ~IChartiumChart() = default;
+    ~IChartiumChart() override = default;
 
     IChartiumChart(const IChartiumChart& another)            = delete;
     IChartiumChart& operator=(const IChartiumChart& another) = delete;

@@ -24,4 +24,6 @@ public:
 
     virtual IChartiumChart* chart()                         = 0;
     virtual void            setChart(IChartiumChart* chart) = 0;
+
+    virtual void resize() = 0;
 };

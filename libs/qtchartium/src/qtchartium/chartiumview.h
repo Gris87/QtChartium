@@ -20,12 +20,12 @@ public:
     IChartiumChart* chart() override;
     void setChart(IChartiumChart* chart) override;
 
+    void resize() override;
+
 protected:
     void resizeEvent(QResizeEvent* event) override;
 
 private:
-    void resize();
-
     QGraphicsScene* mScene;
     IChartiumChart* mChart;
 };

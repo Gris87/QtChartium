@@ -27,6 +27,8 @@ IChartiumChart* ChartiumView::chart()
 
 void ChartiumView::setChart(IChartiumChart* chart)
 {
+    Q_ASSERT(chart);
+
     if (mChart != chart)
     {
         if (mChart != nullptr)
