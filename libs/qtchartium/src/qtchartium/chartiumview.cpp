@@ -20,7 +20,7 @@ ChartiumView::~ChartiumView()
 {
 }
 
-IChartiumChart* ChartiumView::chart()
+IChartiumChart* ChartiumView::chart() const
 {
     return mChart;
 }

@@ -1,4 +1,4 @@
-#include "src/qtchartium/chartiumlegend.h"
+#include "src/qtchartium/legend/chartiumlegend.h"
 
 
 

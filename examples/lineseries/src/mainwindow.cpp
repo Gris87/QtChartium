@@ -6,8 +6,8 @@
 #include <QLineSeries>
 
 #include "src/qtchartium/chartiumchart.h"
-#include "src/qtchartium/chartiumlineseries.h"
 #include "src/qtchartium/chartiumview.h"
+#include "src/qtchartium/linechart/chartiumlineseries.h"
 
 
 

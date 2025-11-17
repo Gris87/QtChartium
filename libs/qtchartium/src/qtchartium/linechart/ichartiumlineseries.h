@@ -2,18 +2,18 @@
 
 
 
-#include "src/qtchartium/ichartiumseries.h"
+#include "src/qtchartium/chartiumseries.h"
 
 #include <QList>
 #include <QPointF>
 
 
 
-class IChartiumLineSeries : public IChartiumSeries
+class IChartiumLineSeries : public ChartiumSeries
 {
 public:
     explicit IChartiumLineSeries() :
-        IChartiumSeries()
+        ChartiumSeries()
     {
     }
     ~IChartiumLineSeries() override = default;

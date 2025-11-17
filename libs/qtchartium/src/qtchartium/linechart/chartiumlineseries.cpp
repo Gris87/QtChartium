@@ -1,4 +1,4 @@
-#include "src/qtchartium/chartiumlineseries.h"
+#include "src/qtchartium/linechart/chartiumlineseries.h"
 
 
 

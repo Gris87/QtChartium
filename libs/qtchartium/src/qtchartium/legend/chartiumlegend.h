@@ -2,7 +2,7 @@
 
 
 
-#include "src/qtchartium/ichartiumlegend.h"
+#include "src/qtchartium/legend/ichartiumlegend.h"
 
 
 

@@ -2,7 +2,7 @@
 
 
 
-#include "src/qtchartium/ichartiumlineseries.h"
+#include "src/qtchartium/linechart/ichartiumlineseries.h"
 
 
 

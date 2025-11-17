@@ -4,8 +4,6 @@
 
 #include "src/qtchartium/ichartiumchart.h"
 
-#include "src/qtchartium/chartiumlegend.h"
-
 
 
 class ChartiumChart : public IChartiumChart
@@ -20,20 +18,70 @@ public:
     void                    addSeries(IChartiumSeries* series) override;
     void                    removeSeries(IChartiumSeries* series) override;
     void                    removeAllSeries() override;
-    QList<IChartiumSeries*> series() override;
+    QList<IChartiumSeries*> series() const override;
 
     void addAxis(IChartiumAxis* axis, Qt::Alignment alignment) override;
     void removeAxis(IChartiumAxis* axis) override;
     QList<IChartiumAxis*>
-    axes(Qt::Orientations orientation = Qt::Horizontal | Qt::Vertical, IChartiumSeries* series = nullptr) override;
+    axes(Qt::Orientations orientation = Qt::Horizontal | Qt::Vertical, IChartiumSeries* series = nullptr) const override;
 
     void createDefaultAxes() override;
 
-    IChartiumLegend* legend() override;
-    void             setTitle(const QString& title) override;
+    void    setTitle(const QString& title) override;
+    QString title() const override;
+    void    setTitleFont(const QFont& font) override;
+    QFont   titleFont() const override;
+    void    setTitleBrush(const QBrush& brush) override;
+    QBrush  titleBrush() const override;
+
+    void   setBackgroundBrush(const QBrush& brush) override;
+    QBrush backgroundBrush() const override;
+    void   setBackgroundPen(const QPen& pen) override;
+    QPen   backgroundPen() const override;
+    void   setBackgroundVisible(bool visible = true) override;
+    bool   isBackgroundVisible() const override;
+
+    void  setDropShadowEnabled(bool enabled = true) override;
+    bool  isDropShadowEnabled() const override;
+    void  setBackgroundRoundness(qreal diameter) override;
+    qreal backgroundRoundness() const override;
+
+    void zoomIn() override;
+    void zoomOut() override;
+
+    void zoomIn(const QRectF& rect) override;
+    void zoom(qreal factor) override;
+    void zoomReset() override;
+    bool isZoomed() override;
+
+    void scroll(qreal dx, qreal dy) override;
+
+    IChartiumLegend* legend() const override;
+
+    void     setMargins(const QMargins& margins) override;
+    QMargins margins() const override;
+
+    QRectF  plotArea() const override;
+    void    setPlotArea(const QRectF& rect) override;
+    void    setPlotAreaBackgroundBrush(const QBrush& brush) override;
+    QBrush  plotAreaBackgroundBrush() const override;
+    void    setPlotAreaBackgroundPen(const QPen& pen) override;
+    QPen    plotAreaBackgroundPen() const override;
+    void    setPlotAreaBackgroundVisible(bool visible = true) override;
+    bool    isPlotAreaBackgroundVisible() const override;
+    void    setLocalizeNumbers(bool localize) override;
+    bool    localizeNumbers() const override;
+    void    setLocale(const QLocale& locale) override;
+    QLocale locale() const override;
+
+    QPointF mapToValue(const QPointF& position, IChartiumSeries* series = nullptr) override;
+    QPointF mapToPosition(const QPointF& value, IChartiumSeries* series = nullptr) override;
+
+    ChartType chartType() const override;
 
 private:
-    ChartiumLegend*         mLegend;
+    IChartiumLegend*        mLegend;
     QList<IChartiumSeries*> mSeries;
     QList<IChartiumAxis*>   mAxes;
+    ChartType               mChartType;
 };

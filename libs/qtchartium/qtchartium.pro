@@ -37,22 +37,28 @@ UI_DIR      = build/gen/$${TARGET}/ui
 SOURCES += \
     src/qtchartium/chartiumaxis.cpp \
     src/qtchartium/chartiumchart.cpp \
-    src/qtchartium/chartiumlegend.cpp \
-    src/qtchartium/chartiumlineseries.cpp \
     src/qtchartium/chartiumseries.cpp \
     src/qtchartium/chartiumview.cpp \
+    src/qtchartium/domain/chartiumdomain.cpp \
+    src/qtchartium/domain/chartiumxydomain.cpp \
+    src/qtchartium/legend/chartiumlegend.cpp \
+    src/qtchartium/linechart/chartiumlineseries.cpp \
 
 # find libs/qtchartium/ -name \*.h | sort | sed "s/libs\/qtchartium\///g" | sed "s/\.h/\.h \\\/g"
 HEADERS += \
     src/qtchartium/chartiumaxis.h \
     src/qtchartium/chartiumchart.h \
-    src/qtchartium/chartiumlegend.h \
-    src/qtchartium/chartiumlineseries.h \
     src/qtchartium/chartiumseries.h \
     src/qtchartium/chartiumview.h \
+    src/qtchartium/domain/chartiumdomain.h \
+    src/qtchartium/domain/chartiumxydomain.h \
+    src/qtchartium/domain/ichartiumdomain.h \
+    src/qtchartium/domain/ichartiumxydomain.h \
     src/qtchartium/ichartiumaxis.h \
     src/qtchartium/ichartiumchart.h \
-    src/qtchartium/ichartiumlegend.h \
-    src/qtchartium/ichartiumlineseries.h \
     src/qtchartium/ichartiumseries.h \
     src/qtchartium/ichartiumview.h \
+    src/qtchartium/legend/chartiumlegend.h \
+    src/qtchartium/legend/ichartiumlegend.h \
+    src/qtchartium/linechart/chartiumlineseries.h \
+    src/qtchartium/linechart/ichartiumlineseries.h \
