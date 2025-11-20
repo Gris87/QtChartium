@@ -2,8 +2,8 @@
 
 
 
-ChartiumLegend::ChartiumLegend() :
-    IChartiumLegend()
+ChartiumLegend::ChartiumLegend(QObject* parent) :
+    IChartiumLegend(parent)
 {
 }
 

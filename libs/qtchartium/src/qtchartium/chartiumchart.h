@@ -4,10 +4,15 @@
 
 #include "src/qtchartium/ichartiumchart.h"
 
+#include "src/qtchartium/ichartiumdataset.h"
+#include "src/qtchartium/ichartiumpresenter.h"
+
 
 
 class ChartiumChart : public IChartiumChart
 {
+    Q_OBJECT
+
 public:
     explicit ChartiumChart(QGraphicsItem* parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags());
     ~ChartiumChart() override;
@@ -80,8 +85,8 @@ public:
     ChartType chartType() const override;
 
 private:
-    IChartiumLegend*        mLegend;
-    QList<IChartiumSeries*> mSeries;
-    QList<IChartiumAxis*>   mAxes;
-    ChartType               mChartType;
+    IChartiumLegend*    mLegend;
+    IChartiumDataSet*   mDataset;
+    IChartiumPresenter* mPresenter;
+    ChartType           mChartType;
 };

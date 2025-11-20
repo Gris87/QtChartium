@@ -35,29 +35,50 @@ UI_DIR      = build/gen/$${TARGET}/ui
 
 # find libs/qtchartium/ -name \*.cpp | sort | sed "s/libs\/qtchartium\///g" | sed "s/\.cpp/\.cpp \\\/g"
 SOURCES += \
-    src/qtchartium/chartiumaxis.cpp \
+    src/qtchartium/axis/chartiumaxis.cpp \
+    src/qtchartium/axis/chartiumaxiselement.cpp \
+    src/qtchartium/chartiumbackground.cpp \
     src/qtchartium/chartiumchart.cpp \
+    src/qtchartium/chartiumdataset.cpp \
+    src/qtchartium/chartiumitem.cpp \
+    src/qtchartium/chartiumpresenter.cpp \
     src/qtchartium/chartiumseries.cpp \
+    src/qtchartium/chartiumtitle.cpp \
     src/qtchartium/chartiumview.cpp \
     src/qtchartium/domain/chartiumdomain.cpp \
     src/qtchartium/domain/chartiumxydomain.cpp \
+    src/qtchartium/layout/chartiumlayout.cpp \
     src/qtchartium/legend/chartiumlegend.cpp \
     src/qtchartium/linechart/chartiumlineseries.cpp \
 
 # find libs/qtchartium/ -name \*.h | sort | sed "s/libs\/qtchartium\///g" | sed "s/\.h/\.h \\\/g"
 HEADERS += \
-    src/qtchartium/chartiumaxis.h \
+    src/qtchartium/axis/chartiumaxis.h \
+    src/qtchartium/axis/chartiumaxiselement.h \
+    src/qtchartium/axis/ichartiumaxis.h \
+    src/qtchartium/axis/ichartiumaxiselement.h \
+    src/qtchartium/chartiumbackground.h \
     src/qtchartium/chartiumchart.h \
+    src/qtchartium/chartiumdataset.h \
+    src/qtchartium/chartiumitem.h \
+    src/qtchartium/chartiumpresenter.h \
     src/qtchartium/chartiumseries.h \
+    src/qtchartium/chartiumtitle.h \
     src/qtchartium/chartiumview.h \
     src/qtchartium/domain/chartiumdomain.h \
     src/qtchartium/domain/chartiumxydomain.h \
     src/qtchartium/domain/ichartiumdomain.h \
     src/qtchartium/domain/ichartiumxydomain.h \
-    src/qtchartium/ichartiumaxis.h \
+    src/qtchartium/ichartiumbackground.h \
     src/qtchartium/ichartiumchart.h \
+    src/qtchartium/ichartiumdataset.h \
+    src/qtchartium/ichartiumitem.h \
+    src/qtchartium/ichartiumpresenter.h \
     src/qtchartium/ichartiumseries.h \
+    src/qtchartium/ichartiumtitle.h \
     src/qtchartium/ichartiumview.h \
+    src/qtchartium/layout/chartiumlayout.h \
+    src/qtchartium/layout/ichartiumlayout.h \
     src/qtchartium/legend/chartiumlegend.h \
     src/qtchartium/legend/ichartiumlegend.h \
     src/qtchartium/linechart/chartiumlineseries.h \

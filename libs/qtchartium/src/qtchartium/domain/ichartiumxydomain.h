@@ -8,9 +8,11 @@
 
 class IChartiumXYDomain : public IChartiumDomain
 {
+    Q_OBJECT
+
 public:
-    IChartiumXYDomain() :
-        IChartiumDomain()
+    explicit IChartiumXYDomain(QObject* parent = nullptr) :
+        IChartiumDomain(parent)
     {
     }
     ~IChartiumXYDomain() override = default;

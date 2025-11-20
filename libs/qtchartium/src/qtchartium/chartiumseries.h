@@ -8,8 +8,10 @@
 
 class ChartiumSeries : public IChartiumSeries
 {
+    Q_OBJECT
+
 public:
-    explicit ChartiumSeries();
+    explicit ChartiumSeries(QObject* parent = nullptr);
     ~ChartiumSeries() override;
 
     ChartiumSeries(const ChartiumSeries& another)            = delete;

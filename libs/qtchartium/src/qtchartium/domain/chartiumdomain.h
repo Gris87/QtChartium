@@ -8,8 +8,10 @@
 
 class ChartiumDomain : public IChartiumDomain
 {
+    Q_OBJECT
+
 public:
-    explicit ChartiumDomain();
+    explicit ChartiumDomain(QObject* parent = nullptr);
     ~ChartiumDomain() override;
 
     ChartiumDomain(const ChartiumDomain& another)            = delete;

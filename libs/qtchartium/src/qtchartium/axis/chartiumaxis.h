@@ -2,14 +2,16 @@
 
 
 
-#include "src/qtchartium/ichartiumaxis.h"
+#include "src/qtchartium/axis/ichartiumaxis.h"
 
 
 
 class ChartiumAxis : public IChartiumAxis
 {
+    Q_OBJECT
+
 public:
-    explicit ChartiumAxis();
+    explicit ChartiumAxis(QObject* parent = nullptr);
     ~ChartiumAxis() override;
 
     ChartiumAxis(const ChartiumAxis& another)            = delete;

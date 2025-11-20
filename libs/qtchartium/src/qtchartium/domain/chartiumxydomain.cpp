@@ -2,8 +2,8 @@
 
 
 
-ChartiumXYDomain::ChartiumXYDomain() :
-    IChartiumXYDomain()
+ChartiumXYDomain::ChartiumXYDomain(QObject* parent) :
+    IChartiumXYDomain(parent)
 {
 }
 

@@ -6,8 +6,8 @@
 
 #include <QGraphicsItem>
 
+#include "src/qtchartium/axis/ichartiumaxis.h"
 #include "src/qtchartium/domain/ichartiumdomain.h"
-#include "src/qtchartium/ichartiumaxis.h"
 
 
 
@@ -20,7 +20,7 @@ class IChartiumSeries : public QObject
     Q_OBJECT
 
 public:
-    enum SeriesType
+    enum SeriesType : quint8
     {
         SeriesTypeLine,
         SeriesTypeArea,
@@ -37,8 +37,11 @@ public:
         SeriesTypeCandlestick
     };
 
-    IChartiumSeries()          = default;
-    virtual ~IChartiumSeries() = default;
+    explicit IChartiumSeries(QObject* parent = nullptr) :
+        QObject(parent)
+    {
+    }
+    ~IChartiumSeries() override = default;
 
     IChartiumSeries(const IChartiumSeries& another)            = delete;
     IChartiumSeries& operator=(const IChartiumSeries& another) = delete;

@@ -2,11 +2,33 @@
 
 
 
-class IChartiumDomain
+#include <QObject>
+
+
+
+class IChartiumDomain : public QObject
 {
+    Q_OBJECT
+
 public:
-    IChartiumDomain()          = default;
-    virtual ~IChartiumDomain() = default;
+    enum DomainType : quint8
+    {
+        UndefinedDomain,
+        XYDomain,
+        XLogYDomain,
+        LogXYDomain,
+        LogXLogYDomain,
+        XYPolarDomain,
+        XLogYPolarDomain,
+        LogXYPolarDomain,
+        LogXLogYPolarDomain
+    };
+
+    explicit IChartiumDomain(QObject* parent = nullptr) :
+        QObject(parent)
+    {
+    }
+    ~IChartiumDomain() override = default;
 
     IChartiumDomain(const IChartiumDomain& another)            = delete;
     IChartiumDomain& operator=(const IChartiumDomain& another) = delete;

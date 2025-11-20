@@ -2,10 +2,16 @@
 
 
 
-class IChartiumAxis
+#include <QObject>
+
+
+
+class IChartiumAxis : public QObject
 {
+    Q_OBJECT
+
 public:
-    enum AxisType
+    enum AxisType : quint8
     {
         AxisTypeNoAxis      = 0x0,
         AxisTypeValue       = 0x1,
@@ -15,9 +21,13 @@ public:
         AxisTypeLogValue    = 0x10,
         AxisTypeColor       = 0x20
     };
+    typedef quint8 AxisTypes;
 
-    IChartiumAxis()          = default;
-    virtual ~IChartiumAxis() = default;
+    explicit IChartiumAxis(QObject* parent = nullptr) :
+        QObject(parent)
+    {
+    }
+    ~IChartiumAxis() override = default;
 
     IChartiumAxis(const IChartiumAxis& another)            = delete;
     IChartiumAxis& operator=(const IChartiumAxis& another) = delete;

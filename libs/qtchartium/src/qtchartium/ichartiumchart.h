@@ -7,7 +7,7 @@
 #include <QBrush>
 #include <QPen>
 
-#include "src/qtchartium/ichartiumaxis.h"
+#include "src/qtchartium/axis/ichartiumaxis.h"
 #include "src/qtchartium/ichartiumseries.h"
 #include "src/qtchartium/legend/ichartiumlegend.h"
 
@@ -97,4 +97,7 @@ public:
     virtual QPointF mapToPosition(const QPointF& value, IChartiumSeries* series = nullptr) = 0;
 
     virtual ChartType chartType() const = 0;
+
+signals:
+    void plotAreaChanged(const QRectF& plotArea);
 };

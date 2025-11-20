@@ -2,8 +2,8 @@
 
 
 
-ChartiumDomain::ChartiumDomain() :
-    IChartiumDomain()
+ChartiumDomain::ChartiumDomain(QObject* parent) :
+    IChartiumDomain(parent)
 {
 }
 

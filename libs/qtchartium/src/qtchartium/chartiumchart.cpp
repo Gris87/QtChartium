@@ -1,5 +1,7 @@
 #include "src/qtchartium/chartiumchart.h"
 
+#include "src/qtchartium/chartiumdataset.h"
+#include "src/qtchartium/chartiumpresenter.h"
 #include "src/qtchartium/domain/chartiumxydomain.h"
 #include "src/qtchartium/legend/chartiumlegend.h"
 
@@ -7,86 +9,42 @@
 
 ChartiumChart::ChartiumChart(QGraphicsItem* parent, Qt::WindowFlags wFlags) :
     IChartiumChart(parent, wFlags),
-    mLegend(new ChartiumLegend()),
-    mSeries(),
-    mAxes(),
+    mLegend(new ChartiumLegend(this)),
+    mDataset(new ChartiumDataSet(this)),
+    mPresenter(new ChartiumPresenter(this)),
     mChartType(IChartiumChart::ChartTypeCartesian)
 {
 }
 
 ChartiumChart::~ChartiumChart()
 {
-    delete mLegend;
 }
 
 void ChartiumChart::addSeries(IChartiumSeries* series)
 {
-    if (mSeries.contains(series))
-    {
-        return;
-    }
-
-    if (mChartType == IChartiumChart::ChartTypePolar)
-    {
-        // Polar chart is not supported
-    }
-    else
-    {
-        series->setDomain(new ChartiumXYDomain());
-    }
-
-    series->initializeDomain();
-    mSeries.append(series);
-
-    series->setParent(this);
-    series->setChart(this);
 }
 
 void ChartiumChart::removeSeries(IChartiumSeries* series)
 {
-    if (!mSeries.contains(series))
-    {
-        return;
-    }
-
-    mSeries.removeAll(series);
 }
 
 void ChartiumChart::removeAllSeries()
 {
-    const QList<IChartiumSeries*> series = mSeries;
-
-    for (IChartiumSeries* s : series)
-    {
-        removeSeries(s);
-
-        delete s;
-    }
 }
 
 QList<IChartiumSeries*> ChartiumChart::series() const
 {
-    return mSeries;
+    QList<IChartiumSeries*> res;
+
+    return res;
 }
 
 void ChartiumChart::addAxis(IChartiumAxis* axis, Qt::Alignment alignment)
 {
-    if (mAxes.contains(axis))
-    {
-        return;
-    }
-
-    mAxes.append(axis);
 }
 
 void ChartiumChart::removeAxis(IChartiumAxis* axis)
 {
-    if (!mAxes.contains(axis))
-    {
-        return;
-    }
-
-    mAxes.removeAll(axis);
 }
 
 QList<IChartiumAxis*> ChartiumChart::axes(Qt::Orientations orientation, IChartiumSeries* series) const
@@ -98,10 +56,6 @@ QList<IChartiumAxis*> ChartiumChart::axes(Qt::Orientations orientation, IChartiu
 
 void ChartiumChart::createDefaultAxes()
 {
-    if (mSeries.isEmpty())
-    {
-        return;
-    }
 }
 
 void ChartiumChart::setTitle(const QString& title)

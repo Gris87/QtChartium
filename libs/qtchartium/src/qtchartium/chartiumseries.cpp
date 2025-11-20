@@ -2,8 +2,8 @@
 
 
 
-ChartiumSeries::ChartiumSeries() :
-    IChartiumSeries(),
+ChartiumSeries::ChartiumSeries(QObject* parent) :
+    IChartiumSeries(parent),
     mName(),
     mVisible(),
     mOpacity()

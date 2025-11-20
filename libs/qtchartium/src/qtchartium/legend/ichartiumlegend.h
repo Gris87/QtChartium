@@ -2,11 +2,20 @@
 
 
 
-class IChartiumLegend
+#include <QObject>
+
+
+
+class IChartiumLegend : public QObject
 {
+    Q_OBJECT
+
 public:
-    IChartiumLegend()          = default;
-    virtual ~IChartiumLegend() = default;
+    explicit IChartiumLegend(QObject* parent = nullptr) :
+        QObject(parent)
+    {
+    }
+    ~IChartiumLegend() override = default;
 
     IChartiumLegend(const IChartiumLegend& another)            = delete;
     IChartiumLegend& operator=(const IChartiumLegend& another) = delete;
