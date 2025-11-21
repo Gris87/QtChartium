@@ -4,9 +4,6 @@
 
 #include "src/qtchartium/chartiumseries.h"
 
-#include <QList>
-#include <QPointF>
-
 
 
 class IChartiumLineSeries : public ChartiumSeries

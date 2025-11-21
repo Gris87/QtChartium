@@ -49,6 +49,7 @@ SOURCES += \
     src/qtchartium/domain/chartiumxydomain.cpp \
     src/qtchartium/layout/chartiumlayout.cpp \
     src/qtchartium/legend/chartiumlegend.cpp \
+    src/qtchartium/legend/chartiumlegendmarker.cpp \
     src/qtchartium/linechart/chartiumlineseries.cpp \
 
 # find libs/qtchartium/ -name \*.h | sort | sed "s/libs\/qtchartium\///g" | sed "s/\.h/\.h \\\/g"
@@ -80,6 +81,8 @@ HEADERS += \
     src/qtchartium/layout/chartiumlayout.h \
     src/qtchartium/layout/ichartiumlayout.h \
     src/qtchartium/legend/chartiumlegend.h \
+    src/qtchartium/legend/chartiumlegendmarker.h \
     src/qtchartium/legend/ichartiumlegend.h \
+    src/qtchartium/legend/ichartiumlegendmarker.h \
     src/qtchartium/linechart/chartiumlineseries.h \
     src/qtchartium/linechart/ichartiumlineseries.h \

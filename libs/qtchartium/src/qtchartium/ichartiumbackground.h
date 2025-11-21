@@ -2,21 +2,25 @@
 
 
 
-#include <QObject>
+#include <QGraphicsRectItem>
 
 
 
-class IChartiumBackground : public QObject
+class IChartiumBackground : public QGraphicsRectItem
 {
-    Q_OBJECT
-
 public:
-    explicit IChartiumBackground(QObject* parent = nullptr) :
-        QObject(parent)
+    explicit IChartiumBackground(QGraphicsItem* parent = nullptr) :
+        QGraphicsRectItem(parent)
     {
     }
     ~IChartiumBackground() override = default;
 
     IChartiumBackground(const IChartiumBackground& another)            = delete;
     IChartiumBackground& operator=(const IChartiumBackground& another) = delete;
+
+    virtual void  setDiameter(qreal diameter) = 0;
+    virtual qreal diameter() const            = 0;
+
+    virtual void setDropShadowEnabled(bool enabled) = 0;
+    virtual bool isDropShadowEnabled() const        = 0;
 };

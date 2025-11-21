@@ -4,6 +4,9 @@
 
 #include "src/qtchartium/ichartiumseries.h"
 
+#include "src/qtchartium/ichartiumchart.h"
+#include "src/qtchartium/ichartiumpresenter.h"
+
 
 
 class ChartiumSeries : public IChartiumSeries
@@ -42,14 +45,26 @@ public:
     void initializeAxes() override;
     void initializeGraphics(QGraphicsItem* parent) override;
 
+    QList<IChartiumLegendMarker*> createLegendMarkers(IChartiumLegend* legend) override;
+
     IChartiumAxis::AxisType defaultAxisType(Qt::Orientation) const override;
     IChartiumAxis*          createDefaultAxis(Qt::Orientation) const override;
+
+    IChartiumItem* chartItem() override;
 
     void             setDomain(IChartiumDomain* domain) override;
     IChartiumDomain* domain() override;
 
+    void                setPresenter(IChartiumPresenter* presenter) override;
+    IChartiumPresenter* presenter() const override;
+
 private:
-    QString mName;
-    bool    mVisible;
-    qreal   mOpacity;
+    IChartiumChart*       mChart;
+    IChartiumItem*        mItem;
+    QList<IChartiumAxis*> mAxes;
+    IChartiumDomain*      mDomain;
+    IChartiumPresenter*   mPresenter;
+    QString               mName;
+    bool                  mVisible;
+    qreal                 mOpacity;
 };

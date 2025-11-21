@@ -8,10 +8,14 @@
 
 #include "src/qtchartium/axis/ichartiumaxis.h"
 #include "src/qtchartium/domain/ichartiumdomain.h"
+#include "src/qtchartium/ichartiumitem.h"
+#include "src/qtchartium/legend/ichartiumlegend.h"
+#include "src/qtchartium/legend/ichartiumlegendmarker.h"
 
 
 
 class IChartiumChart;
+class IChartiumPresenter;
 
 
 
@@ -71,14 +75,23 @@ public:
     virtual void initializeAxes()                          = 0;
     virtual void initializeGraphics(QGraphicsItem* parent) = 0;
 
+    virtual QList<IChartiumLegendMarker*> createLegendMarkers(IChartiumLegend* legend) = 0;
+
     virtual IChartiumAxis::AxisType defaultAxisType(Qt::Orientation) const   = 0;
     virtual IChartiumAxis*          createDefaultAxis(Qt::Orientation) const = 0;
 
+    virtual IChartiumItem* chartItem() = 0;
+
     virtual void             setDomain(IChartiumDomain* domain) = 0;
     virtual IChartiumDomain* domain()                           = 0;
+
+    virtual void                setPresenter(IChartiumPresenter* presenter) = 0;
+    virtual IChartiumPresenter* presenter() const                           = 0;
+
 
 signals:
     void nameChanged();
     void visibleChanged();
     void opacityChanged();
+    void countChanged();
 };

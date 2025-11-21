@@ -4,6 +4,11 @@
 
 ChartiumSeries::ChartiumSeries(QObject* parent) :
     IChartiumSeries(parent),
+    mChart(),
+    mItem(),
+    mAxes(),
+    mDomain(),
+    mPresenter(),
     mName(),
     mVisible(),
     mOpacity()
@@ -92,6 +97,13 @@ void ChartiumSeries::initializeGraphics(QGraphicsItem* parent)
 {
 }
 
+QList<IChartiumLegendMarker*> ChartiumSeries::createLegendMarkers(IChartiumLegend* legend)
+{
+    QList<IChartiumLegendMarker*> res;
+
+    return res;
+}
+
 IChartiumAxis::AxisType ChartiumSeries::defaultAxisType(Qt::Orientation) const
 {
     return IChartiumAxis::AxisTypeValue;
@@ -102,11 +114,25 @@ IChartiumAxis* ChartiumSeries::createDefaultAxis(Qt::Orientation) const
     return nullptr;
 }
 
+IChartiumItem* ChartiumSeries::chartItem()
+{
+    return nullptr;
+}
+
 void ChartiumSeries::setDomain(IChartiumDomain* domain)
 {
 }
 
 IChartiumDomain* ChartiumSeries::domain()
+{
+    return nullptr;
+}
+
+void ChartiumSeries::setPresenter(IChartiumPresenter* presenter)
+{
+}
+
+IChartiumPresenter* ChartiumSeries::presenter() const
 {
     return nullptr;
 }
