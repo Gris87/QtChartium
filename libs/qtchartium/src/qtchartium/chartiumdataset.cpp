@@ -1,25 +1,69 @@
 #include "src/qtchartium/chartiumdataset.h"
 
+#include "src/qtchartium/domain/chartiumxydomain.h"
+
 
 
 ChartiumDataSet::ChartiumDataSet(IChartiumChart* chart) :
     IChartiumDataSet(chart),
+    mChart(chart),
     mSeriesList(),
-    mAxisList(),
-    mChart(chart)
+    mAxisList()
 {
 }
 
 ChartiumDataSet::~ChartiumDataSet()
 {
+    deleteAllSeries();
+    deleteAllAxes();
 }
 
 void ChartiumDataSet::addSeries(IChartiumSeries* series)
 {
+    if (mSeriesList.contains(series))
+    {
+        return;
+    }
+
+    if (mChart != nullptr && mChart->chartType() == IChartiumChart::ChartTypePolar)
+    {
+        qFatal() << "Polar chart is unsupported";
+    }
+    else
+    {
+        series->setDomain(new ChartiumXYDomain());
+    }
+
+    series->initializeDomain();
+    mSeriesList.append(series);
+
+    series->setParent(this);
+    series->setChart(mChart);
+
+    emit seriesAdded(series);
 }
 
 void ChartiumDataSet::removeSeries(IChartiumSeries* series)
 {
+    if (!mSeriesList.contains(series))
+    {
+        return;
+    }
+
+    QList<IChartiumAxis*> axes = series->attachedAxes();
+
+    for (IChartiumAxis* axis : axes)
+    {
+        detachAxis(series, axis);
+    }
+
+    mSeriesList.removeAll(series);
+    emit seriesRemoved(series);
+
+    // Reset domain to default
+    series->setDomain(new ChartiumXYDomain());
+    series->setParent(nullptr);
+    series->setChart(nullptr);
 }
 
 QList<IChartiumSeries*> ChartiumDataSet::series() const
@@ -31,10 +75,57 @@ QList<IChartiumSeries*> ChartiumDataSet::series() const
 
 void ChartiumDataSet::addAxis(IChartiumAxis* axis, Qt::Alignment alignment)
 {
+    if (mAxisList.contains(axis))
+    {
+        return;
+    }
+
+    axis->setAlignment(alignment);
+
+    if (!axis->alignment())
+    {
+        return;
+    };
+
+    IChartiumDomain* newDomain;
+
+    if (mChart != nullptr && mChart->chartType() == IChartiumChart::ChartTypePolar)
+    {
+        qFatal() << "Polar chart is unsupported";
+    }
+    else
+    {
+        newDomain = new ChartiumXYDomain();
+    }
+
+    axis->initializeDomain(newDomain);
+
+    axis->setParent(this);
+    axis->setChart(mChart);
+    mAxisList.append(axis);
+
+    emit axisAdded(axis);
 }
 
 void ChartiumDataSet::removeAxis(IChartiumAxis* axis)
 {
+    if (!mAxisList.contains(axis))
+    {
+        return;
+    }
+
+    QList<IChartiumSeries*> series = axis->getSeries();
+
+    for (IChartiumSeries* s : series)
+    {
+        detachAxis(s, axis);
+    }
+
+    emit axisRemoved(axis);
+    mAxisList.removeAll(axis);
+
+    axis->setParent(nullptr);
+    axis->setChart(nullptr);
 }
 
 QList<IChartiumAxis*> ChartiumDataSet::axes() const

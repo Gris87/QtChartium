@@ -56,7 +56,7 @@ public slots:
     void handleReverseChanged() override;
 
 private:
+    IChartiumChart*         mChart;
     QList<IChartiumSeries*> mSeriesList;
     QList<IChartiumAxis*>   mAxisList;
-    IChartiumChart*         mChart;
 };
