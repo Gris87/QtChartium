@@ -136,3 +136,13 @@ IChartiumPresenter* ChartiumSeries::presenter() const
 {
     return nullptr;
 }
+
+void ChartiumSeries::appendAxis(IChartiumAxis* axis)
+{
+    mAxes.append(axis);
+}
+
+void ChartiumSeries::removeAxis(IChartiumAxis* axis)
+{
+    mAxes.removeAll(axis);
+}

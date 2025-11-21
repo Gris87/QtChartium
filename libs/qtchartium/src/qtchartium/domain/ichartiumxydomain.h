@@ -2,17 +2,17 @@
 
 
 
-#include "src/qtchartium/domain/ichartiumdomain.h"
+#include "src/qtchartium/domain/chartiumdomain.h"
 
 
 
-class IChartiumXYDomain : public IChartiumDomain
+class IChartiumXYDomain : public ChartiumDomain
 {
     Q_OBJECT
 
 public:
     explicit IChartiumXYDomain(QObject* parent = nullptr) :
-        IChartiumDomain(parent)
+        ChartiumDomain(parent)
     {
     }
     ~IChartiumXYDomain() override = default;

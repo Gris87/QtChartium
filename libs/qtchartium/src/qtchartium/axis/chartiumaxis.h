@@ -107,6 +107,8 @@ public:
     IChartiumAxisElement* axisItem() override;
 
     QList<IChartiumSeries*> getSeries() const override;
+    void                    appendSeries(IChartiumSeries* series) override;
+    void                    removeSeries(IChartiumSeries* series) override;
 
 public slots:
     void handleRangeChanged(qreal min, qreal max) override;

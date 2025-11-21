@@ -58,6 +58,9 @@ public:
     void                setPresenter(IChartiumPresenter* presenter) override;
     IChartiumPresenter* presenter() const override;
 
+    void appendAxis(IChartiumAxis* axis) override;
+    void removeAxis(IChartiumAxis* axis) override;
+
 private:
     IChartiumChart*       mChart;
     IChartiumItem*        mItem;

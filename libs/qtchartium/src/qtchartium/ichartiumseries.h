@@ -88,6 +88,8 @@ public:
     virtual void                setPresenter(IChartiumPresenter* presenter) = 0;
     virtual IChartiumPresenter* presenter() const                           = 0;
 
+    virtual void appendAxis(IChartiumAxis* axis) = 0;
+    virtual void removeAxis(IChartiumAxis* axis) = 0;
 
 signals:
     void nameChanged();

@@ -133,7 +133,9 @@ public:
 
     virtual IChartiumAxisElement* axisItem() = 0;
 
-    virtual QList<IChartiumSeries*> getSeries() const = 0;
+    virtual QList<IChartiumSeries*> getSeries() const                     = 0;
+    virtual void                    appendSeries(IChartiumSeries* series) = 0;
+    virtual void                    removeSeries(IChartiumSeries* series) = 0;
 
 public slots:
     virtual void handleRangeChanged(qreal min, qreal max) = 0;

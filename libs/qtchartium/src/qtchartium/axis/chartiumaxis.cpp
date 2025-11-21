@@ -369,6 +369,16 @@ QList<IChartiumSeries*> ChartiumAxis::getSeries() const
     return mSeries;
 }
 
+void ChartiumAxis::appendSeries(IChartiumSeries* series)
+{
+    mSeries.append(series);
+}
+
+void ChartiumAxis::removeSeries(IChartiumSeries* series)
+{
+    mSeries.removeAll(series);
+}
+
 void ChartiumAxis::handleRangeChanged(qreal min, qreal max)
 {
 }

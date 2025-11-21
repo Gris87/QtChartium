@@ -137,16 +137,175 @@ QList<IChartiumAxis*> ChartiumDataSet::axes() const
 
 bool ChartiumDataSet::attachAxis(IChartiumSeries* series, IChartiumAxis* axis)
 {
-    return false;
+    Q_ASSERT(axis);
+
+    if (!series)
+    {
+        return false;
+    }
+
+    QList<IChartiumSeries*> attachedSeriesList = axis->getSeries();
+    QList<IChartiumAxis*>   attachedAxisList   = series->attachedAxes();
+
+    if (!mSeriesList.contains(series))
+    {
+        return false;
+    }
+
+    if (!mAxisList.contains(axis))
+    {
+        return false;
+    }
+
+    if (attachedAxisList.contains(axis))
+    {
+        return false;
+    }
+
+    if (attachedSeriesList.contains(series))
+    {
+        return false;
+    }
+
+    IChartiumDomain*            domain = series->domain();
+    IChartiumDomain::DomainType type   = selectDomain(attachedAxisList << axis);
+
+    if (type == IChartiumDomain::UndefinedDomain)
+    {
+        return false;
+    }
+
+    if (domain->type() != type)
+    {
+        IChartiumDomain* old = domain;
+        domain               = createDomain(type);
+
+        domain->setRange(old->minX(), old->maxX(), old->minY(), old->maxY());
+        // Initialize domain size to old domain size, as it won't get updated
+        // unless geometry changes.
+        domain->setSize(old->size());
+    }
+
+    if (!domain)
+    {
+        return false;
+    }
+
+    if (!domain->attachAxis(axis))
+    {
+        return false;
+    }
+
+    domain->blockRangeSignals(true);
+    QList<IChartiumDomain*> blockedDomains{domain};
+
+    if (domain != series->domain())
+    {
+        foreach(IChartiumAxis* axis, series->attachedAxes())
+        {
+            series->domain()->detachAxis(axis);
+            domain->attachAxis(axis);
+
+            foreach(IChartiumSeries* otherSeries, axis->getSeries())
+            {
+                if (otherSeries != series && otherSeries->domain())
+                {
+                    if (!otherSeries->domain()->rangeSignalsBlocked())
+                    {
+                        otherSeries->domain()->blockRangeSignals(true);
+                        blockedDomains << otherSeries->domain();
+                    }
+                }
+            }
+        }
+        series->setDomain(domain);
+        series->initializeDomain();
+
+        // Reinitialize domain based on old axes, as the series domain initialization above
+        // has trashed the old ranges, if there were any.
+        for (IChartiumAxis* oldAxis : series->attachedAxes())
+        {
+            oldAxis->initializeDomain(domain);
+        }
+    }
+
+    series->appendAxis(axis);
+    axis->appendSeries(series);
+
+    series->initializeAxes();
+    axis->initializeDomain(domain);
+
+    connect(axis, &IChartiumAxis::reverseChanged, this, &IChartiumDataSet::handleReverseChanged);
+
+    foreach(IChartiumDomain* blockedDomain, blockedDomains)
+    {
+        blockedDomain->blockRangeSignals(false);
+    }
+
+    return true;
 }
 
 bool ChartiumDataSet::detachAxis(IChartiumSeries* series, IChartiumAxis* axis)
 {
-    return false;
+    Q_ASSERT(series);
+    Q_ASSERT(axis);
+
+    QList<IChartiumAxis*> attachedAxisList = series->attachedAxes();
+    IChartiumDomain*      domain           = series->domain();
+
+    if (!mSeriesList.contains(series))
+    {
+        qWarning() << QObject::tr("Can not find series on the chart.");
+        return false;
+    }
+
+    if (axis && !mAxisList.contains(axis))
+    {
+        qWarning() << QObject::tr("Can not find axis on the chart.");
+        return false;
+    }
+
+    if (!attachedAxisList.contains(axis))
+    {
+        qWarning() << QObject::tr("Axis not attached to series.");
+        return false;
+    }
+
+    Q_ASSERT(axis->getSeries().contains(series));
+
+    domain->detachAxis(axis);
+    series->removeAxis(axis);
+    axis->removeSeries(series);
+
+    disconnect(axis, &IChartiumAxis::reverseChanged, this, &IChartiumDataSet::handleReverseChanged);
+
+    return true;
 }
 
 void ChartiumDataSet::createDefaultAxes()
 {
+    if (mSeriesList.isEmpty())
+    {
+        return;
+    }
+
+    IChartiumAxis::AxisTypes typeX;
+    IChartiumAxis::AxisTypes typeY;
+
+    // Remove possibly existing axes
+    deleteAllAxes();
+
+    Q_ASSERT(mAxisList.isEmpty());
+
+    // Select the required axis x and axis y types based on the types of the current series
+    foreach(IChartiumSeries* s, mSeriesList)
+    {
+        typeX |= s->defaultAxisType(Qt::Horizontal);
+        typeY |= s->defaultAxisType(Qt::Vertical);
+    }
+
+    createAxes(typeX, Qt::Horizontal);
+    createAxes(typeY, Qt::Vertical);
 }
 
 void ChartiumDataSet::zoomInDomain(const QRectF& rect)
