@@ -45,15 +45,11 @@ public:
     IChartiumDomain* domainForSeries(IChartiumSeries* series) const override;
 
     void                        createAxes(IChartiumAxis::AxisTypes type, Qt::Orientation orientation) override;
-    IChartiumAxis*              createAxis(IChartiumAxis::AxisType type, Qt::Orientation orientation) override;
     IChartiumDomain::DomainType selectDomain(const QList<IChartiumAxis*>& axes) override;
     void                        deleteAllAxes() override;
     void                        deleteAllSeries() override;
     void
     findMinMaxForSeries(const QList<IChartiumSeries*>& series, Qt::Orientations orientation, qreal& min, qreal& max) override;
-
-public slots:
-    void handleReverseChanged() override;
 
 private:
     IChartiumChart*         mChart;

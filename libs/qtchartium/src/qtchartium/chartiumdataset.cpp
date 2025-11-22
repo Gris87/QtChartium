@@ -236,8 +236,6 @@ bool ChartiumDataSet::attachAxis(IChartiumSeries* series, IChartiumAxis* axis)
     series->initializeAxes();
     axis->initializeDomain(domain);
 
-    connect(axis, &IChartiumAxis::reverseChanged, this, &IChartiumDataSet::handleReverseChanged);
-
     foreach(IChartiumDomain* blockedDomain, blockedDomains)
     {
         blockedDomain->blockRangeSignals(false);
@@ -274,8 +272,6 @@ bool ChartiumDataSet::detachAxis(IChartiumSeries* series, IChartiumAxis* axis)
     domain->detachAxis(axis);
     series->removeAxis(axis);
     axis->removeSeries(series);
-
-    disconnect(axis, &IChartiumAxis::reverseChanged, this, &IChartiumDataSet::handleReverseChanged);
 
     return true;
 }
@@ -455,16 +451,20 @@ QPointF ChartiumDataSet::mapToPosition(const QPointF& value, IChartiumSeries* se
 
 IChartiumDomain* ChartiumDataSet::createDomain(IChartiumDomain::DomainType type)
 {
-    return nullptr;
+    switch (type)
+    {
+        case IChartiumDomain::XYDomain:
+            return new ChartiumXYDomain();
+        default:
+            qFatal() << "Other domains is unsupported";
+
+            return nullptr;
+    }
 }
 
 IChartiumDomain* ChartiumDataSet::domainForSeries(IChartiumSeries* series) const
 {
-    return nullptr;
-}
-
-void ChartiumDataSet::handleReverseChanged()
-{
+    return series->domain();
 }
 
 void ChartiumDataSet::createAxes(IChartiumAxis::AxisTypes type, Qt::Orientation orientation)
@@ -518,14 +518,118 @@ void ChartiumDataSet::createAxes(IChartiumAxis::AxisTypes type, Qt::Orientation 
     }
 }
 
-IChartiumAxis* ChartiumDataSet::createAxis(IChartiumAxis::AxisType type, Qt::Orientation orientation)
-{
-    return nullptr;
-}
-
 IChartiumDomain::DomainType ChartiumDataSet::selectDomain(const QList<IChartiumAxis*>& axes)
 {
-    return IChartiumDomain::XYDomain;
+    enum Type
+    {
+        Undefined = 0,
+        LogType   = 0x1,
+        ValueType = 0x2
+    };
+
+    int horizontal(Undefined);
+    int vertical(Undefined);
+
+    IChartiumChart::ChartType chartType(IChartiumChart::ChartTypeCartesian);
+
+    if (mChart != nullptr)
+    {
+        chartType = mChart->chartType();
+    }
+
+    for (IChartiumAxis* axis : axes)
+    {
+        switch (axis->type())
+        {
+            case IChartiumAxis::AxisTypeLogValue:
+                if (axis->orientation() == Qt::Horizontal)
+                {
+                    horizontal |= LogType;
+                }
+                if (axis->orientation() == Qt::Vertical)
+                {
+                    vertical |= LogType;
+                }
+                break;
+            case IChartiumAxis::AxisTypeValue:
+            case IChartiumAxis::AxisTypeBarCategory:
+            case IChartiumAxis::AxisTypeCategory:
+            case IChartiumAxis::AxisTypeColor:
+            case IChartiumAxis::AxisTypeDateTime:
+                if (axis->orientation() == Qt::Horizontal)
+                {
+                    horizontal |= ValueType;
+                }
+                if (axis->orientation() == Qt::Vertical)
+                {
+                    vertical |= ValueType;
+                }
+                break;
+            default:
+                qWarning() << "Undefined type";
+                break;
+        }
+    }
+
+    if (vertical == Undefined)
+    {
+        vertical = ValueType;
+    }
+
+    if (horizontal == Undefined)
+    {
+        horizontal = ValueType;
+    }
+
+    if (vertical == ValueType && horizontal == ValueType)
+    {
+        if (chartType == IChartiumChart::ChartTypeCartesian)
+        {
+            return IChartiumDomain::XYDomain;
+        }
+        else if (chartType == IChartiumChart::ChartTypePolar)
+        {
+            return IChartiumDomain::XYPolarDomain;
+        }
+    }
+
+    if (vertical == LogType && horizontal == ValueType)
+    {
+        if (chartType == IChartiumChart::ChartTypeCartesian)
+        {
+            return IChartiumDomain::XLogYDomain;
+        }
+        if (chartType == IChartiumChart::ChartTypePolar)
+        {
+            return IChartiumDomain::XLogYPolarDomain;
+        }
+    }
+
+    if (vertical == ValueType && horizontal == LogType)
+    {
+        if (chartType == IChartiumChart::ChartTypeCartesian)
+        {
+            return IChartiumDomain::LogXYDomain;
+        }
+        else if (chartType == IChartiumChart::ChartTypePolar)
+        {
+            return IChartiumDomain::LogXYPolarDomain;
+        }
+    }
+
+    if (vertical == LogType && horizontal == LogType)
+    {
+        if (chartType == IChartiumChart::ChartTypeCartesian)
+        {
+            return IChartiumDomain::LogXLogYDomain;
+        }
+        else if (chartType == IChartiumChart::ChartTypePolar)
+        {
+            return IChartiumDomain::LogXLogYPolarDomain;
+        }
+    }
+
+    return IChartiumDomain::UndefinedDomain;
 }
 
 void ChartiumDataSet::deleteAllAxes()
@@ -565,6 +669,7 @@ ChartiumDataSet::findMinMaxForSeries(const QList<IChartiumSeries*>& series, Qt::
         min                     = qMin((orientation == Qt::Vertical) ? domain->minY() : domain->minX(), min);
         max                     = qMax((orientation == Qt::Vertical) ? domain->maxY() : domain->maxX(), max);
     }
+
     if (min == max)
     {
         min -= 0.5;

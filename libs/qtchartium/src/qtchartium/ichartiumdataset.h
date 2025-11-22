@@ -50,15 +50,11 @@ public:
     virtual IChartiumDomain* domainForSeries(IChartiumSeries* series) const = 0;
 
     virtual void                        createAxes(IChartiumAxis::AxisTypes type, Qt::Orientation orientation) = 0;
-    virtual IChartiumAxis*              createAxis(IChartiumAxis::AxisType type, Qt::Orientation orientation)  = 0;
     virtual IChartiumDomain::DomainType selectDomain(const QList<IChartiumAxis*>& axes)                        = 0;
     virtual void                        deleteAllAxes()                                                        = 0;
     virtual void                        deleteAllSeries()                                                      = 0;
     virtual void
     findMinMaxForSeries(const QList<IChartiumSeries*>& series, Qt::Orientations orientation, qreal& min, qreal& max) = 0;
-
-public slots:
-    virtual void handleReverseChanged() = 0;
 
 signals:
     void axisAdded(IChartiumAxis* axis);
