@@ -71,9 +71,7 @@ void ChartiumDataSet::removeSeries(IChartiumSeries* series)
 
 QList<IChartiumSeries*> ChartiumDataSet::series() const
 {
-    QList<IChartiumSeries*> res;
-
-    return res;
+    return mSeriesList;
 }
 
 void ChartiumDataSet::addAxis(IChartiumAxis* axis, Qt::Alignment alignment)
@@ -95,6 +93,8 @@ void ChartiumDataSet::addAxis(IChartiumAxis* axis, Qt::Alignment alignment)
     if (mChart != nullptr && mChart->chartType() == IChartiumChart::ChartTypePolar)
     {
         qFatal() << "Polar chart is unsupported";
+
+        return;
     }
     else
     {
@@ -133,9 +133,7 @@ void ChartiumDataSet::removeAxis(IChartiumAxis* axis)
 
 QList<IChartiumAxis*> ChartiumDataSet::axes() const
 {
-    QList<IChartiumAxis*> res;
-
-    return res;
+    return mAxisList;
 }
 
 bool ChartiumDataSet::attachAxis(IChartiumSeries* series, IChartiumAxis* axis)
@@ -310,33 +308,149 @@ void ChartiumDataSet::createDefaultAxes()
 
 void ChartiumDataSet::zoomInDomain(const QRectF& rect)
 {
+    QList<IChartiumDomain*> domains;
+
+    for (IChartiumSeries* s : mSeriesList)
+    {
+        IChartiumDomain* domain = s->domain();
+        domain->blockRangeSignals(true);
+        domains.append(domain);
+    }
+
+    for (IChartiumDomain* domain : domains)
+    {
+        domain->zoomIn(rect);
+    }
+
+    for (IChartiumDomain* domain : domains)
+    {
+        domain->blockRangeSignals(false);
+    }
 }
 
 void ChartiumDataSet::zoomOutDomain(const QRectF& rect)
 {
+    QList<IChartiumDomain*> domains;
+
+    for (IChartiumSeries* s : mSeriesList)
+    {
+        IChartiumDomain* domain = s->domain();
+        domain->blockRangeSignals(true);
+        domains.append(domain);
+    }
+
+    for (IChartiumDomain* domain : domains)
+    {
+        domain->zoomOut(rect);
+    }
+
+    for (IChartiumDomain* domain : domains)
+    {
+        domain->blockRangeSignals(false);
+    }
 }
 
 void ChartiumDataSet::zoomResetDomain()
 {
+    QList<IChartiumDomain*> domains;
+
+    for (IChartiumSeries* s : mSeriesList)
+    {
+        IChartiumDomain* domain = s->domain();
+        domain->blockRangeSignals(true);
+        domains.append(domain);
+    }
+
+    for (IChartiumDomain* domain : domains)
+    {
+        domain->zoomReset();
+    }
+
+    for (IChartiumDomain* domain : domains)
+    {
+        domain->blockRangeSignals(false);
+    }
 }
 
 bool ChartiumDataSet::isZoomedDomain()
 {
+    for (IChartiumSeries* s : mSeriesList)
+    {
+        if (s->domain()->isZoomed())
+        {
+            return true;
+        }
+    }
+
     return false;
 }
 
 void ChartiumDataSet::scrollDomain(qreal dx, qreal dy)
 {
+    QList<IChartiumDomain*> domains;
+
+    for (IChartiumSeries* s : mSeriesList)
+    {
+        IChartiumDomain* domain = s->domain();
+        domain->blockRangeSignals(true);
+        domains.append(domain);
+    }
+
+    for (IChartiumDomain* domain : domains)
+    {
+        domain->move(dx, dy);
+    }
+
+    for (IChartiumDomain* domain : domains)
+    {
+        domain->blockRangeSignals(false);
+    }
 }
 
 QPointF ChartiumDataSet::mapToValue(const QPointF& position, IChartiumSeries* series)
 {
-    return QPointF();
+    QPointF point;
+
+    if (series == nullptr && !mSeriesList.isEmpty())
+    {
+        series = mSeriesList.first();
+    }
+
+    if (series != nullptr && series->type() == IChartiumSeries::SeriesTypePie)
+    {
+        return point;
+    }
+
+    if (series && mSeriesList.contains(series))
+    {
+        point = series->domain()->calculateDomainPoint(position - mChart->plotArea().topLeft());
+    }
+
+    return point;
 }
 
 QPointF ChartiumDataSet::mapToPosition(const QPointF& value, IChartiumSeries* series)
 {
-    return QPointF();
+    QPointF point = mChart->plotArea().topLeft();
+
+    if (series == nullptr && !mSeriesList.isEmpty())
+    {
+        series = mSeriesList.first();
+    }
+
+    if (series != nullptr && series->type() == IChartiumSeries::SeriesTypePie)
+    {
+        return QPoint(0, 0);
+    }
+
+    bool ok;
+
+    if (series && mSeriesList.contains(series))
+    {
+        point += series->domain()->calculateGeometryPoint(value, ok);
+    }
+
+    return point;
 }
 
 IChartiumDomain* ChartiumDataSet::createDomain(IChartiumDomain::DomainType type)
@@ -416,13 +530,44 @@ IChartiumDomain::DomainType ChartiumDataSet::selectDomain(const QList<IChartiumA
 
 void ChartiumDataSet::deleteAllAxes()
 {
+    for (IChartiumAxis* a : mAxisList)
+    {
+        removeAxis(a);
+        delete a;
+    }
+
+    Q_ASSERT(mAxisList.size() == 0);
 }
 
 void ChartiumDataSet::deleteAllSeries()
 {
+    for (IChartiumSeries* s : mSeriesList)
+    {
+        removeSeries(s);
+        delete s;
+    }
+
+    Q_ASSERT(mSeriesList.size() == 0);
 }
 
 void
 ChartiumDataSet::findMinMaxForSeries(const QList<IChartiumSeries*>& series, Qt::Orientations orientation, qreal& min, qreal& max)
 {
+    Q_ASSERT(!series.isEmpty());
+
+    IChartiumDomain* domain = series.first()->domain();
+    min                     = (orientation == Qt::Vertical) ? domain->minY() : domain->minX();
+    max                     = (orientation == Qt::Vertical) ? domain->maxY() : domain->maxX();
+
+    for (int i = 1; i < series.size(); i++)
+    {
+        IChartiumDomain* domain = series.at(i)->domain();
+        min                     = qMin((orientation == Qt::Vertical) ? domain->minY() : domain->minX(), min);
+        max                     = qMax((orientation == Qt::Vertical) ? domain->maxY() : domain->maxX(), max);
+    }
+    if (min == max)
+    {
+        min -= 0.5;
+        max += 0.5;
+    }
 }
