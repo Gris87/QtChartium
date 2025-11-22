@@ -1,5 +1,8 @@
 #include "src/qtchartium/chartiumdataset.h"
 
+#include "src/qtchartium/axis/chartiumbarcategoryaxis.h"
+#include "src/qtchartium/axis/chartiumdatetimeaxis.h"
+#include "src/qtchartium/axis/chartiumvalueaxis.h"
 #include "src/qtchartium/domain/chartiumxydomain.h"
 
 
@@ -255,19 +258,16 @@ bool ChartiumDataSet::detachAxis(IChartiumSeries* series, IChartiumAxis* axis)
 
     if (!mSeriesList.contains(series))
     {
-        qWarning() << QObject::tr("Can not find series on the chart.");
         return false;
     }
 
     if (axis && !mAxisList.contains(axis))
     {
-        qWarning() << QObject::tr("Can not find axis on the chart.");
         return false;
     }
 
     if (!attachedAxisList.contains(axis))
     {
-        qWarning() << QObject::tr("Axis not attached to series.");
         return false;
     }
 
@@ -355,6 +355,53 @@ void ChartiumDataSet::handleReverseChanged()
 
 void ChartiumDataSet::createAxes(IChartiumAxis::AxisTypes type, Qt::Orientation orientation)
 {
+    IChartiumAxis* axis = 0;
+
+    switch (type)
+    {
+        case IChartiumAxis::AxisTypeValue:
+            axis = new ChartiumValueAxis(this);
+            break;
+        case IChartiumAxis::AxisTypeBarCategory:
+            axis = new ChartiumBarCategoryAxis(this);
+            break;
+        case IChartiumAxis::AxisTypeDateTime:
+            axis = new ChartiumDateTimeAxis(this);
+            break;
+        default:
+            axis = nullptr;
+            break;
+    }
+
+    if (axis != nullptr)
+    {
+        addAxis(axis, orientation == Qt::Horizontal ? Qt::AlignBottom : Qt::AlignLeft);
+
+        qreal min = 0;
+        qreal max = 0;
+        findMinMaxForSeries(mSeriesList, orientation, min, max);
+
+        foreach(IChartiumSeries* s, mSeriesList)
+        {
+            attachAxis(s, axis);
+        }
+
+        axis->setRange(min, max);
+    }
+    else
+    {
+        // Create separate axis for each series
+        foreach(IChartiumSeries* s, mSeriesList)
+        {
+            IChartiumAxis* axis = s->createDefaultAxis(orientation);
+
+            if (axis)
+            {
+                addAxis(axis, orientation == Qt::Horizontal ? Qt::AlignBottom : Qt::AlignLeft);
+                attachAxis(s, axis);
+            }
+        }
+    }
 }
 
 IChartiumAxis* ChartiumDataSet::createAxis(IChartiumAxis::AxisType type, Qt::Orientation orientation)

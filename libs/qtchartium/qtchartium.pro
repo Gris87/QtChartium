@@ -37,6 +37,9 @@ UI_DIR      = build/gen/$${TARGET}/ui
 SOURCES += \
     src/qtchartium/axis/chartiumaxis.cpp \
     src/qtchartium/axis/chartiumaxiselement.cpp \
+    src/qtchartium/axis/chartiumbarcategoryaxis.cpp \
+    src/qtchartium/axis/chartiumdatetimeaxis.cpp \
+    src/qtchartium/axis/chartiumvalueaxis.cpp \
     src/qtchartium/chartiumbackground.cpp \
     src/qtchartium/chartiumchart.cpp \
     src/qtchartium/chartiumdataset.cpp \
@@ -56,8 +59,14 @@ SOURCES += \
 HEADERS += \
     src/qtchartium/axis/chartiumaxis.h \
     src/qtchartium/axis/chartiumaxiselement.h \
+    src/qtchartium/axis/chartiumbarcategoryaxis.h \
+    src/qtchartium/axis/chartiumdatetimeaxis.h \
+    src/qtchartium/axis/chartiumvalueaxis.h \
     src/qtchartium/axis/ichartiumaxis.h \
     src/qtchartium/axis/ichartiumaxiselement.h \
+    src/qtchartium/axis/ichartiumbarcategoryaxis.h \
+    src/qtchartium/axis/ichartiumdatetimeaxis.h \
+    src/qtchartium/axis/ichartiumvalueaxis.h \
     src/qtchartium/chartiumbackground.h \
     src/qtchartium/chartiumchart.h \
     src/qtchartium/chartiumdataset.h \
