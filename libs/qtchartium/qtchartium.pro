@@ -43,6 +43,7 @@ SOURCES += \
     src/qtchartium/chartiumbackground.cpp \
     src/qtchartium/chartiumchart.cpp \
     src/qtchartium/chartiumdataset.cpp \
+    src/qtchartium/chartiumelement.cpp \
     src/qtchartium/chartiumitem.cpp \
     src/qtchartium/chartiumpresenter.cpp \
     src/qtchartium/chartiumseries.cpp \
@@ -70,6 +71,7 @@ HEADERS += \
     src/qtchartium/chartiumbackground.h \
     src/qtchartium/chartiumchart.h \
     src/qtchartium/chartiumdataset.h \
+    src/qtchartium/chartiumelement.h \
     src/qtchartium/chartiumitem.h \
     src/qtchartium/chartiumpresenter.h \
     src/qtchartium/chartiumseries.h \
@@ -82,6 +84,7 @@ HEADERS += \
     src/qtchartium/ichartiumbackground.h \
     src/qtchartium/ichartiumchart.h \
     src/qtchartium/ichartiumdataset.h \
+    src/qtchartium/ichartiumelement.h \
     src/qtchartium/ichartiumitem.h \
     src/qtchartium/ichartiumpresenter.h \
     src/qtchartium/ichartiumseries.h \
