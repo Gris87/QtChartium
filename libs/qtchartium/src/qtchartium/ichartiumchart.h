@@ -98,6 +98,8 @@ public:
 
     virtual ChartType chartType() const = 0;
 
+    virtual IChartiumDataSet* dataset() const = 0;
+
 signals:
     void plotAreaChanged(const QRectF& plotArea);
 };

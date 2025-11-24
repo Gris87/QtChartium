@@ -239,5 +239,10 @@ QPointF ChartiumChart::mapToPosition(const QPointF& value, IChartiumSeries* seri
 
 IChartiumChart::ChartType ChartiumChart::chartType() const
 {
-    return IChartiumChart::ChartTypeUndefined;
+    return IChartiumChart::ChartTypeCartesian;
+}
+
+IChartiumDataSet* ChartiumChart::dataset() const
+{
+    return mDataset;
 }

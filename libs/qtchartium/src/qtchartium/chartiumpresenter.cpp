@@ -256,6 +256,8 @@ void ChartiumPresenter::setVisible(bool visible)
 
 void ChartiumPresenter::setState(State state, QPointF point)
 {
+    mState      = state;
+    mStatePoint = point;
 }
 
 IChartiumPresenter::State ChartiumPresenter::state() const
@@ -324,10 +326,34 @@ void ChartiumPresenter::createTitleItem()
 
 void ChartiumPresenter::handleSeriesAdded(IChartiumSeries* series)
 {
+    series->initializeGraphics(rootItem());
+    series->setPresenter(this);
+
+    IChartiumItem* chartItem = series->chartItem();
+
+    chartItem->setPresenter(this);
+    chartItem->setDataSet(mChart->dataset());
+    chartItem->domain()->setSize(geometry().size());
+    chartItem->setPos(geometry().topLeft());
+    chartItem->handleDomainUpdated();
+
+    mChartItems.append(chartItem);
+    mSeries.append(series);
+    mLayout->invalidate();
 }
 
 void ChartiumPresenter::handleSeriesRemoved(IChartiumSeries* series)
 {
+    IChartiumItem* chartItem = series->chartItem();
+
+    chartItem->hide();
+    chartItem->cleanup();
+    series->disconnect(chartItem);
+    chartItem->deleteLater();
+
+    mChartItems.removeAll(chartItem);
+    mSeries.removeAll(series);
+    mLayout->invalidate();
 }
 
 void ChartiumPresenter::handleAxisAdded(IChartiumAxis* axis)
