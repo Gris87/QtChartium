@@ -101,36 +101,32 @@ QGraphicsItem* ChartiumPresenter::rootItem()
 
 IChartiumBackground* ChartiumPresenter::backgroundElement()
 {
-    return nullptr;
+    return mBackground;
 }
 
 QAbstractGraphicsShapeItem* ChartiumPresenter::plotAreaElement()
 {
-    return nullptr;
+    return mPlotAreaBackground;
 }
 
 IChartiumTitle* ChartiumPresenter::titleElement()
 {
-    return nullptr;
+    return mTitle;
 }
 
 QList<IChartiumAxisElement*> ChartiumPresenter::axisItems() const
 {
-    QList<IChartiumAxisElement*> res;
-
-    return res;
+    return mAxisItems;
 }
 
 QList<IChartiumItem*> ChartiumPresenter::chartItems() const
 {
-    QList<IChartiumItem*> res;
-
-    return res;
+    return mChartItems;
 }
 
 IChartiumLegend* ChartiumPresenter::legend()
 {
-    return nullptr;
+    return mChart->legend();
 }
 
 void ChartiumPresenter::setBackgroundBrush(const QBrush& brush)
@@ -189,78 +185,147 @@ qreal ChartiumPresenter::backgroundRoundness() const
 
 void ChartiumPresenter::setPlotAreaBackgroundBrush(const QBrush& brush)
 {
+    createPlotAreaBackgroundItem();
+
+    mPlotAreaBackground->setBrush(brush);
+    mLayout->invalidate();
 }
 
 QBrush ChartiumPresenter::plotAreaBackgroundBrush() const
 {
-    return QBrush();
+    if (mPlotAreaBackground == nullptr)
+    {
+        return QBrush();
+    }
+
+    return mPlotAreaBackground->brush();
 }
 
 void ChartiumPresenter::setPlotAreaBackgroundPen(const QPen& pen)
 {
+    createPlotAreaBackgroundItem();
+
+    mPlotAreaBackground->setPen(pen);
+    mLayout->invalidate();
 }
 
 QPen ChartiumPresenter::plotAreaBackgroundPen() const
 {
-    return QPen();
+    if (mPlotAreaBackground == nullptr)
+    {
+        return QPen();
+    }
+
+    return mPlotAreaBackground->pen();
 }
 
 void ChartiumPresenter::setTitle(const QString& title)
 {
+    createTitleItem();
+
+    mTitle->setText(title);
+    mLayout->invalidate();
 }
 
 QString ChartiumPresenter::title() const
 {
-    return "";
+    if (mTitle == nullptr)
+    {
+        return QString();
+    }
+
+    return mTitle->text();
 }
 
 void ChartiumPresenter::setTitleFont(const QFont& font)
 {
+    createTitleItem();
+
+    mTitle->setFont(font);
+    mLayout->invalidate();
 }
 
 QFont ChartiumPresenter::titleFont() const
 {
-    return QFont();
+    if (mTitle == nullptr)
+    {
+        return QFont();
+    }
+
+    return mTitle->font();
 }
 
 void ChartiumPresenter::setTitleBrush(const QBrush& brush)
 {
+    createTitleItem();
+    mTitle->setDefaultTextColor(brush.color());
+    mLayout->invalidate();
 }
 
 QBrush ChartiumPresenter::titleBrush() const
 {
-    return QBrush();
+    if (mTitle == nullptr)
+    {
+        return QBrush();
+    }
+
+    return QBrush(mTitle->defaultTextColor());
 }
 
 void ChartiumPresenter::setBackgroundVisible(bool visible)
 {
+    createBackgroundItem();
+    mBackground->setVisible(visible);
 }
 
 bool ChartiumPresenter::isBackgroundVisible() const
 {
-    return false;
+    if (mBackground == nullptr)
+    {
+        return false;
+    }
+
+    return mBackground->isVisible();
 }
 
 void ChartiumPresenter::setPlotAreaBackgroundVisible(bool visible)
 {
+    createPlotAreaBackgroundItem();
+
+    mPlotAreaBackground->setVisible(visible);
 }
 
 bool ChartiumPresenter::isPlotAreaBackgroundVisible() const
 {
-    return false;
+    if (mPlotAreaBackground == nullptr)
+    {
+        return false;
+    }
+
+    return mPlotAreaBackground->isVisible();
 }
 
 void ChartiumPresenter::setBackgroundDropShadowEnabled(bool enabled)
 {
+    createBackgroundItem();
+
+    mBackground->setDropShadowEnabled(enabled);
 }
 
 bool ChartiumPresenter::isBackgroundDropShadowEnabled() const
 {
-    return false;
+    if (mBackground == nullptr)
+    {
+        return false;
+    }
+
+    return mBackground->isDropShadowEnabled();
 }
 
 void ChartiumPresenter::setLocalizeNumbers(bool localize)
 {
+    mLocalizeNumbers = localize;
+    mLayout->invalidate();
 }
 
 bool ChartiumPresenter::localizeNumbers() const
@@ -270,6 +335,8 @@ bool ChartiumPresenter::localizeNumbers() const
 
 void ChartiumPresenter::setLocale(const QLocale& locale)
 {
+    mLocale = locale;
+    mLayout->invalidate();
 }
 
 const QLocale& ChartiumPresenter::locale() const
@@ -279,6 +346,7 @@ const QLocale& ChartiumPresenter::locale() const
 
 void ChartiumPresenter::setVisible(bool visible)
 {
+    mChart->setVisible(visible);
 }
 
 void ChartiumPresenter::setState(State state, QPointF point)
@@ -299,7 +367,7 @@ QPointF ChartiumPresenter::statePoint() const
 
 IChartiumLayout* ChartiumPresenter::layout()
 {
-    return nullptr;
+    return mLayout;
 }
 
 IChartiumChart::ChartType ChartiumPresenter::chartType() const
