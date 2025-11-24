@@ -6,10 +6,14 @@
 
 
 
+class IChartiumPresenter;
+
+
+
 class ChartiumTitle : public IChartiumTitle
 {
 public:
-    explicit ChartiumTitle(QGraphicsItem* parent = nullptr);
+    explicit ChartiumTitle(IChartiumPresenter* presenter, QGraphicsItem* parent = nullptr);
     ~ChartiumTitle() override;
 
     ChartiumTitle(const ChartiumTitle& another)            = delete;
@@ -21,5 +25,6 @@ public:
     void    setGeometry(const QRectF& rect) override;
 
 protected:
-    QString mText;
+    IChartiumPresenter* mPresenter;
+    QString             mText;
 };

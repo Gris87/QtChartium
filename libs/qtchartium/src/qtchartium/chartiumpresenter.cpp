@@ -606,7 +606,7 @@ void ChartiumPresenter::createTitleItem()
 {
     if (mTitle == nullptr)
     {
-        mTitle = new ChartiumTitle(rootItem());
+        mTitle = new ChartiumTitle(this, rootItem());
         mTitle->setZValue(IChartiumPresenter::TitleZValue);
     }
 }
