@@ -1,5 +1,8 @@
 #include "src/qtchartium/chartiumpresenter.h"
 
+#include <QRegularExpression>
+#include <QTextDocument>
+
 #include "src/qtchartium/layout/chartiumcartesianlayout.h"
 
 
@@ -380,16 +383,168 @@ IChartiumChart* ChartiumPresenter::chart()
     return mChart;
 }
 
+template<int TSize>
+struct TextBoundCache
+{
+    struct element
+    {
+        quint32 lastUsed;
+        QRectF  bounds;
+    };
+
+    QHash<QString, element> elements;
+    quint32                 usedCounter = 0;
+    QGraphicsTextItem       dummyText;
+
+    QRectF bounds(const QFont& font, const QString& text)
+    {
+        const QString key  = font.key() + text;
+        auto          elem = elements.find(key);
+
+        if (elem != elements.end())
+        {
+            usedCounter++;
+            elem->lastUsed = usedCounter;
+
+            return elem->bounds;
+        }
+
+        dummyText.setFont(font);
+        dummyText.setHtml(text);
+
+        const QRectF bounds = dummyText.boundingRect();
+
+        if (elements.size() >= TSize)
+        {
+            auto elem = std::min_element(elements.begin(), elements.end(), [](const element& a, const element& b) {
+                return a.lastUsed < b.lastUsed;
+            });
+
+            if (elem != elements.end())
+            {
+                const QString key = elem.key();
+                elements.remove(key);
+            }
+        }
+
+        elements.insert(key, {usedCounter++, bounds});
+
+        return bounds;
+    }
+
+    QTextDocument* document()
+    {
+        return dummyText.document();
+    }
+};
+
+
 QRectF ChartiumPresenter::textBoundingRect(const QFont& font, const QString& text, qreal angle)
 {
-    return QRectF();
+    static TextBoundCache<32> textBoundCache;
+    static bool               initMargin = true;
+
+    if (initMargin)
+    {
+        textBoundCache.document()->setDocumentMargin(textMargin());
+        initMargin = false;
+    }
+
+    QRectF boundingRect = textBoundCache.bounds(font, text);
+
+    if (angle != 0)
+    {
+        QTransform transform;
+        transform.rotate(angle);
+        boundingRect = transform.mapRect(boundingRect);
+    }
+
+    return boundingRect;
 }
 
 QString ChartiumPresenter::truncatedText(
     const QFont& font, const QString& text, qreal angle, qreal maxWidth, qreal maxHeight, QRectF& boundingRect
 )
 {
-    return "";
+    QString truncatedString = text;
+    boundingRect            = textBoundingRect(font, truncatedString, angle);
+
+    if (boundingRect.width() > maxWidth || boundingRect.height() > maxHeight)
+    {
+        // It can be assumed that almost any amount of string manipulation is faster
+        // than calculating one bounding rectangle, so first prepare a list of truncated strings
+        // to try.
+        static QRegularExpression truncateMatcher(QStringLiteral("&#?[0-9a-zA-Z]*;$"));
+
+        QList<QString>       testStrings(text.size());
+        int                  count(0);
+        static QLatin1Char   closeTag('>');
+        static QLatin1Char   openTag('<');
+        static QLatin1Char   semiColon(';');
+        static QLatin1String ellipsis("...");
+
+        while (truncatedString.size() > 1)
+        {
+            int   chopIndex(-1);
+            int   chopCount(1);
+            QChar lastChar(truncatedString.at(truncatedString.size() - 1));
+
+            if (lastChar == closeTag)
+            {
+                chopIndex = truncatedString.lastIndexOf(openTag);
+            }
+            else if (lastChar == semiColon)
+            {
+                chopIndex = truncatedString.indexOf(truncateMatcher);
+            }
+
+            if (chopIndex != -1)
+            {
+                chopCount = truncatedString.size() - chopIndex;
+            }
+
+            truncatedString.chop(chopCount);
+            testStrings[count] = truncatedString + ellipsis;
+            count++;
+        }
+
+        // Binary search for best fit
+        int    minIndex(0);
+        int    maxIndex(count - 1);
+        int    bestIndex(count);
+        QRectF checkRect;
+
+        while (maxIndex >= minIndex)
+        {
+            int mid   = (maxIndex + minIndex) / 2;
+            checkRect = textBoundingRect(font, testStrings.at(mid), angle);
+            if (checkRect.width() > maxWidth || checkRect.height() > maxHeight)
+            {
+                // Checked index too large, all under this are also too large
+                minIndex = mid + 1;
+            }
+            else
+            {
+                // Checked index fits, all over this also fit
+                maxIndex     = mid - 1;
+                bestIndex    = mid;
+                boundingRect = checkRect;
+            }
+        }
+
+        // Default to "..." if nothing fits
+        if (bestIndex == count)
+        {
+            boundingRect    = textBoundingRect(font, ellipsis, angle);
+            truncatedString = ellipsis;
+        }
+        else
+        {
+            truncatedString = testStrings.at(bestIndex);
+        }
+    }
+
+    return truncatedString;
 }
 
 qreal ChartiumPresenter::textMargin()
@@ -397,14 +552,28 @@ qreal ChartiumPresenter::textMargin()
     return 0;
 }
 
-QString ChartiumPresenter::numberToString(double value, char f, int)
+QString ChartiumPresenter::numberToString(double value, char f, int prec)
 {
-    return "";
+    if (mLocalizeNumbers)
+    {
+        return mLocale.toString(value, f, prec);
+    }
+    else
+    {
+        return QString::number(value, f, prec);
+    }
 }
 
 QString ChartiumPresenter::numberToString(int value)
 {
-    return "";
+    if (mLocalizeNumbers)
+    {
+        return mLocale.toString(value);
+    }
+    else
+    {
+        return QString::number(value);
+    }
 }
 
 void ChartiumPresenter::createBackgroundItem()
