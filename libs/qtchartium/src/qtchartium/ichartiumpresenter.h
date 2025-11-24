@@ -23,6 +23,7 @@ public:
     enum ZValues : qint8
     {
         BackgroundZValue = -1,
+        TitleZValue,
         PlotAreaZValue,
         ShadesZValue,
         GridZValue,

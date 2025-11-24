@@ -135,29 +135,56 @@ IChartiumLegend* ChartiumPresenter::legend()
 
 void ChartiumPresenter::setBackgroundBrush(const QBrush& brush)
 {
+    createBackgroundItem();
+
+    mBackground->setBrush(brush);
+    mLayout->invalidate();
 }
 
 QBrush ChartiumPresenter::backgroundBrush() const
 {
-    return QBrush();
+    if (mBackground == nullptr)
+    {
+        return QBrush();
+    }
+
+    return mBackground->brush();
 }
 
 void ChartiumPresenter::setBackgroundPen(const QPen& pen)
 {
+    createBackgroundItem();
+
+    mBackground->setPen(pen);
+    mLayout->invalidate();
 }
 
 QPen ChartiumPresenter::backgroundPen() const
 {
-    return QPen();
+    if (mBackground == nullptr)
+    {
+        return QPen();
+    }
+
+    return mBackground->pen();
 }
 
 void ChartiumPresenter::setBackgroundRoundness(qreal diameter)
 {
+    createBackgroundItem();
+
+    mBackground->setDiameter(diameter);
+    mLayout->invalidate();
 }
 
 qreal ChartiumPresenter::backgroundRoundness() const
 {
-    return 0;
+    if (mBackground == nullptr)
+    {
+        return 0;
+    }
+
+    return mBackground->diameter();
 }
 
 void ChartiumPresenter::setPlotAreaBackgroundBrush(const QBrush& brush)
@@ -314,14 +341,37 @@ QString ChartiumPresenter::numberToString(int value)
 
 void ChartiumPresenter::createBackgroundItem()
 {
+    if (mBackground == nullptr)
+    {
+        mBackground = new ChartiumBackground(rootItem());
+        mBackground->setZValue(IChartiumPresenter::BackgroundZValue);
+    }
 }
 
 void ChartiumPresenter::createPlotAreaBackgroundItem()
 {
+    if (mPlotAreaBackground == nullptr)
+    {
+        if (mChart->chartType() == IChartiumChart::ChartTypeCartesian)
+        {
+            mPlotAreaBackground = new QGraphicsRectItem(rootItem());
+        }
+
+        mPlotAreaBackground->setAcceptedMouseButtons({});
+        mPlotAreaBackground->setPen(QPen(Qt::transparent));
+        mPlotAreaBackground->setBrush(Qt::NoBrush);
+        mPlotAreaBackground->setZValue(IChartiumPresenter::PlotAreaZValue);
+        mPlotAreaBackground->setVisible(false);
+    }
 }
 
 void ChartiumPresenter::createTitleItem()
 {
+    if (mTitle == nullptr)
+    {
+        mTitle = new ChartiumTitle(rootItem());
+        mTitle->setZValue(IChartiumPresenter::TitleZValue);
+    }
 }
 
 void ChartiumPresenter::handleSeriesAdded(IChartiumSeries* series)
