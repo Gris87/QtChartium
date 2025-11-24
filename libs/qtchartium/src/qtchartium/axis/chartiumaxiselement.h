@@ -11,7 +11,7 @@ class ChartiumAxisElement : public IChartiumAxisElement
     Q_OBJECT
 
 public:
-    explicit ChartiumAxisElement(QObject* parent = nullptr);
+    explicit ChartiumAxisElement(QGraphicsItem* item = nullptr, QGraphicsLayoutItem* parent = nullptr);
     ~ChartiumAxisElement() override;
 
     ChartiumAxisElement(const ChartiumAxisElement& another)            = delete;

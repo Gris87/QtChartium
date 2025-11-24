@@ -2,8 +2,8 @@
 
 
 
-ChartiumAxisElement::ChartiumAxisElement(QObject* parent) :
-    IChartiumAxisElement(parent)
+ChartiumAxisElement::ChartiumAxisElement(QGraphicsItem* item, QGraphicsLayoutItem* parent) :
+    IChartiumAxisElement(item, parent)
 {
 }
 

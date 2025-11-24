@@ -1,5 +1,7 @@
 #include "src/qtchartium/chartiumpresenter.h"
 
+#include "src/qtchartium/layout/chartiumcartesianlayout.h"
+
 
 
 ChartiumPresenter::ChartiumPresenter(IChartiumChart* chart) :
@@ -20,6 +22,12 @@ ChartiumPresenter::ChartiumPresenter(IChartiumChart* chart) :
     mLocale(),
     mFixedRect()
 {
+    if (chart->type() == IChartiumChart::ChartTypeCartesian)
+    {
+        mLayout = new ChartiumCartesianLayout(this);
+    }
+
+    Q_ASSERT(mLayout);
 }
 
 ChartiumPresenter::~ChartiumPresenter()
@@ -33,19 +41,57 @@ bool ChartiumPresenter::isFixedGeometry() const
 
 void ChartiumPresenter::setFixedGeometry(const QRectF& rect)
 {
+    if (mFixedRect == rect)
+    {
+        return;
+    }
+
+    const bool isSame = mFixedRect == mRect;
+    mFixedRect        = rect;
+
+    if (mFixedRect.isNull())
+    {
+        if (!isSame)
+        {
+            updateGeometry(mRect);
+            mLayout->updateGeometry();
+        }
+    }
+    else
+    {
+        updateGeometry(mFixedRect);
+    }
 }
 
 void ChartiumPresenter::setGeometry(QRectF rect)
 {
+    if (rect.isValid() && mRect != rect)
+    {
+        mRect = rect;
+
+        if (!mFixedRect.isNull())
+        {
+            return;
+        }
+
+        updateGeometry(rect);
+    }
 }
 
 QRectF ChartiumPresenter::geometry() const
 {
-    return QRectF();
+    return !mFixedRect.isNull() ? mFixedRect : mRect;
 }
 
 void ChartiumPresenter::updateGeometry(const QRectF& rect)
 {
+    for (IChartiumItem* chartItem : mChartItems)
+    {
+        chartItem->domain()->setSize(rect.size());
+        chartItem->setPos(rect.topLeft());
+    }
+
+    emit plotAreaChanged(rect);
 }
 
 QGraphicsItem* ChartiumPresenter::rootItem()
@@ -286,8 +332,27 @@ void ChartiumPresenter::handleSeriesRemoved(IChartiumSeries* series)
 
 void ChartiumPresenter::handleAxisAdded(IChartiumAxis* axis)
 {
+    axis->initializeGraphics(rootItem());
+
+    IChartiumAxisElement* item = axis->axisItem();
+    item->setPresenter(this);
+
+    mAxisItems.append(item);
+    mAxes.append(axis);
+
+    mLayout->invalidate();
 }
 
 void ChartiumPresenter::handleAxisRemoved(IChartiumAxis* axis)
 {
+    IChartiumAxisElement* item = axis->axisItem();
+
+    item->hide();
+    item->disconnect();
+    item->deleteLater();
+
+    mAxisItems.removeAll(item);
+    mAxes.removeAll(axis);
+
+    mLayout->invalidate();
 }

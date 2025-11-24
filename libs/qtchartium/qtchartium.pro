@@ -51,6 +51,7 @@ SOURCES += \
     src/qtchartium/chartiumview.cpp \
     src/qtchartium/domain/chartiumdomain.cpp \
     src/qtchartium/domain/chartiumxydomain.cpp \
+    src/qtchartium/layout/chartiumcartesianlayout.cpp \
     src/qtchartium/layout/chartiumlayout.cpp \
     src/qtchartium/legend/chartiumlegend.cpp \
     src/qtchartium/legend/chartiumlegendmarker.cpp \
@@ -90,7 +91,9 @@ HEADERS += \
     src/qtchartium/ichartiumseries.h \
     src/qtchartium/ichartiumtitle.h \
     src/qtchartium/ichartiumview.h \
+    src/qtchartium/layout/chartiumcartesianlayout.h \
     src/qtchartium/layout/chartiumlayout.h \
+    src/qtchartium/layout/ichartiumcartesianlayout.h \
     src/qtchartium/layout/ichartiumlayout.h \
     src/qtchartium/legend/chartiumlegend.h \
     src/qtchartium/legend/chartiumlegendmarker.h \

@@ -2,17 +2,20 @@
 
 
 
-#include <QObject>
+#include "src/qtchartium/chartiumelement.h"
+#include <QGraphicsLayoutItem>
 
 
 
-class IChartiumAxisElement : public QObject
+class IChartiumAxisElement : public ChartiumElement,
+                             public QGraphicsLayoutItem
 {
     Q_OBJECT
 
 public:
-    explicit IChartiumAxisElement(QObject* parent = nullptr) :
-        QObject(parent)
+    explicit IChartiumAxisElement(QGraphicsItem* item = nullptr, QGraphicsLayoutItem* parent = nullptr) :
+        ChartiumElement(item),
+        QGraphicsLayoutItem(parent)
     {
     }
     ~IChartiumAxisElement() override = default;
