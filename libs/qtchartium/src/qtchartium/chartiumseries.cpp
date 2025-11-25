@@ -1,5 +1,8 @@
 #include "src/qtchartium/chartiumseries.h"
 
+#include "src/qtchartium/domain/chartiumxydomain.h"
+#include "src/qtchartium/ichartiumdataset.h"
+
 
 
 ChartiumSeries::ChartiumSeries(QObject* parent) :
@@ -7,11 +10,11 @@ ChartiumSeries::ChartiumSeries(QObject* parent) :
     mChart(),
     mItem(),
     mAxes(),
-    mDomain(),
+    mDomain(new ChartiumXYDomain()),
     mPresenter(),
     mName(),
-    mVisible(),
-    mOpacity()
+    mVisible(true),
+    mOpacity(1.00)
 {
 }
 
@@ -26,63 +29,92 @@ IChartiumSeries::SeriesType ChartiumSeries::type() const
 
 void ChartiumSeries::setName(const QString& name)
 {
+    if (name != mName)
+    {
+        mName = name;
+
+        emit nameChanged();
+    }
 }
 
 QString ChartiumSeries::name() const
 {
-    return "";
+    return mName;
 }
 
 void ChartiumSeries::setVisible(bool visible)
 {
+    if (visible != mVisible)
+    {
+        mVisible = visible;
+
+        emit visibleChanged();
+    }
 }
 
 bool ChartiumSeries::isVisible() const
 {
-    return false;
+    return mVisible;
 }
 
 qreal ChartiumSeries::opacity() const
 {
-    return false;
+    return mOpacity;
 }
 
 void ChartiumSeries::setOpacity(qreal opacity)
 {
+    if (opacity != mOpacity)
+    {
+        mOpacity = opacity;
+
+        emit opacityChanged();
+    }
 }
 
 IChartiumChart* ChartiumSeries::chart() const
 {
-    return nullptr;
+    return mChart;
 }
 
 void ChartiumSeries::setChart(IChartiumChart* chart)
 {
+    mChart = chart;
 }
 
 bool ChartiumSeries::attachAxis(IChartiumAxis* axis)
 {
+    if (mChart != nullptr)
+    {
+        return mChart->dataset()->attachAxis(this, axis);
+    }
+
     return false;
 }
 
 bool ChartiumSeries::detachAxis(IChartiumAxis* axis)
 {
+    if (mChart != nullptr)
+    {
+        return mChart->dataset()->detachAxis(this, axis);
+    }
+
     return false;
 }
 
 QList<IChartiumAxis*> ChartiumSeries::attachedAxes()
 {
-    QList<IChartiumAxis*> res;
-
-    return res;
+    return mAxes;
 }
 
 void ChartiumSeries::show()
 {
+    setVisible(true);
 }
 
 void ChartiumSeries::hide()
 {
+    setVisible(false);
 }
 
 void ChartiumSeries::initializeDomain()
@@ -95,6 +127,7 @@ void ChartiumSeries::initializeAxes()
 
 void ChartiumSeries::initializeGraphics(QGraphicsItem* parent)
 {
+    QObject::connect(mDomain, SIGNAL(updated()), mItem, SLOT(handleDomainUpdated()));
 }
 
 QList<IChartiumLegendMarker*> ChartiumSeries::createLegendMarkers(IChartiumLegend* legend)
@@ -121,20 +154,38 @@ IChartiumItem* ChartiumSeries::chartItem()
 
 void ChartiumSeries::setDomain(IChartiumDomain* domain)
 {
+    Q_ASSERT(domain);
+
+    if (mDomain != domain)
+    {
+        if (mItem != nullptr)
+        {
+            QObject::disconnect(mDomain, SIGNAL(updated()), mItem, SLOT(handleDomainUpdated()));
+        }
+
+        mDomain = domain;
+
+        if (mItem != nullptr)
+        {
+            QObject::connect(mDomain, SIGNAL(updated()), mItem, SLOT(handleDomainUpdated()));
+            mItem->handleDomainUpdated();
+        }
+    }
 }
 
 IChartiumDomain* ChartiumSeries::domain()
 {
-    return nullptr;
+    return mDomain;
 }
 
 void ChartiumSeries::setPresenter(IChartiumPresenter* presenter)
 {
+    mPresenter = presenter;
 }
 
 IChartiumPresenter* ChartiumSeries::presenter() const
 {
-    return nullptr;
+    return mPresenter;
 }
 
 void ChartiumSeries::appendAxis(IChartiumAxis* axis)

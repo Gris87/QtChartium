@@ -68,6 +68,8 @@ public:
     virtual void zoomIn()  = 0;
     virtual void zoomOut() = 0;
 
+    virtual void zoomIn(qreal factor)       = 0;
+    virtual void zoomOut(qreal factor)      = 0;
     virtual void zoomIn(const QRectF& rect) = 0;
     virtual void zoom(qreal factor)         = 0;
     virtual void zoomReset()                = 0;

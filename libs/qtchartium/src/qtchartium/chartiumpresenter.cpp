@@ -16,7 +16,7 @@ ChartiumPresenter::ChartiumPresenter(IChartiumChart* chart) :
     mAxes(),
     mState(IChartiumPresenter::ShowState),
     mStatePoint(),
-    mLayout(),
+    mLayout(new ChartiumCartesianLayout(this)),
     mBackground(),
     mPlotAreaBackground(),
     mTitle(),
@@ -25,12 +25,6 @@ ChartiumPresenter::ChartiumPresenter(IChartiumChart* chart) :
     mLocale(),
     mFixedRect()
 {
-    if (chart->type() == IChartiumChart::ChartTypeCartesian)
-    {
-        mLayout = new ChartiumCartesianLayout(this);
-    }
-
-    Q_ASSERT(mLayout);
 }
 
 ChartiumPresenter::~ChartiumPresenter()

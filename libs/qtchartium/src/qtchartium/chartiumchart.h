@@ -54,6 +54,8 @@ public:
     void zoomIn() override;
     void zoomOut() override;
 
+    void zoomIn(qreal factor) override;
+    void zoomOut(qreal factor) override;
     void zoomIn(const QRectF& rect) override;
     void zoom(qreal factor) override;
     void zoomReset() override;
