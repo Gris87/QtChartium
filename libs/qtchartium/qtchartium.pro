@@ -35,11 +35,11 @@ UI_DIR      = build/gen/$${TARGET}/ui
 
 # find libs/qtchartium/ -name \*.cpp | sort | sed "s/libs\/qtchartium\///g" | sed "s/\.cpp/\.cpp \\\/g"
 SOURCES += \
+    src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxis.cpp \
     src/qtchartium/axis/chartiumaxis.cpp \
     src/qtchartium/axis/chartiumaxiselement.cpp \
-    src/qtchartium/axis/chartiumbarcategoryaxis.cpp \
-    src/qtchartium/axis/chartiumdatetimeaxis.cpp \
-    src/qtchartium/axis/chartiumvalueaxis.cpp \
+    src/qtchartium/axis/datetimeaxis/chartiumdatetimeaxis.cpp \
+    src/qtchartium/axis/valueaxis/chartiumvalueaxis.cpp \
     src/qtchartium/chartiumbackground.cpp \
     src/qtchartium/chartiumchart.cpp \
     src/qtchartium/chartiumdataset.cpp \
@@ -55,20 +55,21 @@ SOURCES += \
     src/qtchartium/layout/chartiumlayout.cpp \
     src/qtchartium/legend/chartiumlegend.cpp \
     src/qtchartium/legend/chartiumlegendmarker.cpp \
+    src/qtchartium/legend/chartiumlegendscroller.cpp \
     src/qtchartium/linechart/chartiumlineseries.cpp \
 
 # find libs/qtchartium/ -name \*.h | sort | sed "s/libs\/qtchartium\///g" | sed "s/\.h/\.h \\\/g"
 HEADERS += \
+    src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxis.h \
+    src/qtchartium/axis/barcategoryaxis/ichartiumbarcategoryaxis.h \
     src/qtchartium/axis/chartiumaxis.h \
     src/qtchartium/axis/chartiumaxiselement.h \
-    src/qtchartium/axis/chartiumbarcategoryaxis.h \
-    src/qtchartium/axis/chartiumdatetimeaxis.h \
-    src/qtchartium/axis/chartiumvalueaxis.h \
+    src/qtchartium/axis/datetimeaxis/chartiumdatetimeaxis.h \
+    src/qtchartium/axis/datetimeaxis/ichartiumdatetimeaxis.h \
     src/qtchartium/axis/ichartiumaxis.h \
     src/qtchartium/axis/ichartiumaxiselement.h \
-    src/qtchartium/axis/ichartiumbarcategoryaxis.h \
-    src/qtchartium/axis/ichartiumdatetimeaxis.h \
-    src/qtchartium/axis/ichartiumvalueaxis.h \
+    src/qtchartium/axis/valueaxis/chartiumvalueaxis.h \
+    src/qtchartium/axis/valueaxis/ichartiumvalueaxis.h \
     src/qtchartium/chartiumbackground.h \
     src/qtchartium/chartiumchart.h \
     src/qtchartium/chartiumdataset.h \
@@ -97,7 +98,9 @@ HEADERS += \
     src/qtchartium/layout/ichartiumlayout.h \
     src/qtchartium/legend/chartiumlegend.h \
     src/qtchartium/legend/chartiumlegendmarker.h \
+    src/qtchartium/legend/chartiumlegendscroller.h \
     src/qtchartium/legend/ichartiumlegend.h \
     src/qtchartium/legend/ichartiumlegendmarker.h \
+    src/qtchartium/legend/ichartiumlegendscroller.h \
     src/qtchartium/linechart/chartiumlineseries.h \
     src/qtchartium/linechart/ichartiumlineseries.h \

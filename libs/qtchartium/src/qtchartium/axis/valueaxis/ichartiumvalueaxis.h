@@ -11,6 +11,12 @@ class IChartiumValueAxis : public ChartiumAxis
     Q_OBJECT
 
 public:
+    enum TickType
+    {
+        TicksDynamic = 0,
+        TicksFixed
+    };
+
     explicit IChartiumValueAxis(QObject* parent = nullptr) :
         ChartiumAxis(parent)
     {

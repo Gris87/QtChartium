@@ -2,7 +2,7 @@
 
 
 
-#include "src/qtchartium/axis/ichartiumdatetimeaxis.h"
+#include "src/qtchartium/axis/datetimeaxis/ichartiumdatetimeaxis.h"
 
 
 

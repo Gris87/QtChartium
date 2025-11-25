@@ -2,7 +2,7 @@
 
 
 
-#include "src/qtchartium/axis/ichartiumbarcategoryaxis.h"
+#include "src/qtchartium/axis/barcategoryaxis/ichartiumbarcategoryaxis.h"
 
 
 

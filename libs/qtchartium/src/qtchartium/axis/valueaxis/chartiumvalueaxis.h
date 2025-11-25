@@ -2,7 +2,7 @@
 
 
 
-#include "src/qtchartium/axis/ichartiumvalueaxis.h"
+#include "src/qtchartium/axis/valueaxis/ichartiumvalueaxis.h"
 
 
 

@@ -1,4 +1,4 @@
-#include "src/qtchartium/axis/chartiumbarcategoryaxis.h"
+#include "src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxis.h"
 
 
 

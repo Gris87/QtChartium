@@ -1,4 +1,4 @@
-#include "src/qtchartium/axis/chartiumvalueaxis.h"
+#include "src/qtchartium/axis/valueaxis/chartiumvalueaxis.h"
 
 
 

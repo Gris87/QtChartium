@@ -8,11 +8,11 @@
 #include <QGraphicsItem>
 #include <QPen>
 
-#include "src/qtchartium/axis/ichartiumaxiselement.h"
 #include "src/qtchartium/domain/ichartiumdomain.h"
 
 
 
+class IChartiumAxisElement;
 class IChartiumChart;
 class IChartiumSeries;
 

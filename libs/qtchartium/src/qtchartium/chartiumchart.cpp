@@ -3,13 +3,13 @@
 #include "src/qtchartium/chartiumdataset.h"
 #include "src/qtchartium/chartiumpresenter.h"
 #include "src/qtchartium/domain/chartiumxydomain.h"
-#include "src/qtchartium/legend/chartiumlegend.h"
+#include "src/qtchartium/legend/chartiumlegendscroller.h"
 
 
 
 ChartiumChart::ChartiumChart(QGraphicsItem* parent, Qt::WindowFlags wFlags) :
     IChartiumChart(parent, wFlags),
-    mLegend(new ChartiumLegend(this)),
+    mLegend(new ChartiumLegendScroller(this)),
     mDataset(new ChartiumDataSet(this)),
     mPresenter(new ChartiumPresenter(this)),
     mChartType(IChartiumChart::ChartTypeCartesian)
@@ -17,10 +17,10 @@ ChartiumChart::ChartiumChart(QGraphicsItem* parent, Qt::WindowFlags wFlags) :
     setLayout(mPresenter->layout());
 
     // clang-format off
-    QObject::connect(mDataset,   SIGNAL(seriesAdded(QAbstractSeries*)),   mPresenter, SLOT(handleSeriesAdded(QAbstractSeries*)));
-    QObject::connect(mDataset,   SIGNAL(seriesRemoved(QAbstractSeries*)), mPresenter, SLOT(handleSeriesRemoved(QAbstractSeries*)));
-    QObject::connect(mDataset,   SIGNAL(axisAdded(QAbstractAxis*)),       mPresenter, SLOT(handleAxisAdded(QAbstractAxis*)));
-    QObject::connect(mDataset,   SIGNAL(axisRemoved(QAbstractAxis*)),     mPresenter, SLOT(handleAxisRemoved(QAbstractAxis*)));
+    QObject::connect(mDataset,   SIGNAL(seriesAdded(IChartiumSeries*)),   mPresenter, SLOT(handleSeriesAdded(IChartiumSeries*)));
+    QObject::connect(mDataset,   SIGNAL(seriesRemoved(IChartiumSeries*)), mPresenter, SLOT(handleSeriesRemoved(IChartiumSeries*)));
+    QObject::connect(mDataset,   SIGNAL(axisAdded(IChartiumAxis*)),       mPresenter, SLOT(handleAxisAdded(IChartiumAxis*)));
+    QObject::connect(mDataset,   SIGNAL(axisRemoved(IChartiumAxis*)),     mPresenter, SLOT(handleAxisRemoved(IChartiumAxis*)));
     QObject::connect(mPresenter, &IChartiumPresenter::plotAreaChanged, this, &IChartiumChart::plotAreaChanged);
     // clang-format on
 }

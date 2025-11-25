@@ -1,8 +1,8 @@
 #include "src/qtchartium/chartiumdataset.h"
 
-#include "src/qtchartium/axis/chartiumbarcategoryaxis.h"
-#include "src/qtchartium/axis/chartiumdatetimeaxis.h"
-#include "src/qtchartium/axis/chartiumvalueaxis.h"
+#include "src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxis.h"
+#include "src/qtchartium/axis/datetimeaxis/chartiumdatetimeaxis.h"
+#include "src/qtchartium/axis/valueaxis/chartiumvalueaxis.h"
 #include "src/qtchartium/domain/chartiumxydomain.h"
 
 
