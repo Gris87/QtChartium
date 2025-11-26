@@ -12,7 +12,11 @@ class ChartiumAxisElement : public IChartiumAxisElement
 
 public:
     explicit ChartiumAxisElement(
-        IChartiumAxis* axis, bool intervalAxis = false, QGraphicsItem* item = nullptr, QGraphicsLayoutItem* parent = nullptr
+        IChartiumAxis*       axis,
+        IChartiumPresenter*  presenter,
+        bool                 intervalAxis = false,
+        QGraphicsItem*       item         = nullptr,
+        QGraphicsLayoutItem* parent       = nullptr
     );
     ~ChartiumAxisElement() override;
 
@@ -129,4 +133,21 @@ public slots:
     void handleColorScaleGradientChanged() override;
     void valueLabelEdited(qreal oldValue, qreal newValue) override;
     void dateTimeLabelEdited(const QDateTime& oldTime, const QDateTime& newTime) override;
+
+protected:
+    IChartiumAxis*                       mAxis;
+    QList<qreal>                         mLayout;
+    QList<qreal>                         mDynamicMinorTickLayout;
+    QStringList                          mLabelsList;
+    QRectF                               mAxisRect;
+    QScopedPointer<QGraphicsItemGroup>   mGrid;
+    QScopedPointer<QGraphicsItemGroup>   mArrow;
+    QScopedPointer<QGraphicsItemGroup>   mMinorGrid;
+    QScopedPointer<QGraphicsItemGroup>   mMinorArrow;
+    QScopedPointer<QGraphicsItemGroup>   mShades;
+    QScopedPointer<QGraphicsItemGroup>   mLabels;
+    QScopedPointer<QGraphicsTextItem>    mTitle;
+    std::unique_ptr<QGraphicsPixmapItem> mColorScale;
+    bool                                 mIntervalAxis;
+    bool                                 mLabelsEditable;
 };

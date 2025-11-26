@@ -4,6 +4,8 @@
 
 #include "src/qtchartium/domain/ichartiumdomain.h"
 
+#include "src/qtchartium/axis/ichartiumaxis.h"
+
 
 
 class ChartiumDomain : public IChartiumDomain

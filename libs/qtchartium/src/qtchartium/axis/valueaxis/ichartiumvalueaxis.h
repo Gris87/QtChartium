@@ -25,4 +25,9 @@ public:
 
     IChartiumValueAxis(const IChartiumValueAxis& another)            = delete;
     IChartiumValueAxis& operator=(const IChartiumValueAxis& another) = delete;
+
+    virtual void  setTickAnchor(qreal anchor)      = 0;
+    virtual qreal tickAnchor() const               = 0;
+    virtual void  setTickInterval(qreal insterval) = 0;
+    virtual qreal tickInterval() const             = 0;
 };
