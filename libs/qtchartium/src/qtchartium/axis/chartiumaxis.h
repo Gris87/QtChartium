@@ -96,6 +96,7 @@ public:
     void setLabelsEditable(bool editable = true) override;
     bool labelsEditable() const override;
 
+    void setLabelsTruncated(bool labelsTruncated) override;
     bool labelsTruncated() const override;
 
     void setTruncateLabels(bool truncateLabels = true) override;

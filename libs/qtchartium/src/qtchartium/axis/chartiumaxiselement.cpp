@@ -11,12 +11,14 @@
 static const QRegularExpression& labelFormatMatcher()
 {
     static const QRegularExpression re(QLatin1String("%[\\-\\+#\\s\\d\\.\\'lhjztL]*([dicuoxfegXFEG])"));
+
     return re;
 }
 
 static const QRegularExpression& labelFormatMatcherLocalized()
 {
     static const QRegularExpression re(QLatin1String("^([^%]*)%\\.(\\d+)([defgiEG])(.*)$"));
+
     return re;
 }
 

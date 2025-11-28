@@ -123,7 +123,8 @@ public:
     virtual void setLabelsEditable(bool editable = true) = 0;
     virtual bool labelsEditable() const                  = 0;
 
-    virtual bool labelsTruncated() const = 0;
+    virtual void setLabelsTruncated(bool labelsTruncated) = 0;
+    virtual bool labelsTruncated() const                  = 0;
 
     virtual void setTruncateLabels(bool truncateLabels = true) = 0;
     virtual bool truncateLabels() const                        = 0;
