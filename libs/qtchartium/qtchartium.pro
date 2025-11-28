@@ -38,8 +38,15 @@ SOURCES += \
     src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxis.cpp \
     src/qtchartium/axis/chartiumaxis.cpp \
     src/qtchartium/axis/chartiumaxiselement.cpp \
+    src/qtchartium/axis/chartiumcartesianaxis.cpp \
+    src/qtchartium/axis/chartiumeditableaxislabel.cpp \
+    src/qtchartium/axis/chartiumhorizontalaxis.cpp \
+    src/qtchartium/axis/chartiumlinearrowitem.cpp \
+    src/qtchartium/axis/chartiumverticalaxis.cpp \
     src/qtchartium/axis/datetimeaxis/chartiumdatetimeaxis.cpp \
     src/qtchartium/axis/valueaxis/chartiumvalueaxis.cpp \
+    src/qtchartium/axis/valueaxis/chartiumvalueaxisx.cpp \
+    src/qtchartium/axis/valueaxis/chartiumvalueaxisy.cpp \
     src/qtchartium/chartiumbackground.cpp \
     src/qtchartium/chartiumchart.cpp \
     src/qtchartium/chartiumdataset.cpp \
@@ -65,12 +72,26 @@ HEADERS += \
     src/qtchartium/axis/barcategoryaxis/ichartiumbarcategoryaxis.h \
     src/qtchartium/axis/chartiumaxis.h \
     src/qtchartium/axis/chartiumaxiselement.h \
+    src/qtchartium/axis/chartiumcartesianaxis.h \
+    src/qtchartium/axis/chartiumeditableaxislabel.h \
+    src/qtchartium/axis/chartiumhorizontalaxis.h \
+    src/qtchartium/axis/chartiumlinearrowitem.h \
+    src/qtchartium/axis/chartiumverticalaxis.h \
     src/qtchartium/axis/datetimeaxis/chartiumdatetimeaxis.h \
     src/qtchartium/axis/datetimeaxis/ichartiumdatetimeaxis.h \
     src/qtchartium/axis/ichartiumaxis.h \
     src/qtchartium/axis/ichartiumaxiselement.h \
+    src/qtchartium/axis/ichartiumcartesianaxis.h \
+    src/qtchartium/axis/ichartiumeditableaxislabel.h \
+    src/qtchartium/axis/ichartiumhorizontalaxis.h \
+    src/qtchartium/axis/ichartiumlinearrowitem.h \
+    src/qtchartium/axis/ichartiumverticalaxis.h \
     src/qtchartium/axis/valueaxis/chartiumvalueaxis.h \
+    src/qtchartium/axis/valueaxis/chartiumvalueaxisx.h \
+    src/qtchartium/axis/valueaxis/chartiumvalueaxisy.h \
     src/qtchartium/axis/valueaxis/ichartiumvalueaxis.h \
+    src/qtchartium/axis/valueaxis/ichartiumvalueaxisx.h \
+    src/qtchartium/axis/valueaxis/ichartiumvalueaxisy.h \
     src/qtchartium/chartiumbackground.h \
     src/qtchartium/chartiumchart.h \
     src/qtchartium/chartiumdataset.h \

@@ -51,13 +51,13 @@ protected:
     void setRange(const QVariant& min, const QVariant& max) override;
 
     IChartiumDomain* mDomain;
-    qreal            m_min;
-    qreal            m_max;
-    int              m_tickCount;
-    int              m_minorTickCount;
-    QString          m_format;
-    bool             m_applying;
-    qreal            m_tickInterval;
-    qreal            m_tickAnchor;
-    TickType         m_tickType;
+    qreal            mMin;
+    qreal            mMax;
+    int              mTickCount;
+    int              mMinorTickCount;
+    QString          mFormat;
+    bool             mApplying;
+    qreal            mTickInterval;
+    qreal            mTickAnchor;
+    TickType         mTickType;
 };

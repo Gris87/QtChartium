@@ -8,15 +8,15 @@
 
 ChartiumValueAxis::ChartiumValueAxis(QObject* parent) :
     IChartiumValueAxis(parent),
-    m_min(0),
-    m_max(0),
-    m_tickCount(5),
-    m_minorTickCount(0),
-    m_format(),
-    m_applying(false),
-    m_tickInterval(0.0),
-    m_tickAnchor(0.0),
-    m_tickType(TicksFixed)
+    mMin(0),
+    mMax(0),
+    mTickCount(5),
+    mMinorTickCount(0),
+    mFormat(),
+    mApplying(false),
+    mTickInterval(0.0),
+    mTickAnchor(0.0),
+    mTickType(TicksFixed)
 {
 }
 
@@ -35,22 +35,22 @@ IChartiumAxis::AxisType ChartiumValueAxis::type() const
 
 void ChartiumValueAxis::setMin(qreal min)
 {
-    setRange(min, qMax(m_max, min));
+    setRange(min, qMax(mMax, min));
 }
 
 qreal ChartiumValueAxis::min() const
 {
-    return m_min;
+    return mMin;
 }
 
 void ChartiumValueAxis::setMax(qreal max)
 {
-    setRange(qMin(m_min, max), max);
+    setRange(qMin(mMin, max), max);
 }
 
 qreal ChartiumValueAxis::max() const
 {
-    return m_max;
+    return mMax;
 }
 
 void ChartiumValueAxis::setRange(qreal min, qreal max)
@@ -67,17 +67,17 @@ void ChartiumValueAxis::setRange(qreal min, qreal max)
         return;
     }
 
-    if (m_min != min)
+    if (mMin != min)
     {
-        m_min   = min;
+        mMin    = min;
         changed = true;
 
         emit minChanged(min);
     }
 
-    if (m_max != max)
+    if (mMax != max)
     {
-        m_max   = max;
+        mMax    = max;
         changed = true;
 
         emit maxChanged(max);
@@ -91,9 +91,9 @@ void ChartiumValueAxis::setRange(qreal min, qreal max)
 
 void ChartiumValueAxis::setTickCount(int count)
 {
-    if (m_tickCount != count && count >= 2)
+    if (mTickCount != count && count >= 2)
     {
-        m_tickCount = count;
+        mTickCount = count;
 
         emit tickCountChanged(count);
     }
@@ -101,14 +101,14 @@ void ChartiumValueAxis::setTickCount(int count)
 
 int ChartiumValueAxis::tickCount() const
 {
-    return m_tickCount;
+    return mTickCount;
 }
 
 void ChartiumValueAxis::setMinorTickCount(int count)
 {
-    if (m_minorTickCount != count && count >= 0)
+    if (mMinorTickCount != count && count >= 0)
     {
-        m_minorTickCount = count;
+        mMinorTickCount = count;
 
         emit minorTickCountChanged(count);
     }
@@ -116,14 +116,14 @@ void ChartiumValueAxis::setMinorTickCount(int count)
 
 int ChartiumValueAxis::minorTickCount() const
 {
-    return m_minorTickCount;
+    return mMinorTickCount;
 }
 
 void ChartiumValueAxis::setTickAnchor(qreal anchor)
 {
-    if (m_tickAnchor != anchor)
+    if (mTickAnchor != anchor)
     {
-        m_tickAnchor = anchor;
+        mTickAnchor = anchor;
 
         emit tickAnchorChanged(anchor);
     }
@@ -131,14 +131,14 @@ void ChartiumValueAxis::setTickAnchor(qreal anchor)
 
 qreal ChartiumValueAxis::tickAnchor() const
 {
-    return m_tickAnchor;
+    return mTickAnchor;
 }
 
 void ChartiumValueAxis::setTickInterval(qreal interval)
 {
-    if (m_tickInterval != interval)
+    if (mTickInterval != interval)
     {
-        m_tickInterval = interval;
+        mTickInterval = interval;
 
         emit tickIntervalChanged(interval);
     }
@@ -146,14 +146,14 @@ void ChartiumValueAxis::setTickInterval(qreal interval)
 
 qreal ChartiumValueAxis::tickInterval() const
 {
-    return m_tickInterval;
+    return mTickInterval;
 }
 
 void ChartiumValueAxis::setTickType(TickType type)
 {
-    if (m_tickType != type)
+    if (mTickType != type)
     {
-        m_tickType = type;
+        mTickType = type;
 
         emit tickTypeChanged(type);
     }
@@ -161,40 +161,40 @@ void ChartiumValueAxis::setTickType(TickType type)
 
 IChartiumValueAxis::TickType ChartiumValueAxis::tickType() const
 {
-    return m_tickType;
+    return mTickType;
 }
 
 void ChartiumValueAxis::setLabelFormat(const QString& format)
 {
-    m_format = format;
+    mFormat = format;
 
     emit labelFormatChanged(format);
 }
 
 QString ChartiumValueAxis::labelFormat() const
 {
-    return m_format;
+    return mFormat;
 }
 
 void ChartiumValueAxis::applyNiceNumbers()
 {
-    if (m_applying)
+    if (mApplying)
     {
         return;
     }
 
-    qreal min   = m_min;
-    qreal max   = m_max;
-    int   ticks = m_tickCount;
+    qreal min   = mMin;
+    qreal max   = mMax;
+    int   ticks = mTickCount;
 
     mDomain->looseNiceNumbers(min, max, ticks);
 
-    m_applying = true;
+    mApplying = true;
 
     setRange(min, max);
     setTickCount(ticks);
 
-    m_applying = false;
+    mApplying = false;
 }
 
 void ChartiumValueAxis::initializeGraphics(QGraphicsItem* parent)
@@ -231,9 +231,9 @@ void ChartiumValueAxis::initializeDomain(IChartiumDomain* domain)
 {
     if (orientation() == Qt::Vertical)
     {
-        if (!qFuzzyIsNull(m_max - m_min))
+        if (!qFuzzyIsNull(mMax - mMin))
         {
-            domain->setRangeY(m_min, m_max);
+            domain->setRangeY(mMin, mMax);
         }
         else
         {
@@ -242,9 +242,9 @@ void ChartiumValueAxis::initializeDomain(IChartiumDomain* domain)
     }
     if (orientation() == Qt::Horizontal)
     {
-        if (!qFuzzyIsNull(m_max - m_min))
+        if (!qFuzzyIsNull(mMax - mMin))
         {
-            domain->setRangeX(m_min, m_max);
+            domain->setRangeX(mMin, mMax);
         }
         else
         {
