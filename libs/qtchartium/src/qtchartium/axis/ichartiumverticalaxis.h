@@ -25,4 +25,6 @@ public:
 
     IChartiumVerticalAxis(const IChartiumVerticalAxis& another)            = delete;
     IChartiumVerticalAxis& operator=(const IChartiumVerticalAxis& another) = delete;
+
+    virtual void updateMinorTickGeometry() = 0;
 };

@@ -2,7 +2,7 @@
 
 
 
-#include "src/qtchartium/axis/iChartiumHorizontalAxis.h"
+#include "src/qtchartium/axis/ichartiumhorizontalaxis.h"
 
 
 
@@ -22,4 +22,13 @@ public:
 
     ChartiumHorizontalAxis(const ChartiumHorizontalAxis& another)            = delete;
     ChartiumHorizontalAxis& operator=(const ChartiumHorizontalAxis& another) = delete;
+
+    void updateMinorTickGeometry() override;
+
+    QSizeF sizeHint(Qt::SizeHint which, const QSizeF& constraint = QSizeF()) const override;
+
+    void updateGeometry() override;
+
+protected:
+    IChartiumPresenter* mPresenter;
 };
