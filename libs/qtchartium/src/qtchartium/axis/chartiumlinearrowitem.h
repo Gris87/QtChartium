@@ -18,4 +18,12 @@ public:
 
     ChartiumLineArrowItem(const ChartiumLineArrowItem& another)            = delete;
     ChartiumLineArrowItem& operator=(const ChartiumLineArrowItem& another) = delete;
+
+    void         mousePressEvent(QGraphicsSceneMouseEvent* event) override;
+    QRectF       boundingRect() const override;
+    QPainterPath shape() const override;
+
+protected:
+    IChartiumAxisElement* mAxis;
+    Qt::Orientation       mAxisOrientation;
 };

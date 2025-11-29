@@ -19,4 +19,13 @@ public:
 
     IChartiumEditableAxisLabel(const IChartiumEditableAxisLabel& another)            = delete;
     IChartiumEditableAxisLabel& operator=(const IChartiumEditableAxisLabel& another) = delete;
+
+    virtual void setEditable(bool editable) = 0;
+    virtual void reloadBeforeEditContent()  = 0;
+
+    virtual void setInitialEditValue()  = 0;
+    virtual void finishEditing()        = 0;
+    virtual void resetBeforeEditValue() = 0;
+
+    virtual bool isEditEndingKeyPress(QKeyEvent* event) = 0;
 };

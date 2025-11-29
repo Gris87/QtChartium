@@ -6,6 +6,10 @@
 
 
 
+class IChartiumValueAxis;
+
+
+
 class IChartiumCartesianAxis : public ChartiumAxisElement
 {
     Q_OBJECT
@@ -25,4 +29,13 @@ public:
 
     IChartiumCartesianAxis(const IChartiumCartesianAxis& another)            = delete;
     IChartiumCartesianAxis& operator=(const IChartiumCartesianAxis& another) = delete;
+
+    virtual void setDateTimeLabelsFormat(const QString& format) = 0;
+
+    virtual void updateLabelsValues(IChartiumValueAxis* axis) = 0;
+    virtual void updateLabelsDateTimes()                      = 0;
+
+    virtual void createItems(int count) = 0;
+    virtual void deleteItems(int count) = 0;
+    virtual void updateMinorTickItems() = 0;
 };
