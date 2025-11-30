@@ -491,12 +491,12 @@ void ChartiumAxis::setRange(qreal min, qreal max)
 {
 }
 
-qreal ChartiumAxis::min()
+qreal ChartiumAxis::minReal()
 {
     return 0;
 }
 
-qreal ChartiumAxis::max()
+qreal ChartiumAxis::maxReal()
 {
     return 0;
 }
@@ -596,7 +596,7 @@ void ChartiumAxis::removeSeries(IChartiumSeries* series)
     mSeries.removeAll(series);
 }
 
-void ChartiumAxis::handleRangeChanged(qreal min, qreal max)
+void ChartiumAxis::handleRangeRealChanged(qreal min, qreal max)
 {
     setRange(min, max);
 }

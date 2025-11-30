@@ -87,8 +87,8 @@ public:
     void setRange(const QVariant& min, const QVariant& max) override;
 
     void  setRange(qreal min, qreal max) override;
-    qreal min() override;
-    qreal max() override;
+    qreal minReal() override;
+    qreal maxReal() override;
 
     void setReverse(bool reverse = true) override;
     bool isReverse() const override;
@@ -112,7 +112,7 @@ public:
     void                    removeSeries(IChartiumSeries* series) override;
 
 public slots:
-    void handleRangeChanged(qreal min, qreal max) override;
+    void handleRangeRealChanged(qreal min, qreal max) override;
 
 protected:
     IChartiumChart*         mChart;

@@ -123,7 +123,7 @@ public slots:
     void handleTitleFontChanged(const QFont& font) override;
     void handleTitleTextChanged(const QString& title) override;
     void handleTitleVisibleChanged(bool visible) override;
-    void handleRangeChanged(qreal min, qreal max) override;
+    void handleRangeRealChanged(qreal min, qreal max) override;
     void handleReverseChanged(bool reverse) override;
     void handleMinorArrowVisibleChanged(bool visible) override;
     void handleMinorGridVisibleChanged(bool visible) override;

@@ -3,12 +3,37 @@
 
 
 ChartiumDateTimeAxisY::ChartiumDateTimeAxisY(
-    IChartiumAxis* axis, IChartiumPresenter* presenter, QGraphicsItem* item, QGraphicsLayoutItem* parent
+    IChartiumDateTimeAxis* axis, IChartiumPresenter* presenter, QGraphicsItem* item, QGraphicsLayoutItem* parent
 ) :
-    IChartiumDateTimeAxisY(axis, presenter, item, parent)
+    IChartiumDateTimeAxisY(axis, presenter, item, parent),
+    mAxis(axis)
 {
 }
 
 ChartiumDateTimeAxisY::~ChartiumDateTimeAxisY()
+{
+}
+
+QSizeF ChartiumDateTimeAxisY::sizeHint(Qt::SizeHint which, const QSizeF& constraint) const
+{
+    return QSizeF();
+}
+
+QList<qreal> ChartiumDateTimeAxisY::calculateLayout() const
+{
+    QList<qreal> res;
+
+    return res;
+}
+
+void ChartiumDateTimeAxisY::updateGeometry()
+{
+}
+
+void ChartiumDateTimeAxisY::handleTickCountChanged(int tick)
+{
+}
+
+void ChartiumDateTimeAxisY::handleFormatChanged(const QString& format)
 {
 }

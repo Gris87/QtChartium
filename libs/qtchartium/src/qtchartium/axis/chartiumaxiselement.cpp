@@ -141,12 +141,12 @@ QStringList ChartiumAxisElement::labels() const
 
 qreal ChartiumAxisElement::min() const
 {
-    return mAxis->min();
+    return mAxis->minReal();
 }
 
 qreal ChartiumAxisElement::max() const
 {
-    return mAxis->max();
+    return mAxis->maxReal();
 }
 
 qreal ChartiumAxisElement::tickInterval() const
@@ -557,7 +557,7 @@ void ChartiumAxisElement::connectSlots()
     QObject::connect(axis(), SIGNAL(titleFontChanged(QFont)), this, SLOT(handleTitleFontChanged(QFont)));
     QObject::connect(axis(), SIGNAL(titleBrushChanged(QBrush)), this, SLOT(handleTitleBrushChanged(QBrush)));
     QObject::connect(axis(), SIGNAL(titleVisibleChanged(bool)), this, SLOT(handleTitleVisibleChanged(bool)));
-    QObject::connect(axis(), SIGNAL(rangeChanged(qreal, qreal)), this, SLOT(handleRangeChanged(qreal, qreal)));
+    QObject::connect(axis(), SIGNAL(rangeRealChanged(qreal, qreal)), this, SLOT(handleRangeRealChanged(qreal, qreal)));
     QObject::connect(axis(), SIGNAL(reverseChanged(bool)), this, SLOT(handleReverseChanged(bool)));
     QObject::connect(axis(), SIGNAL(lineVisibleChanged(bool)), this, SLOT(handleMinorArrowVisibleChanged(bool)));
     QObject::connect(axis(), SIGNAL(linePenChanged(QPen)), this, SLOT(handleMinorArrowPenChanged(QPen)));
@@ -773,7 +773,7 @@ void ChartiumAxisElement::handleTitleVisibleChanged(bool visible)
     mTitle->setVisible(visible);
 }
 
-void ChartiumAxisElement::handleRangeChanged(qreal min, qreal max)
+void ChartiumAxisElement::handleRangeRealChanged(qreal min, qreal max)
 {
     Q_UNUSED(min);
     Q_UNUSED(max);

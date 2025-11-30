@@ -125,7 +125,7 @@ public slots:
     virtual void handleTitleFontChanged(const QFont& font)                               = 0;
     virtual void handleTitleTextChanged(const QString& title)                            = 0;
     virtual void handleTitleVisibleChanged(bool visible)                                 = 0;
-    virtual void handleRangeChanged(qreal min, qreal max)                                = 0;
+    virtual void handleRangeRealChanged(qreal min, qreal max)                            = 0;
     virtual void handleReverseChanged(bool reverse)                                      = 0;
     virtual void handleMinorArrowVisibleChanged(bool visible)                            = 0;
     virtual void handleMinorGridVisibleChanged(bool visible)                             = 0;

@@ -114,8 +114,8 @@ public:
     virtual void setRange(const QVariant& min, const QVariant& max) = 0;
 
     virtual void  setRange(qreal min, qreal max) = 0;
-    virtual qreal min()                          = 0;
-    virtual qreal max()                          = 0;
+    virtual qreal minReal()                      = 0;
+    virtual qreal maxReal()                      = 0;
 
     virtual void setReverse(bool reverse = true) = 0;
     virtual bool isReverse() const               = 0;
@@ -139,7 +139,7 @@ public:
     virtual void                    removeSeries(IChartiumSeries* series) = 0;
 
 public slots:
-    virtual void handleRangeChanged(qreal min, qreal max) = 0;
+    virtual void handleRangeRealChanged(qreal min, qreal max) = 0;
 
 signals:
     void visibleChanged(bool visible);
@@ -170,5 +170,5 @@ signals:
     void labelsEditableChanged(bool editable);
     void labelsTruncatedChanged(bool labelsTruncated);
     void truncateLabelsChanged(bool truncateLabels);
-    void rangeChanged(qreal min, qreal max);
+    void rangeRealChanged(qreal min, qreal max);
 };

@@ -30,4 +30,21 @@ public:
 
     void setTickCount(int count) override;
     int  tickCount() const override;
+
+    void initializeGraphics(QGraphicsItem* parent) override;
+    void initializeDomain(IChartiumDomain* domain) override;
+
+    void setMin(const QVariant& min) override;
+    void setMax(const QVariant& max) override;
+    void setRange(const QVariant& min, const QVariant& max) override;
+
+    qreal minReal() override;
+    qreal maxReal() override;
+    void  setRange(qreal min, qreal max) override;
+
+protected:
+    qreal   mMin;
+    qreal   mMax;
+    int     mTickCount;
+    QString mFormat;
 };

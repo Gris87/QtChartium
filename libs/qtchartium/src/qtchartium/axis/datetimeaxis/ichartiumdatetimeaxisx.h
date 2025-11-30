@@ -21,4 +21,8 @@ public:
 
     IChartiumDateTimeAxisX(const IChartiumDateTimeAxisX& another)            = delete;
     IChartiumDateTimeAxisX& operator=(const IChartiumDateTimeAxisX& another) = delete;
+
+public slots:
+    virtual void handleTickCountChanged(int tick)           = 0;
+    virtual void handleFormatChanged(const QString& format) = 0;
 };

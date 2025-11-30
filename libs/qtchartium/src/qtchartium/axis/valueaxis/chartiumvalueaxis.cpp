@@ -8,21 +8,21 @@
 
 ChartiumValueAxis::ChartiumValueAxis(QObject* parent) :
     IChartiumValueAxis(parent),
-    mMin(0),
-    mMax(0),
+    mMin(),
+    mMax(),
     mTickCount(5),
-    mMinorTickCount(0),
+    mMinorTickCount(),
     mFormat(),
-    mApplying(false),
-    mTickInterval(0.0),
-    mTickAnchor(0.0),
+    mApplying(),
+    mTickInterval(),
+    mTickAnchor(),
     mTickType(TicksFixed)
 {
 }
 
 ChartiumValueAxis::~ChartiumValueAxis()
 {
-    if (mChart)
+    if (mChart != nullptr)
     {
         mChart->removeAxis(this);
     }
@@ -86,6 +86,7 @@ void ChartiumValueAxis::setRange(qreal min, qreal max)
     if (changed)
     {
         emit rangeChanged(min, max);
+        emit rangeRealChanged(min, max);
     }
 }
 
