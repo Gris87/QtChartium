@@ -61,6 +61,7 @@ SOURCES += \
     src/qtchartium/chartiumitem.cpp \
     src/qtchartium/chartiumpresenter.cpp \
     src/qtchartium/chartiumseries.cpp \
+    src/qtchartium/chartiumthememanager.cpp \
     src/qtchartium/chartiumtitle.cpp \
     src/qtchartium/chartiumview.cpp \
     src/qtchartium/domain/chartiumdomain.cpp \
@@ -71,6 +72,16 @@ SOURCES += \
     src/qtchartium/legend/chartiumlegendmarker.cpp \
     src/qtchartium/legend/chartiumlegendscroller.cpp \
     src/qtchartium/linechart/chartiumlineseries.cpp \
+    src/qtchartium/themes/chartiumtheme.cpp \
+    src/qtchartium/themes/custom/chartiumthemecustomdark.cpp \
+    src/qtchartium/themes/qtcharts/chartiumthemebluecerulean.cpp \
+    src/qtchartium/themes/qtcharts/chartiumthemeblueicy.cpp \
+    src/qtchartium/themes/qtcharts/chartiumthemebluencs.cpp \
+    src/qtchartium/themes/qtcharts/chartiumthemebrownsand.cpp \
+    src/qtchartium/themes/qtcharts/chartiumthemedark.cpp \
+    src/qtchartium/themes/qtcharts/chartiumthemehighcontrast.cpp \
+    src/qtchartium/themes/qtcharts/chartiumthemelight.cpp \
+    src/qtchartium/themes/qtcharts/chartiumthemeqt.cpp \
 
 # find libs/qtchartium/ -name \*.h | sort | sed "s/libs\/qtchartium\///g" | sed "s/\.h/\.h \\\/g"
 HEADERS += \
@@ -118,6 +129,7 @@ HEADERS += \
     src/qtchartium/chartiumitem.h \
     src/qtchartium/chartiumpresenter.h \
     src/qtchartium/chartiumseries.h \
+    src/qtchartium/chartiumthememanager.h \
     src/qtchartium/chartiumtitle.h \
     src/qtchartium/chartiumview.h \
     src/qtchartium/domain/chartiumdomain.h \
@@ -131,6 +143,7 @@ HEADERS += \
     src/qtchartium/ichartiumitem.h \
     src/qtchartium/ichartiumpresenter.h \
     src/qtchartium/ichartiumseries.h \
+    src/qtchartium/ichartiumthememanager.h \
     src/qtchartium/ichartiumtitle.h \
     src/qtchartium/ichartiumview.h \
     src/qtchartium/layout/chartiumcartesianlayout.h \
@@ -145,3 +158,14 @@ HEADERS += \
     src/qtchartium/legend/ichartiumlegendscroller.h \
     src/qtchartium/linechart/chartiumlineseries.h \
     src/qtchartium/linechart/ichartiumlineseries.h \
+    src/qtchartium/themes/chartiumtheme.h \
+    src/qtchartium/themes/custom/chartiumthemecustomdark.h \
+    src/qtchartium/themes/ichartiumtheme.h \
+    src/qtchartium/themes/qtcharts/chartiumthemebluecerulean.h \
+    src/qtchartium/themes/qtcharts/chartiumthemeblueicy.h \
+    src/qtchartium/themes/qtcharts/chartiumthemebluencs.h \
+    src/qtchartium/themes/qtcharts/chartiumthemebrownsand.h \
+    src/qtchartium/themes/qtcharts/chartiumthemedark.h \
+    src/qtchartium/themes/qtcharts/chartiumthemehighcontrast.h \
+    src/qtchartium/themes/qtcharts/chartiumthemelight.h \
+    src/qtchartium/themes/qtcharts/chartiumthemeqt.h \

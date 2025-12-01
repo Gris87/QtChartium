@@ -43,6 +43,7 @@ public:
 
     void initializeDomain() override;
     void initializeAxes() override;
+    void initializeTheme(int index, IChartiumTheme* theme) override;
     void initializeGraphics(QGraphicsItem* parent) override;
 
     QList<IChartiumLegendMarker*> createLegendMarkers(IChartiumLegend* legend) override;

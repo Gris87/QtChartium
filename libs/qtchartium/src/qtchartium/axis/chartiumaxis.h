@@ -104,6 +104,7 @@ public:
 
     void initializeDomain(IChartiumDomain* domain) override;
     void initializeGraphics(QGraphicsItem* parent) override;
+    void initializeTheme(IChartiumTheme* theme) override;
 
     IChartiumAxisElement* axisItem() override;
 

@@ -16,6 +16,7 @@
 
 class IChartiumChart;
 class IChartiumPresenter;
+class IChartiumTheme;
 
 
 
@@ -71,9 +72,10 @@ public:
     virtual void show() = 0;
     virtual void hide() = 0;
 
-    virtual void initializeDomain()                        = 0;
-    virtual void initializeAxes()                          = 0;
-    virtual void initializeGraphics(QGraphicsItem* parent) = 0;
+    virtual void initializeDomain()                                = 0;
+    virtual void initializeAxes()                                  = 0;
+    virtual void initializeTheme(int index, IChartiumTheme* theme) = 0;
+    virtual void initializeGraphics(QGraphicsItem* parent)         = 0;
 
     virtual QList<IChartiumLegendMarker*> createLegendMarkers(IChartiumLegend* legend) = 0;
 

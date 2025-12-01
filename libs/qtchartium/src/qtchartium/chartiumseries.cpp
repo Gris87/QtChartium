@@ -125,6 +125,10 @@ void ChartiumSeries::initializeAxes()
 {
 }
 
+void ChartiumSeries::initializeTheme(int index, IChartiumTheme* theme)
+{
+}
+
 void ChartiumSeries::initializeGraphics(QGraphicsItem* parent)
 {
     QObject::connect(mDomain, SIGNAL(updated()), mItem, SLOT(handleDomainUpdated()));

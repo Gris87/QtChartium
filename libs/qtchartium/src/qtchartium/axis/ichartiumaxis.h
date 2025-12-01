@@ -15,6 +15,7 @@
 class IChartiumAxisElement;
 class IChartiumChart;
 class IChartiumSeries;
+class IChartiumTheme;
 
 
 
@@ -131,6 +132,7 @@ public:
 
     virtual void initializeDomain(IChartiumDomain* domain) = 0;
     virtual void initializeGraphics(QGraphicsItem* parent) = 0;
+    virtual void initializeTheme(IChartiumTheme* theme)    = 0;
 
     virtual IChartiumAxisElement* axisItem() = 0;
 

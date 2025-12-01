@@ -1,6 +1,7 @@
 #include "src/qtchartium/axis/chartiumaxis.h"
 
 #include "src/qtchartium/axis/ichartiumaxiselement.h"
+#include "src/qtchartium/themes/ichartiumtheme.h"
 
 
 
@@ -570,6 +571,35 @@ bool ChartiumAxis::truncateLabels() const
 
 void ChartiumAxis::initializeDomain(IChartiumDomain* domain)
 {
+}
+
+void ChartiumAxis::initializeTheme(IChartiumTheme* theme)
+{
+    setLinePen(theme->axisLinePen());
+    setGridLinePen(theme->gridLinePen());
+    setMinorGridLinePen(theme->minorGridLinePen());
+    setLabelsBrush(theme->labelBrush());
+    setLabelsFont(theme->labelFont());
+    setTitleBrush(theme->labelBrush());
+
+    QFont font(theme->labelFont());
+    font.setBold(true);
+    setTitleFont(font);
+
+    setShadesBrush(theme->backgroundShadesBrush());
+    setShadesPen(theme->backgroundShadesPen());
+
+    bool axisX = mOrientation == Qt::Horizontal;
+    if ((theme->backgroundShades() == IChartiumTheme::BackgroundShadesBoth ||
+         (theme->backgroundShades() == IChartiumTheme::BackgroundShadesVertical && axisX) ||
+         (theme->backgroundShades() == IChartiumTheme::BackgroundShadesHorizontal && !axisX)))
+    {
+        setShadesVisible(true);
+    }
+    else
+    {
+        setShadesVisible(false);
+    }
 }
 
 void ChartiumAxis::initializeGraphics(QGraphicsItem* parent)

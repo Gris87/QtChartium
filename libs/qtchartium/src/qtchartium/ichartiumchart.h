@@ -25,6 +25,19 @@ public:
         ChartTypePolar
     };
 
+    enum ChartTheme
+    {
+        ChartThemeLight,
+        ChartThemeBlueCerulean,
+        ChartThemeDark,
+        ChartThemeBrownSand,
+        ChartThemeBlueNcs,
+        ChartThemeHighContrast,
+        ChartThemeBlueIcy,
+        ChartThemeQt,
+        ChartThemeChartiumDark
+    };
+
     explicit IChartiumChart(QGraphicsItem* parent = nullptr, Qt::WindowFlags wFlags = Qt::WindowFlags()) :
         QGraphicsWidget(parent, wFlags)
     {
