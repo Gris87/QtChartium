@@ -36,6 +36,8 @@ UI_DIR      = build/gen/$${TARGET}/ui
 # find libs/qtchartium/ -name \*.cpp | sort | sed "s/libs\/qtchartium\///g" | sed "s/\.cpp/\.cpp \\\/g"
 SOURCES += \
     src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxis.cpp \
+    src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxisx.cpp \
+    src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxisy.cpp \
     src/qtchartium/axis/chartiumaxis.cpp \
     src/qtchartium/axis/chartiumaxiselement.cpp \
     src/qtchartium/axis/chartiumcartesianaxis.cpp \
@@ -73,7 +75,11 @@ SOURCES += \
 # find libs/qtchartium/ -name \*.h | sort | sed "s/libs\/qtchartium\///g" | sed "s/\.h/\.h \\\/g"
 HEADERS += \
     src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxis.h \
+    src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxisx.h \
+    src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxisy.h \
     src/qtchartium/axis/barcategoryaxis/ichartiumbarcategoryaxis.h \
+    src/qtchartium/axis/barcategoryaxis/ichartiumbarcategoryaxisx.h \
+    src/qtchartium/axis/barcategoryaxis/ichartiumbarcategoryaxisy.h \
     src/qtchartium/axis/chartiumaxis.h \
     src/qtchartium/axis/chartiumaxiselement.h \
     src/qtchartium/axis/chartiumcartesianaxis.h \
