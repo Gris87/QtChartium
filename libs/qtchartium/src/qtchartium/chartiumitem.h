@@ -4,7 +4,7 @@
 
 #include "src/qtchartium/ichartiumitem.h"
 
-#include "src/qtchartium/ichartiumseries.h"
+#include "src/qtchartium/charts/ichartiumseries.h"
 
 
 

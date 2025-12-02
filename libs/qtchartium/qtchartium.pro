@@ -60,10 +60,13 @@ SOURCES += \
     src/qtchartium/chartiumhelpers.cpp \
     src/qtchartium/chartiumitem.cpp \
     src/qtchartium/chartiumpresenter.cpp \
-    src/qtchartium/chartiumseries.cpp \
-    src/qtchartium/chartiumthememanager.cpp \
     src/qtchartium/chartiumtitle.cpp \
     src/qtchartium/chartiumview.cpp \
+    src/qtchartium/charts/chartiumseries.cpp \
+    src/qtchartium/charts/linechart/chartiumlinechartitem.cpp \
+    src/qtchartium/charts/linechart/chartiumlineseries.cpp \
+    src/qtchartium/charts/xychart/chartiumxychart.cpp \
+    src/qtchartium/charts/xychart/chartiumxyseries.cpp \
     src/qtchartium/domain/chartiumdomain.cpp \
     src/qtchartium/domain/chartiumxydomain.cpp \
     src/qtchartium/layout/chartiumcartesianlayout.cpp \
@@ -71,8 +74,8 @@ SOURCES += \
     src/qtchartium/legend/chartiumlegend.cpp \
     src/qtchartium/legend/chartiumlegendmarker.cpp \
     src/qtchartium/legend/chartiumlegendscroller.cpp \
-    src/qtchartium/linechart/chartiumlineseries.cpp \
     src/qtchartium/themes/chartiumtheme.cpp \
+    src/qtchartium/themes/chartiumthememanager.cpp \
     src/qtchartium/themes/custom/chartiumthemecustomdark.cpp \
     src/qtchartium/themes/qtcharts/chartiumthemebluecerulean.cpp \
     src/qtchartium/themes/qtcharts/chartiumthemeblueicy.cpp \
@@ -128,10 +131,18 @@ HEADERS += \
     src/qtchartium/chartiumhelpers.h \
     src/qtchartium/chartiumitem.h \
     src/qtchartium/chartiumpresenter.h \
-    src/qtchartium/chartiumseries.h \
-    src/qtchartium/chartiumthememanager.h \
     src/qtchartium/chartiumtitle.h \
     src/qtchartium/chartiumview.h \
+    src/qtchartium/charts/chartiumseries.h \
+    src/qtchartium/charts/ichartiumseries.h \
+    src/qtchartium/charts/linechart/chartiumlinechartitem.h \
+    src/qtchartium/charts/linechart/chartiumlineseries.h \
+    src/qtchartium/charts/linechart/ichartiumlinechartitem.h \
+    src/qtchartium/charts/linechart/ichartiumlineseries.h \
+    src/qtchartium/charts/xychart/chartiumxychart.h \
+    src/qtchartium/charts/xychart/chartiumxyseries.h \
+    src/qtchartium/charts/xychart/ichartiumxychart.h \
+    src/qtchartium/charts/xychart/ichartiumxyseries.h \
     src/qtchartium/domain/chartiumdomain.h \
     src/qtchartium/domain/chartiumxydomain.h \
     src/qtchartium/domain/ichartiumdomain.h \
@@ -142,8 +153,6 @@ HEADERS += \
     src/qtchartium/ichartiumelement.h \
     src/qtchartium/ichartiumitem.h \
     src/qtchartium/ichartiumpresenter.h \
-    src/qtchartium/ichartiumseries.h \
-    src/qtchartium/ichartiumthememanager.h \
     src/qtchartium/ichartiumtitle.h \
     src/qtchartium/ichartiumview.h \
     src/qtchartium/layout/chartiumcartesianlayout.h \
@@ -156,11 +165,11 @@ HEADERS += \
     src/qtchartium/legend/ichartiumlegend.h \
     src/qtchartium/legend/ichartiumlegendmarker.h \
     src/qtchartium/legend/ichartiumlegendscroller.h \
-    src/qtchartium/linechart/chartiumlineseries.h \
-    src/qtchartium/linechart/ichartiumlineseries.h \
     src/qtchartium/themes/chartiumtheme.h \
+    src/qtchartium/themes/chartiumthememanager.h \
     src/qtchartium/themes/custom/chartiumthemecustomdark.h \
     src/qtchartium/themes/ichartiumtheme.h \
+    src/qtchartium/themes/ichartiumthememanager.h \
     src/qtchartium/themes/qtcharts/chartiumthemebluecerulean.h \
     src/qtchartium/themes/qtcharts/chartiumthemeblueicy.h \
     src/qtchartium/themes/qtcharts/chartiumthemebluencs.h \

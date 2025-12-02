@@ -2,7 +2,7 @@
 
 
 
-#include "src/qtchartium/ichartiumseries.h"
+#include "src/qtchartium/charts/ichartiumseries.h"
 
 #include "src/qtchartium/ichartiumchart.h"
 #include "src/qtchartium/ichartiumpresenter.h"

@@ -7,7 +7,7 @@
 
 #include "src/qtchartium/chartiumchart.h"
 #include "src/qtchartium/chartiumview.h"
-#include "src/qtchartium/linechart/chartiumlineseries.h"
+#include "src/qtchartium/charts/linechart/chartiumlineseries.h"
 
 
 

@@ -1,4 +1,4 @@
-#include "src/qtchartium/chartiumthememanager.h"
+#include "src/qtchartium/themes/chartiumthememanager.h"
 
 #include "src/qtchartium/themes/custom/chartiumthemecustomdark.h"
 #include "src/qtchartium/themes/qtcharts/chartiumthemebluecerulean.h"

@@ -6,7 +6,7 @@
 
 #include "src/qtchartium/axis/ichartiumaxis.h"
 #include "src/qtchartium/ichartiumchart.h"
-#include "src/qtchartium/ichartiumseries.h"
+#include "src/qtchartium/charts/ichartiumseries.h"
 #include "src/qtchartium/legend/ichartiumlegend.h"
 #include "src/qtchartium/themes/ichartiumtheme.h"
 

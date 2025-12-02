@@ -2,15 +2,15 @@
 
 
 
-#include "src/qtchartium/chartiumseries.h"
+#include "src/qtchartium/charts/xychart/chartiumxyseries.h"
 
 
 
-class IChartiumLineSeries : public ChartiumSeries
+class IChartiumLineSeries : public ChartiumXYSeries
 {
 public:
-    explicit IChartiumLineSeries() :
-        ChartiumSeries()
+    explicit IChartiumLineSeries(QObject* parent = nullptr) :
+        ChartiumXYSeries(parent)
     {
     }
     ~IChartiumLineSeries() override = default;

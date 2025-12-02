@@ -1,6 +1,6 @@
 #include "src/qtchartium/themes/qtcharts/chartiumthemebrownsand.h"
 
-#include "src/qtchartium/ichartiumthememanager.h"
+#include "src/qtchartium/themes/ichartiumthememanager.h"
 
 
 

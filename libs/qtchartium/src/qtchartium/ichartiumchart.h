@@ -8,7 +8,7 @@
 #include <QPen>
 
 #include "src/qtchartium/axis/ichartiumaxis.h"
-#include "src/qtchartium/ichartiumseries.h"
+#include "src/qtchartium/charts/ichartiumseries.h"
 #include "src/qtchartium/legend/ichartiumlegend.h"
 
 

@@ -2,7 +2,7 @@
 
 
 
-#include "src/qtchartium/ichartiumthememanager.h"
+#include "src/qtchartium/themes/ichartiumthememanager.h"
 
 
 

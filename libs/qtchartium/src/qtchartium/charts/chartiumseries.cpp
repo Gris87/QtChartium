@@ -1,4 +1,4 @@
-#include "src/qtchartium/chartiumseries.h"
+#include "src/qtchartium/charts/chartiumseries.h"
 
 #include "src/qtchartium/domain/chartiumxydomain.h"
 #include "src/qtchartium/ichartiumdataset.h"

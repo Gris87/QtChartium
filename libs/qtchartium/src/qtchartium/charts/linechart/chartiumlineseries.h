@@ -2,14 +2,14 @@
 
 
 
-#include "src/qtchartium/linechart/ichartiumlineseries.h"
+#include "src/qtchartium/charts/linechart/ichartiumlineseries.h"
 
 
 
 class ChartiumLineSeries : public IChartiumLineSeries
 {
 public:
-    explicit ChartiumLineSeries();
+    explicit ChartiumLineSeries(QObject* parent = nullptr);
     ~ChartiumLineSeries() override;
 
     ChartiumLineSeries(const ChartiumLineSeries& another)            = delete;

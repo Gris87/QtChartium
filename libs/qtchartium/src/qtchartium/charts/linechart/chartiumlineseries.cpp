@@ -1,9 +1,9 @@
-#include "src/qtchartium/linechart/chartiumlineseries.h"
+#include "src/qtchartium/charts/linechart/chartiumlineseries.h"
 
 
 
-ChartiumLineSeries::ChartiumLineSeries() :
-    IChartiumLineSeries()
+ChartiumLineSeries::ChartiumLineSeries(QObject* parent) :
+    IChartiumLineSeries(parent)
 {
 }
 

@@ -9,7 +9,7 @@
 #include "src/qtchartium/ichartiumbackground.h"
 #include "src/qtchartium/ichartiumchart.h"
 #include "src/qtchartium/ichartiumitem.h"
-#include "src/qtchartium/ichartiumseries.h"
+#include "src/qtchartium/charts/ichartiumseries.h"
 #include "src/qtchartium/ichartiumtitle.h"
 #include "src/qtchartium/layout/ichartiumlayout.h"
 
