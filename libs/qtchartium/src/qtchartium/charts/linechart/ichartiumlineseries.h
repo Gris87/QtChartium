@@ -8,6 +8,8 @@
 
 class IChartiumLineSeries : public ChartiumXYSeries
 {
+    Q_OBJECT
+
 public:
     explicit IChartiumLineSeries(QObject* parent = nullptr) :
         ChartiumXYSeries(parent)
@@ -17,8 +19,4 @@ public:
 
     IChartiumLineSeries(const IChartiumLineSeries& another)            = delete;
     IChartiumLineSeries& operator=(const IChartiumLineSeries& another) = delete;
-
-    virtual void append(qreal x, qreal y)             = 0;
-    virtual void append(const QPointF& point)         = 0;
-    virtual void append(const QList<QPointF>& points) = 0;
 };

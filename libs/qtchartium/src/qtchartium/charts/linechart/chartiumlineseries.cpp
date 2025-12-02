@@ -11,24 +11,15 @@ ChartiumLineSeries::~ChartiumLineSeries()
 {
 }
 
-void ChartiumLineSeries::append(qreal x, qreal y)
+IChartiumSeries::SeriesType ChartiumLineSeries::type() const
+{
+    return IChartiumSeries::SeriesTypeLine;
+}
+
+void ChartiumLineSeries::initializeGraphics(QGraphicsItem* parent)
 {
 }
 
-void ChartiumLineSeries::append(const QPointF& point)
+void ChartiumLineSeries::initializeTheme(int index, IChartiumTheme* theme)
 {
-}
-
-void ChartiumLineSeries::append(const QList<QPointF>& points)
-{
-}
-
-ChartiumLineSeries& ChartiumLineSeries::operator<<(const QPointF& point)
-{
-    return *this;
-}
-
-ChartiumLineSeries& ChartiumLineSeries::operator<<(const QList<QPointF>& points)
-{
-    return *this;
 }

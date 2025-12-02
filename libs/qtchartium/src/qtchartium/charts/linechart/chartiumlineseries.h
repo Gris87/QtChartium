@@ -8,6 +8,8 @@
 
 class ChartiumLineSeries : public IChartiumLineSeries
 {
+    Q_OBJECT
+
 public:
     explicit ChartiumLineSeries(QObject* parent = nullptr);
     ~ChartiumLineSeries() override;
@@ -15,10 +17,8 @@ public:
     ChartiumLineSeries(const ChartiumLineSeries& another)            = delete;
     ChartiumLineSeries& operator=(const ChartiumLineSeries& another) = delete;
 
-    void append(qreal x, qreal y) override;
-    void append(const QPointF& point) override;
-    void append(const QList<QPointF>& points) override;
+    SeriesType type() const override;
 
-    ChartiumLineSeries& operator<<(const QPointF& point);
-    ChartiumLineSeries& operator<<(const QList<QPointF>& points);
+    void initializeGraphics(QGraphicsItem* parent) override;
+    void initializeTheme(int index, IChartiumTheme* theme) override;
 };
