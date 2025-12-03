@@ -51,7 +51,7 @@ public:
     void
     findMinMaxForSeries(const QList<IChartiumSeries*>& series, Qt::Orientations orientation, qreal& min, qreal& max) override;
 
-private:
+protected:
     IChartiumChart*         mChart;
     QList<IChartiumSeries*> mSeriesList;
     QList<IChartiumAxis*>   mAxisList;

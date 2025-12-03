@@ -62,7 +62,7 @@ public:
     void appendAxis(IChartiumAxis* axis) override;
     void removeAxis(IChartiumAxis* axis) override;
 
-private:
+protected:
     IChartiumChart*       mChart;
     IChartiumItem*        mItem;
     QList<IChartiumAxis*> mAxes;

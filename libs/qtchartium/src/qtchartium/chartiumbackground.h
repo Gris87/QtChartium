@@ -27,7 +27,6 @@ public:
 protected:
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
 
-private:
     qreal                      mDiameter;
     QGraphicsDropShadowEffect* mDropShadow;
 };

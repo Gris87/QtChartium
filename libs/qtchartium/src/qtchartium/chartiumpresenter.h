@@ -97,7 +97,7 @@ public slots:
     void handleAxisAdded(IChartiumAxis* axis) override;
     void handleAxisRemoved(IChartiumAxis* axis) override;
 
-private:
+protected:
     IChartiumChart*              mChart;
     QList<IChartiumItem*>        mChartItems;
     QList<IChartiumAxisElement*> mAxisItems;

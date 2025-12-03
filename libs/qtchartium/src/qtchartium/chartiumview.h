@@ -25,7 +25,6 @@ public:
 protected:
     void resizeEvent(QResizeEvent* event) override;
 
-private:
     QGraphicsScene* mScene;
     IChartiumChart* mChart;
 };

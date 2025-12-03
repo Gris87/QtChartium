@@ -21,4 +21,9 @@ public:
 
     IChartiumLineChartItem(const IChartiumLineChartItem& another)            = delete;
     IChartiumLineChartItem& operator=(const IChartiumLineChartItem& another) = delete;
+
+    virtual QPainterPath path() const = 0;
+
+    virtual void suppressPoints()                                    = 0;
+    virtual void forceChartType(IChartiumChart::ChartType chartType) = 0;
 };

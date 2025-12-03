@@ -88,7 +88,7 @@ public:
 
     IChartiumDataSet* dataset() const override;
 
-private:
+protected:
     IChartiumLegend*    mLegend;
     IChartiumDataSet*   mDataset;
     IChartiumPresenter* mPresenter;
