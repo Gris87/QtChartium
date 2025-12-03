@@ -124,9 +124,13 @@ public:
 
     void drawBestFitLine(QPainter* painter, const QRectF& clipRect) override;
 
+    void setPointSelected(int index, bool selected, bool& callSignal) override;
+
     bool isMarkerSizeDefault() override;
 
     QList<qreal> colorByData() const override;
+
+    bool setPointConfigurationInternal(const int index, const PointConfiguration key, const QVariant& value) override;
 
     void initializeDomain() override;
     void initializeAxes() override;

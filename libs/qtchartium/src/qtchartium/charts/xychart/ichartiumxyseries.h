@@ -134,9 +134,13 @@ public:
 
     virtual void drawBestFitLine(QPainter* painter, const QRectF& clipRect) = 0;
 
+    virtual void setPointSelected(int index, bool selected, bool& callSignal) = 0;
+
     virtual bool isMarkerSizeDefault() = 0;
 
     virtual QList<qreal> colorByData() const = 0;
+
+    virtual bool setPointConfigurationInternal(const int index, const PointConfiguration key, const QVariant& value) = 0;
 
 signals:
     void clicked(const QPointF& point);

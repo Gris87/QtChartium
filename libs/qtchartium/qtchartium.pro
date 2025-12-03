@@ -73,6 +73,7 @@ SOURCES += \
     src/qtchartium/layout/chartiumlayout.cpp \
     src/qtchartium/legend/chartiumlegend.cpp \
     src/qtchartium/legend/chartiumlegendmarker.cpp \
+    src/qtchartium/legend/chartiumlegendmarkerxy.cpp \
     src/qtchartium/legend/chartiumlegendscroller.cpp \
     src/qtchartium/themes/chartiumtheme.cpp \
     src/qtchartium/themes/chartiumthememanager.cpp \
@@ -161,9 +162,11 @@ HEADERS += \
     src/qtchartium/layout/ichartiumlayout.h \
     src/qtchartium/legend/chartiumlegend.h \
     src/qtchartium/legend/chartiumlegendmarker.h \
+    src/qtchartium/legend/chartiumlegendmarkerxy.h \
     src/qtchartium/legend/chartiumlegendscroller.h \
     src/qtchartium/legend/ichartiumlegend.h \
     src/qtchartium/legend/ichartiumlegendmarker.h \
+    src/qtchartium/legend/ichartiumlegendmarkerxy.h \
     src/qtchartium/legend/ichartiumlegendscroller.h \
     src/qtchartium/themes/chartiumtheme.h \
     src/qtchartium/themes/chartiumthememanager.h \
