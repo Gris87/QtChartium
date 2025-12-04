@@ -36,4 +36,26 @@ public:
 
 public slots:
     void handleSeriesUpdated() override;
+
+protected:
+    IChartiumLineSeries*      m_series;
+    QPainterPath              m_linePath;
+    QPainterPath              m_linePathPolarRight;
+    QPainterPath              m_linePathPolarLeft;
+    QPainterPath              m_fullPath;
+    QPainterPath              m_shapePath;
+    QList<QPointF>            m_linePoints;
+    QRectF                    m_rect;
+    QPen                      m_linePen;
+    bool                      m_pointsVisible;
+    IChartiumChart::ChartType m_chartType;
+    bool                      m_pointLabelsVisible;
+    qreal                     m_markerSize;
+    QString                   m_pointLabelsFormat;
+    QFont                     m_pointLabelsFont;
+    QColor                    m_pointLabelsColor;
+    bool                      m_pointLabelsClipping;
+    QPointF                   m_lastMousePos;
+    QPointF                   m_lastHoveredMatchedPos;
+    bool                      m_mousePressed;
 };
