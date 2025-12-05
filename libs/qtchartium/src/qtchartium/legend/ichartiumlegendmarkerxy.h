@@ -11,8 +11,8 @@ class IChartiumLegendMarkerXY : public ChartiumLegendMarker
     Q_OBJECT
 
 public:
-    explicit IChartiumLegendMarkerXY(QObject* parent = nullptr) :
-        ChartiumLegendMarker(parent)
+    explicit IChartiumLegendMarkerXY(IChartiumLegend* legend, QObject* parent = nullptr) :
+        ChartiumLegendMarker(legend, parent)
     {
     }
     ~IChartiumLegendMarkerXY() override = default;

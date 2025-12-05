@@ -3,7 +3,7 @@
 
 
 ChartiumLegendMarkerXY::ChartiumLegendMarkerXY(IChartiumXYSeries* series, IChartiumLegend* legend, QObject* parent) :
-    IChartiumLegendMarkerXY(parent)
+    IChartiumLegendMarkerXY(legend, parent)
 {
 }
 
