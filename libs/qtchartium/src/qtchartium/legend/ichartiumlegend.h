@@ -4,6 +4,8 @@
 
 #include <QGraphicsWidget>
 
+#include <QPen>
+
 
 
 class IChartiumLegendMarker;

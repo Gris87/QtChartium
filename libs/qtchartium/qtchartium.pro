@@ -72,8 +72,11 @@ SOURCES += \
     src/qtchartium/layout/chartiumcartesianlayout.cpp \
     src/qtchartium/layout/chartiumlayout.cpp \
     src/qtchartium/legend/chartiumlegend.cpp \
+    src/qtchartium/legend/chartiumlegendlayout.cpp \
     src/qtchartium/legend/chartiumlegendmarker.cpp \
+    src/qtchartium/legend/chartiumlegendmarkeritem.cpp \
     src/qtchartium/legend/chartiumlegendmarkerxy.cpp \
+    src/qtchartium/legend/chartiumlegendmoveresizehandler.cpp \
     src/qtchartium/legend/chartiumlegendscroller.cpp \
     src/qtchartium/legend/scroller/chartiumscroller.cpp \
     src/qtchartium/legend/scroller/chartiumscrollticker.cpp \
@@ -163,12 +166,18 @@ HEADERS += \
     src/qtchartium/layout/ichartiumcartesianlayout.h \
     src/qtchartium/layout/ichartiumlayout.h \
     src/qtchartium/legend/chartiumlegend.h \
+    src/qtchartium/legend/chartiumlegendlayout.h \
     src/qtchartium/legend/chartiumlegendmarker.h \
+    src/qtchartium/legend/chartiumlegendmarkeritem.h \
     src/qtchartium/legend/chartiumlegendmarkerxy.h \
+    src/qtchartium/legend/chartiumlegendmoveresizehandler.h \
     src/qtchartium/legend/chartiumlegendscroller.h \
     src/qtchartium/legend/ichartiumlegend.h \
+    src/qtchartium/legend/ichartiumlegendlayout.h \
     src/qtchartium/legend/ichartiumlegendmarker.h \
+    src/qtchartium/legend/ichartiumlegendmarkeritem.h \
     src/qtchartium/legend/ichartiumlegendmarkerxy.h \
+    src/qtchartium/legend/ichartiumlegendmoveresizehandler.h \
     src/qtchartium/legend/ichartiumlegendscroller.h \
     src/qtchartium/legend/scroller/chartiumscroller.h \
     src/qtchartium/legend/scroller/chartiumscrollticker.h \

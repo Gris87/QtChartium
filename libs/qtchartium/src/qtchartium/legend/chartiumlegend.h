@@ -4,9 +4,13 @@
 
 #include "src/qtchartium/legend/ichartiumlegend.h"
 
+#include "src/qtchartium/legend/ichartiumlegendlayout.h"
+#include "src/qtchartium/legend/ichartiumlegendmoveresizehandler.h"
+
 
 
 class IChartiumChart;
+class IChartiumPresenter;
 
 
 
@@ -86,4 +90,26 @@ public slots:
     void handleSeriesRemoved(IChartiumSeries* series) override;
     void handleSeriesVisibleChanged() override;
     void handleCountChanged() override;
+
+protected:
+    IChartiumPresenter*                           m_presenter;
+    IChartiumLegendLayout*                        m_layout;
+    IChartiumLegendMoveResizeHandler*             m_resizer;
+    IChartiumChart*                               m_chart;
+    QGraphicsItemGroup*                           m_items;
+    Qt::Alignment                                 m_alignment;
+    QBrush                                        m_brush;
+    QPen                                          m_pen;
+    QFont                                         m_font;
+    QBrush                                        m_labelBrush;
+    qreal                                         m_diameter;
+    bool                                          m_attachedToChart;
+    bool                                          m_backgroundVisible;
+    bool                                          m_reverseMarkers;
+    bool                                          m_showToolTips;
+    bool                                          m_interactive;
+    MarkerShape                                   m_markerShape;
+    QList<IChartiumLegendMarker*>                 m_markers;
+    QList<IChartiumSeries*>                       m_series;
+    QHash<QGraphicsItem*, IChartiumLegendMarker*> m_markerHash;
 };
