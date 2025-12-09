@@ -49,6 +49,8 @@ public:
     void invalidateLegend() override;
     void invalidateAllItems() override;
 
+    IChartiumLegend* legend() const override;
+
 public slots:
     void updated() override;
     void handleShapeChange() override;

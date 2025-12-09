@@ -102,6 +102,11 @@ void ChartiumLegendMarker::invalidateAllItems()
 {
 }
 
+IChartiumLegend* ChartiumLegendMarker::legend() const
+{
+    return m_legend;
+}
+
 void ChartiumLegendMarker::updated()
 {
 }

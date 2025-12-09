@@ -69,6 +69,8 @@ public:
     virtual void invalidateLegend()   = 0;
     virtual void invalidateAllItems() = 0;
 
+    virtual IChartiumLegend* legend() const = 0;
+
 public slots:
     virtual void updated()           = 0;
     virtual void handleShapeChange() = 0;

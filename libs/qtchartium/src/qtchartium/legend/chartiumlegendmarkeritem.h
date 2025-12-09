@@ -11,6 +11,7 @@ class ChartiumLegendMarkerItem : public IChartiumLegendMarkerItem
 public:
     explicit ChartiumLegendMarkerItem(
         IChartiumLegendMarker* marker,
+        IChartiumPresenter*    presenter,
         QGraphicsItem*         parent   = nullptr,
         QGraphicsLayoutItem*   parent2  = nullptr,
         bool                   isLayout = false
@@ -70,6 +71,7 @@ public:
 
 protected:
     IChartiumLegendMarker*       m_marker;
+    IChartiumPresenter*          mPresenter;
     QRectF                       m_defaultMarkerRect;
     QRectF                       m_markerRect;
     QRectF                       m_boundingRect;
