@@ -19,10 +19,7 @@ public:
     ChartiumLegendScroller(const ChartiumLegendScroller& another)            = delete;
     ChartiumLegendScroller& operator=(const ChartiumLegendScroller& another) = delete;
 
-    void handleInteractiveChanged(bool interactive) override;
     void updateForResizerChange() override;
-
-    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
 
     void    setOffset(const QPointF& point) override;
     QPointF offset() const override;
@@ -36,6 +33,7 @@ public:
     void hoverLeaveEvent(QGraphicsSceneHoverEvent* event) override;
 
 public slots:
+    void handleInteractiveChanged(bool interactive) override;
     void handleDetached(bool attached) override;
 
 protected:

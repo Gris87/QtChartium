@@ -11,6 +11,7 @@
 class IChartiumLegendMarker;
 class IChartiumSeries;
 class IChartiumPresenter;
+class IChartiumLegendLayout;
 
 
 
@@ -19,7 +20,7 @@ class IChartiumLegend : public QGraphicsWidget
     Q_OBJECT
 
 public:
-    enum MarkerShape
+    enum MarkerShape : quint8
     {
         MarkerShapeDefault,
         MarkerShapeRectangle,
@@ -100,8 +101,10 @@ public:
     virtual void decorateMarkers(const QList<IChartiumLegendMarker*>& markers) = 0;
     virtual void updateToolTips()                                              = 0;
 
-    virtual IChartiumPresenter* presenter() const        = 0;
-    virtual bool                isReverseMarkers() const = 0;
+    virtual IChartiumPresenter*    presenter() const        = 0;
+    virtual bool                   isReverseMarkers() const = 0;
+    virtual IChartiumLegendLayout* layout() const           = 0;
+    virtual QGraphicsItemGroup*    items() const            = 0;
 
 public slots:
     virtual void handleSeriesAdded(IChartiumSeries* series)   = 0;

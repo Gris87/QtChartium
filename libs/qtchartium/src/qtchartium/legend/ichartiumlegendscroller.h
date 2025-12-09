@@ -3,10 +3,12 @@
 
 
 #include "src/qtchartium/legend/chartiumlegend.h"
+#include "src/qtchartium/legend/scroller/chartiumscroller.h"
 
 
 
-class IChartiumLegendScroller : public ChartiumLegend
+class IChartiumLegendScroller : public ChartiumLegend,
+                                public ChartiumScroller
 {
     Q_OBJECT
 
@@ -22,9 +24,9 @@ public:
     IChartiumLegendScroller(const IChartiumLegendScroller& another)            = delete;
     IChartiumLegendScroller& operator=(const IChartiumLegendScroller& another) = delete;
 
-    virtual void handleInteractiveChanged(bool interactive) = 0;
-    virtual void updateForResizerChange()                   = 0;
+    virtual void updateForResizerChange() = 0;
 
 public slots:
-    virtual void handleDetached(bool attached) = 0;
+    virtual void handleInteractiveChanged(bool interactive) = 0;
+    virtual void handleDetached(bool attached)              = 0;
 };

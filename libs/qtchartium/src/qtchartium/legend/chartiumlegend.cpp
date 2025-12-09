@@ -224,6 +224,16 @@ bool ChartiumLegend::isReverseMarkers() const
     return m_reverseMarkers;
 }
 
+IChartiumLegendLayout* ChartiumLegend::layout() const
+{
+    return m_layout;
+}
+
+QGraphicsItemGroup* ChartiumLegend::items() const
+{
+    return m_items;
+}
+
 void ChartiumLegend::handleSeriesAdded(IChartiumSeries* series)
 {
 }
