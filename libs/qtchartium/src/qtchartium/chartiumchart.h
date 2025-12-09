@@ -86,7 +86,8 @@ public:
 
     ChartType chartType() const override;
 
-    IChartiumDataSet* dataset() const override;
+    IChartiumDataSet*   dataset() const override;
+    IChartiumPresenter* presenter() const override;
 
 protected:
     IChartiumLegend*    mLegend;

@@ -24,7 +24,7 @@ IChartiumXYSeries* ChartiumLegendMarkerXY::series()
 
 QObject* ChartiumLegendMarkerXY::relatedObject()
 {
-    return nullptr;
+    return mSeries;
 }
 
 void ChartiumLegendMarkerXY::updated()

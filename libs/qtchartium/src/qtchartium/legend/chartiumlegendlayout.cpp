@@ -313,7 +313,7 @@ void ChartiumLegendLayout::setAttachedGeometry(const QRectF& rect)
             {
                 IChartiumLegendMarker* marker;
 
-                if (m_legend->isReverseMarkers())
+                if (m_legend->reverseMarkers())
                 {
                     marker = m_legend->markers().at(markerCount - 1 - i);
                 }
@@ -370,7 +370,7 @@ void ChartiumLegendLayout::setAttachedGeometry(const QRectF& rect)
             {
                 IChartiumLegendMarker* marker;
 
-                if (m_legend->isReverseMarkers())
+                if (m_legend->reverseMarkers())
                 {
                     marker = m_legend->markers().at(markerCount - 1 - i);
                 }

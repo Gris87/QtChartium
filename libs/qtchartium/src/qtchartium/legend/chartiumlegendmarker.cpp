@@ -84,12 +84,12 @@ IChartiumSeries* ChartiumLegendMarker::series()
     return nullptr;
 }
 
-IChartiumLegendMarkerItem* ChartiumLegendMarker::item() const
+QObject* ChartiumLegendMarker::relatedObject()
 {
     return nullptr;
 }
 
-QObject* ChartiumLegendMarker::relatedObject()
+IChartiumLegendMarkerItem* ChartiumLegendMarker::item() const
 {
     return nullptr;
 }

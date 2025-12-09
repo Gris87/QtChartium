@@ -402,3 +402,8 @@ IChartiumDataSet* ChartiumChart::dataset() const
 {
     return mDataset;
 }
+
+IChartiumPresenter* ChartiumChart::presenter() const
+{
+    return mPresenter;
+}

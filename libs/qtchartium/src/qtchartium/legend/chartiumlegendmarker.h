@@ -41,10 +41,9 @@ public:
     void                         setShape(IChartiumLegend::MarkerShape shape) override;
 
     IChartiumSeries* series() override;
+    QObject*         relatedObject() override;
 
     IChartiumLegendMarkerItem* item() const override;
-
-    QObject* relatedObject() override;
 
     void invalidateLegend() override;
     void invalidateAllItems() override;

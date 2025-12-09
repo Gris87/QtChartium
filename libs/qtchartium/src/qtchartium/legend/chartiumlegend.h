@@ -25,6 +25,8 @@ public:
     ChartiumLegend(const ChartiumLegend& another)            = delete;
     ChartiumLegend& operator=(const ChartiumLegend& another) = delete;
 
+    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
+
     void   setBrush(const QBrush& brush) override;
     QBrush brush() const override;
     void   setColor(QColor color) override;
@@ -67,6 +69,9 @@ public:
     MarkerShape markerShape() const override;
     void        setMarkerShape(MarkerShape shape) override;
 
+    void hideEvent(QHideEvent* event) override;
+    void showEvent(QShowEvent* event) override;
+
     void    setOffset(const QPointF& offset) override;
     QPointF offset() const override;
     int     roundness(qreal size) override;
@@ -74,8 +79,6 @@ public:
     QGraphicsItemGroup*           items() override;
     QList<IChartiumLegendMarker*> markers(IChartiumSeries* series = 0) override;
     qreal                         maxMarkerWidth() const override;
-
-    QObject* relatedObject(const IChartiumLegendMarker* l) override;
 
     void insertMarkerHelper(IChartiumLegendMarker* marker) override;
     void addMarkers(const QList<IChartiumLegendMarker*>& markers) override;
@@ -85,10 +88,11 @@ public:
     void decorateMarkers(const QList<IChartiumLegendMarker*>& markers) override;
     void updateToolTips() override;
 
+    int indexOfEquivalent(IChartiumLegendMarker* needle, const QList<IChartiumLegendMarker*>& hayStack) const override;
+    int indexOfSeries(IChartiumSeries* series, const QList<IChartiumLegendMarker*>& hayStack) const override;
+
     IChartiumPresenter*    presenter() const override;
-    bool                   isReverseMarkers() const override;
     IChartiumLegendLayout* layout() const override;
-    QGraphicsItemGroup*    items() const override;
 
 public slots:
     void handleSeriesAdded(IChartiumSeries* series) override;

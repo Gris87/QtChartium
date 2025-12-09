@@ -91,8 +91,6 @@ public:
     virtual QList<IChartiumLegendMarker*> markers(IChartiumSeries* series = 0) = 0;
     virtual qreal                         maxMarkerWidth() const               = 0;
 
-    virtual QObject* relatedObject(const IChartiumLegendMarker* l) = 0;
-
     virtual void insertMarkerHelper(IChartiumLegendMarker* marker)             = 0;
     virtual void addMarkers(const QList<IChartiumLegendMarker*>& markers)      = 0;
     virtual void removeMarkerHelper(IChartiumLegendMarker* marker)             = 0;
@@ -101,10 +99,11 @@ public:
     virtual void decorateMarkers(const QList<IChartiumLegendMarker*>& markers) = 0;
     virtual void updateToolTips()                                              = 0;
 
-    virtual IChartiumPresenter*    presenter() const        = 0;
-    virtual bool                   isReverseMarkers() const = 0;
-    virtual IChartiumLegendLayout* layout() const           = 0;
-    virtual QGraphicsItemGroup*    items() const            = 0;
+    virtual int indexOfEquivalent(IChartiumLegendMarker* needle, const QList<IChartiumLegendMarker*>& hayStack) const = 0;
+    virtual int indexOfSeries(IChartiumSeries* series, const QList<IChartiumLegendMarker*>& hayStack) const           = 0;
+
+    virtual IChartiumPresenter*    presenter() const = 0;
+    virtual IChartiumLegendLayout* layout() const    = 0;
 
 public slots:
     virtual void handleSeriesAdded(IChartiumSeries* series)   = 0;

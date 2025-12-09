@@ -61,10 +61,9 @@ public:
     virtual void                         setShape(IChartiumLegend::MarkerShape shape) = 0;
 
     virtual IChartiumSeries* series() = 0;
+    virtual QObject*         relatedObject() = 0;
 
     virtual IChartiumLegendMarkerItem* item() const = 0;
-
-    virtual QObject* relatedObject() = 0;
 
     virtual void invalidateLegend()   = 0;
     virtual void invalidateAllItems() = 0;
