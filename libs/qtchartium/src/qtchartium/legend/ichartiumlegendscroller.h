@@ -21,4 +21,10 @@ public:
 
     IChartiumLegendScroller(const IChartiumLegendScroller& another)            = delete;
     IChartiumLegendScroller& operator=(const IChartiumLegendScroller& another) = delete;
+
+    virtual void handleInteractiveChanged(bool interactive) = 0;
+    virtual void updateForResizerChange()                   = 0;
+
+public slots:
+    virtual void handleDetached(bool attached) = 0;
 };

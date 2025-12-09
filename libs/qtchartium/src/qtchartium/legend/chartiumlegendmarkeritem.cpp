@@ -150,3 +150,13 @@ bool ChartiumLegendMarkerItem::useMaxWidth() const
 {
     return false;
 }
+
+qreal ChartiumLegendMarkerItem::margin() const
+{
+    return m_margin;
+}
+
+qreal ChartiumLegendMarkerItem::preferredItemWidth() const
+{
+    return sizeHint(Qt::PreferredSize, QSize()).width();
+}

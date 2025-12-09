@@ -85,6 +85,9 @@ public:
     void decorateMarkers(const QList<IChartiumLegendMarker*>& markers) override;
     void updateToolTips() override;
 
+    IChartiumPresenter* presenter() const override;
+    bool                isReverseMarkers() const override;
+
 public slots:
     void handleSeriesAdded(IChartiumSeries* series) override;
     void handleSeriesRemoved(IChartiumSeries* series) override;

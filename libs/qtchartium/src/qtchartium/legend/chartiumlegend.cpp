@@ -214,6 +214,16 @@ void ChartiumLegend::updateToolTips()
 {
 }
 
+IChartiumPresenter* ChartiumLegend::presenter() const
+{
+    return m_presenter;
+}
+
+bool ChartiumLegend::isReverseMarkers() const
+{
+    return m_reverseMarkers;
+}
+
 void ChartiumLegend::handleSeriesAdded(IChartiumSeries* series)
 {
 }

@@ -1,3 +1,5 @@
 Do not use `private:`
 Double check constuctors
 Create demo
+Rename vars
+Avoid auto

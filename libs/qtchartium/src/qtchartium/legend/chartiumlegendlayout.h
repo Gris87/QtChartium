@@ -36,8 +36,6 @@ public:
     void setAttachedGeometry(const QRectF& rect) override;
     void setDettachedGeometry(const QRectF& rect) override;
 
-    bool widthLongerThan(const LegendWidthStruct* item1, const LegendWidthStruct* item2) override;
-
 protected:
     IChartiumLegend* m_legend;
     qreal            m_offsetX;

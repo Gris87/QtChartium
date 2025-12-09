@@ -10,6 +10,7 @@
 
 class IChartiumLegendMarker;
 class IChartiumSeries;
+class IChartiumPresenter;
 
 
 
@@ -98,6 +99,9 @@ public:
     virtual void decorateMarker(IChartiumLegendMarker* marker)                 = 0;
     virtual void decorateMarkers(const QList<IChartiumLegendMarker*>& markers) = 0;
     virtual void updateToolTips()                                              = 0;
+
+    virtual IChartiumPresenter* presenter() const        = 0;
+    virtual bool                isReverseMarkers() const = 0;
 
 public slots:
     virtual void handleSeriesAdded(IChartiumSeries* series)   = 0;

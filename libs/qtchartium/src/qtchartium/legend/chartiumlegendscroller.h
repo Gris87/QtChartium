@@ -18,4 +18,28 @@ public:
 
     ChartiumLegendScroller(const ChartiumLegendScroller& another)            = delete;
     ChartiumLegendScroller& operator=(const ChartiumLegendScroller& another) = delete;
+
+    void handleInteractiveChanged(bool interactive) override;
+    void updateForResizerChange() override;
+
+    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
+
+    void    setOffset(const QPointF& point) override;
+    QPointF offset() const override;
+
+    void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event) override;
+    void hoverEnterEvent(QGraphicsSceneHoverEvent* event) override;
+    void hoverMoveEvent(QGraphicsSceneHoverEvent* event) override;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event) override;
+
+public slots:
+    void handleDetached(bool attached) override;
+
+protected:
+    bool m_forwardMouseEvents;
+    bool m_forwardHoverEvents;
+    bool m_cachedShouldShowMoveEvents;
 };

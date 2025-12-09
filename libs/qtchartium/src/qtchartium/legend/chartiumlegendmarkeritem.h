@@ -65,6 +65,9 @@ public:
     void setItemRect() override;
     bool useMaxWidth() const override;
 
+    qreal margin() const override;
+    qreal preferredItemWidth() const override;
+
 protected:
     IChartiumLegendMarker*       m_marker;
     QRectF                       m_defaultMarkerRect;

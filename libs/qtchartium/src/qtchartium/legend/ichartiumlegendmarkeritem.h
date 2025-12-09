@@ -73,6 +73,9 @@ public:
     virtual void setItemRect()        = 0;
     virtual bool useMaxWidth() const  = 0;
 
+    virtual qreal margin() const             = 0;
+    virtual qreal preferredItemWidth() const = 0;
+
 signals:
     void markerRectChanged();
 };

@@ -18,4 +18,15 @@ public:
 
     ChartiumLegendMarkerXY(const ChartiumLegendMarkerXY& another)            = delete;
     ChartiumLegendMarkerXY& operator=(const ChartiumLegendMarkerXY& another) = delete;
+
+    LegendMarkerType type() override;
+
+    IChartiumXYSeries* series() override;
+    QObject*           relatedObject() override;
+
+public slots:
+    void updated() override;
+
+protected:
+    IChartiumXYSeries* mSeries;
 };

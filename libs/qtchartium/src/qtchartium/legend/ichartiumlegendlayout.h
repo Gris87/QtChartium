@@ -33,6 +33,4 @@ public:
 
     virtual void setAttachedGeometry(const QRectF& rect)  = 0;
     virtual void setDettachedGeometry(const QRectF& rect) = 0;
-
-    virtual bool widthLongerThan(const LegendWidthStruct* item1, const LegendWidthStruct* item2) = 0;
 };
