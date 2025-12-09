@@ -8,20 +8,20 @@
 
 ChartiumLegendMarker::ChartiumLegendMarker(IChartiumLegend* legend, QObject* parent) :
     IChartiumLegendMarker(parent),
-    m_item(new ChartiumLegendMarkerItem(this, legend->presenter())),
-    m_legend(legend),
-    m_customLabel(),
-    m_customBrush(),
-    m_customPen()
+    mItem(new ChartiumLegendMarkerItem(this, legend->presenter())),
+    mLegend(legend),
+    mCustomLabel(),
+    mCustomBrush(),
+    mCustomPen()
 {
-    m_item->setVisible(series()->isVisible());
+    mItem->setVisible(series()->isVisible());
 
     connect(legend, SIGNAL(markerShapeChanged()), this, SLOT(handleShapeChange()));
 }
 
 ChartiumLegendMarker::~ChartiumLegendMarker()
 {
-    delete m_item;
+    delete mItem;
 }
 
 IChartiumLegendMarker::LegendMarkerType ChartiumLegendMarker::type()
@@ -31,98 +31,98 @@ IChartiumLegendMarker::LegendMarkerType ChartiumLegendMarker::type()
 
 QString ChartiumLegendMarker::label() const
 {
-    return m_item->label();
+    return mItem->label();
 }
 
 void ChartiumLegendMarker::setLabel(const QString& label)
 {
     if (label.isEmpty())
     {
-        m_customLabel = false;
+        mCustomLabel = false;
     }
     else
     {
-        m_customLabel = true;
-        m_item->setLabel(label);
+        mCustomLabel = true;
+        mItem->setLabel(label);
     }
 }
 
 QBrush ChartiumLegendMarker::labelBrush() const
 {
-    return m_item->labelBrush();
+    return mItem->labelBrush();
 }
 
 void ChartiumLegendMarker::setLabelBrush(const QBrush& brush)
 {
-    m_item->setLabelBrush(brush);
+    mItem->setLabelBrush(brush);
 }
 
 QFont ChartiumLegendMarker::font() const
 {
-    return m_item->font();
+    return mItem->font();
 }
 
 void ChartiumLegendMarker::setFont(const QFont& font)
 {
-    m_item->setFont(font);
+    mItem->setFont(font);
 }
 
 QPen ChartiumLegendMarker::pen() const
 {
-    return m_item->pen();
+    return mItem->pen();
 }
 
 void ChartiumLegendMarker::setPen(const QPen& pen)
 {
     if (pen == QPen(Qt::NoPen))
     {
-        m_customPen = false;
+        mCustomPen = false;
     }
     else
     {
-        m_customPen = true;
-        m_item->setPen(pen);
+        mCustomPen = true;
+        mItem->setPen(pen);
     }
 }
 
 QBrush ChartiumLegendMarker::brush() const
 {
-    return m_item->brush();
+    return mItem->brush();
 }
 
 void ChartiumLegendMarker::setBrush(const QBrush& brush)
 {
     if (brush == QBrush(Qt::NoBrush))
     {
-        m_customBrush = false;
+        mCustomBrush = false;
     }
     else
     {
-        m_customBrush = true;
-        m_item->setBrush(brush);
+        mCustomBrush = true;
+        mItem->setBrush(brush);
     }
 }
 
 bool ChartiumLegendMarker::isVisible() const
 {
-    return m_item->isVisible();
+    return mItem->isVisible();
 }
 
 void ChartiumLegendMarker::setVisible(bool visible)
 {
-    m_item->setVisible(visible);
+    mItem->setVisible(visible);
 }
 
 IChartiumLegend::MarkerShape ChartiumLegendMarker::shape() const
 {
-    return m_item->markerShape();
+    return mItem->markerShape();
 }
 
 void ChartiumLegendMarker::setShape(IChartiumLegend::MarkerShape shape)
 {
-    if (shape != m_item->markerShape())
+    if (shape != mItem->markerShape())
     {
-        m_item->setMarkerShape(shape);
+        mItem->setMarkerShape(shape);
         handleShapeChange();
         emit shapeChanged();
     }
@@ -145,25 +145,25 @@ IChartiumLegendMarkerItem* ChartiumLegendMarker::item() const
 
 void ChartiumLegendMarker::invalidateLegend()
 {
-    m_item->updateGeometry();
-    m_legend->layout()->invalidate();
+    mItem->updateGeometry();
+    mLegend->layout()->invalidate();
 }
 
 void ChartiumLegendMarker::invalidateAllItems()
 {
-    QList<IChartiumLegendMarker*> markers = m_legend->markers();
+    QList<IChartiumLegendMarker*> markers = mLegend->markers();
 
     for (int i = 0; i < markers.size(); i++)
     {
         markers.at(i)->item()->updateGeometry();
     }
 
-    m_legend->layout()->invalidate();
+    mLegend->layout()->invalidate();
 }
 
 IChartiumLegend* ChartiumLegendMarker::legend() const
 {
-    return m_legend;
+    return mLegend;
 }
 
 void ChartiumLegendMarker::updated()
@@ -172,6 +172,6 @@ void ChartiumLegendMarker::updated()
 
 void ChartiumLegendMarker::handleShapeChange()
 {
-    m_item->updateMarkerShapeAndSize();
-    m_legend->layout()->invalidate();
+    mItem->updateMarkerShapeAndSize();
+    mLegend->layout()->invalidate();
 }

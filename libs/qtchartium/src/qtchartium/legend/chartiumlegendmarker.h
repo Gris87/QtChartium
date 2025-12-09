@@ -55,9 +55,9 @@ public slots:
     void handleShapeChange() override;
 
 protected:
-    IChartiumLegendMarkerItem* m_item;
-    IChartiumLegend*           m_legend;
-    bool                       m_customLabel;
-    bool                       m_customBrush;
-    bool                       m_customPen;
+    IChartiumLegendMarkerItem* mItem;
+    IChartiumLegend*           mLegend;
+    bool                       mCustomLabel;
+    bool                       mCustomBrush;
+    bool                       mCustomPen;
 };
