@@ -2,6 +2,20 @@
 
 
 
+#define DEBUG_PRINT(x) qDebug() << #x << x;
+#define DEBUG_PRINT_ARRAY(x)                 \
+    qDebug() << #x << ".size()" << x.size(); \
+    qDebug() << "=================";         \
+                                             \
+    for (auto xELEMENT : x)                  \
+    {                                        \
+        qDebug() << xELEMENT;                \
+    }                                        \
+                                             \
+    qDebug() << "=================";
+
+
+
 ChartiumDomain::ChartiumDomain(QObject* parent) :
     IChartiumDomain(parent),
     mMinX(),
@@ -18,6 +32,19 @@ ChartiumDomain::ChartiumDomain(QObject* parent) :
     mReverseX(),
     mReverseY()
 {
+    DEBUG_PRINT(mMaxX);
+    DEBUG_PRINT(mMaxY);
+    DEBUG_PRINT(mMinX);
+    DEBUG_PRINT(mMinY);
+    DEBUG_PRINT(mReverseX);
+    DEBUG_PRINT(mReverseY);
+    DEBUG_PRINT(mSignalsBlocked);
+    DEBUG_PRINT(mSize);
+    DEBUG_PRINT(mZoomResetMaxX);
+    DEBUG_PRINT(mZoomResetMaxY);
+    DEBUG_PRINT(mZoomResetMinX);
+    DEBUG_PRINT(mZoomResetMinY);
+    DEBUG_PRINT(mZoomed);
 }
 
 ChartiumDomain::~ChartiumDomain()

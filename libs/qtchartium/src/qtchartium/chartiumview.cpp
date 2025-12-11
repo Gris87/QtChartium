@@ -2,6 +2,20 @@
 
 
 
+#define DEBUG_PRINT(x) qDebug() << #x << x;
+#define DEBUG_PRINT_ARRAY(x)                 \
+    qDebug() << #x << ".size()" << x.size(); \
+    qDebug() << "=================";         \
+                                             \
+    for (auto xELEMENT : x)                  \
+    {                                        \
+        qDebug() << xELEMENT;                \
+    }                                        \
+                                             \
+    qDebug() << "=================";
+
+
+
 ChartiumView::ChartiumView(QWidget* parent) :
     IChartiumView(parent),
     mScene(new QGraphicsScene(this)),
@@ -14,6 +28,9 @@ ChartiumView::ChartiumView(QWidget* parent) :
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     setScene(mScene);
+
+    DEBUG_PRINT(mChart);
+    DEBUG_PRINT(mScene);
 }
 
 ChartiumView::~ChartiumView()

@@ -5,6 +5,20 @@
 
 
 
+#define DEBUG_PRINT(x) qDebug() << #x << x;
+#define DEBUG_PRINT_ARRAY(x)                 \
+    qDebug() << #x << ".size()" << x.size(); \
+    qDebug() << "=================";         \
+                                             \
+    for (auto xELEMENT : x)                  \
+    {                                        \
+        qDebug() << xELEMENT;                \
+    }                                        \
+                                             \
+    qDebug() << "=================";
+
+
+
 ChartiumSeries::ChartiumSeries(QObject* parent) :
     IChartiumSeries(parent),
     mChart(),
@@ -16,6 +30,14 @@ ChartiumSeries::ChartiumSeries(QObject* parent) :
     mVisible(true),
     mOpacity(1.00)
 {
+    DEBUG_PRINT_ARRAY(mAxes);
+    DEBUG_PRINT(mChart);
+    DEBUG_PRINT(mDomain);
+    DEBUG_PRINT(mItem);
+    DEBUG_PRINT(mName);
+    DEBUG_PRINT(mOpacity);
+    DEBUG_PRINT(mPresenter);
+    DEBUG_PRINT(mVisible);
 }
 
 ChartiumSeries::~ChartiumSeries()

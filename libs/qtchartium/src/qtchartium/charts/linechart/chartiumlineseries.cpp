@@ -5,10 +5,26 @@
 
 
 
+#define DEBUG_PRINT(x) qDebug() << #x << x;
+#define DEBUG_PRINT_ARRAY(x)                 \
+    qDebug() << #x << ".size()" << x.size(); \
+    qDebug() << "=================";         \
+                                             \
+    for (auto xELEMENT : x)                  \
+    {                                        \
+        qDebug() << xELEMENT;                \
+    }                                        \
+                                             \
+    qDebug() << "=================";
+
+
+
 ChartiumLineSeries::ChartiumLineSeries(QObject* parent) :
     IChartiumLineSeries(parent)
 {
     m_markerSize = m_pen.widthF() * 1.5;
+
+    DEBUG_PRINT(m_markerSize);
 }
 
 ChartiumLineSeries::~ChartiumLineSeries()
