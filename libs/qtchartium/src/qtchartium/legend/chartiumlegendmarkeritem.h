@@ -8,6 +8,8 @@
 
 class ChartiumLegendMarkerItem : public IChartiumLegendMarkerItem
 {
+    Q_OBJECT
+
 public:
     explicit ChartiumLegendMarkerItem(
         IChartiumLegendMarker* marker,

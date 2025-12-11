@@ -12,6 +12,8 @@
 class IChartiumLegendMarkerItem : public QGraphicsObject,
                                   public QGraphicsLayoutItem
 {
+    Q_OBJECT
+
 public:
     enum ItemType : quint8
     {

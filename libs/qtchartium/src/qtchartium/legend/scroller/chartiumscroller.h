@@ -4,6 +4,8 @@
 
 #include "src/qtchartium/legend/scroller/ichartiumscroller.h"
 
+#include <QElapsedTimer>
+
 #include "src/qtchartium/legend/scroller/ichartiumscrollticker.h"
 
 

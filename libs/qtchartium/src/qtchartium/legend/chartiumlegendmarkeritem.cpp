@@ -388,6 +388,7 @@ void ChartiumLegendMarkerItem::updateMarkerShapeAndSize()
         // jumping around when changing markers
         m_markerItem->setPos(oldPos);
     }
+
     setItemBrushAndPen();
 
     if (newRect != m_markerRect)
@@ -396,9 +397,12 @@ void ChartiumLegendMarkerItem::updateMarkerShapeAndSize()
         {
             m_marker->invalidateAllItems();
         }
+
         m_markerRect = newRect;
         setItemRect();
+
         emit markerRectChanged();
+
         updateGeometry();
     }
 }
