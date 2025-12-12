@@ -4,6 +4,8 @@
 
 #include "src/qtchartium/charts/xychart/ichartiumxyseries.h"
 
+#include <QHash>
+
 
 
 class ChartiumXYSeries : public IChartiumXYSeries

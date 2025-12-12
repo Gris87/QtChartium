@@ -11,9 +11,9 @@ class IChartiumXYSeries : public ChartiumSeries
     Q_OBJECT
 
 public:
-    enum class PointConfiguration
+    enum class PointConfiguration : quint8
     {
-        Color = 0,
+        Color,
         Size,
         Visibility,
         LabelVisibility,

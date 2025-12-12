@@ -18,7 +18,9 @@ MainWindow::MainWindow(QWidget* parent) :
     ui->setupUi(this);
 
     createQtChart();
-    qCritical() << "#####################################";
+    qCritical() << "";
+    qCritical() << "##########################################################################";
+    qCritical() << "";
     createChartiumChart();
 }
 

@@ -17,6 +17,23 @@
     }                                        \
                                              \
     qDebug() << "=================";
+#define DEBUG_PRINT_HASH_OF_HASHES(x)                                         \
+    qDebug() << #x << ".size()" << x.size();                                  \
+    qDebug() << "=================";                                          \
+                                                                              \
+    for (auto xIt = x.begin(); xIt != x.end(); ++xIt)                         \
+    {                                                                         \
+        qDebug() << xIt.key() << ":";                                         \
+        qDebug() << "-----------------";                                      \
+                                                                              \
+        for (auto yIt = xIt.value().begin(); yIt != xIt.value().end(); ++yIt) \
+        {                                                                     \
+            qDebug() << static_cast<quint8>(yIt.key()) << ":" << yIt.value(); \
+        }                                                                     \
+                                                                              \
+        qDebug() << "-----------------";                                      \
+    }                                                                         \
+    qDebug() << "=================";
 
 
 
@@ -45,7 +62,7 @@ ChartiumXYSeries::ChartiumXYSeries(QObject* parent) :
     DEBUG_PRINT(m_bestFitLinePen);
     DEBUG_PRINT(m_bestFitLineVisible);
     DEBUG_PRINT(m_brush);
-    DEBUG_PRINT(m_colorByData);
+    DEBUG_PRINT_ARRAY(m_colorByData);
     DEBUG_PRINT(m_lightMarker);
     DEBUG_PRINT(m_markerSize);
     DEBUG_PRINT(m_markerSizeDefault);
@@ -56,7 +73,7 @@ ChartiumXYSeries::ChartiumXYSeries(QObject* parent) :
     DEBUG_PRINT(m_pointLabelsFormat);
     DEBUG_PRINT(m_pointLabelsVisible);
     DEBUG_PRINT_ARRAY(m_points);
-    // DEBUG_PRINT(m_pointsConfiguration);
+    DEBUG_PRINT_HASH_OF_HASHES(m_pointsConfiguration);
     DEBUG_PRINT(m_pointsVisible);
     DEBUG_PRINT(m_selectedColor);
     DEBUG_PRINT(m_selectedLightMarker);
@@ -94,6 +111,8 @@ void ChartiumXYSeries::append(const QPointF& point)
 
         emit pointAdded(m_points.size() - 1);
     }
+
+    DEBUG_PRINT_ARRAY(m_points);
 }
 
 void ChartiumXYSeries::append(const QList<QPointF>& points)
