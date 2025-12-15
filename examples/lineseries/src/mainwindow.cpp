@@ -17,8 +17,8 @@ MainWindow::MainWindow(QWidget* parent) :
 {
     ui->setupUi(this);
 
-    createQtChart();
     createChartiumChart();
+    createQtChart();
 }
 
 MainWindow::~MainWindow()
