@@ -6,12 +6,16 @@
 
 
 
+class IChartiumPresenter;
+
+
+
 class ChartiumBarCategoryAxis : public IChartiumBarCategoryAxis
 {
     Q_OBJECT
 
 public:
-    explicit ChartiumBarCategoryAxis(QObject* parent = nullptr);
+    explicit ChartiumBarCategoryAxis(IChartiumPresenter* presenter, QObject* parent = nullptr);
     ~ChartiumBarCategoryAxis() override;
 
     ChartiumBarCategoryAxis(const ChartiumBarCategoryAxis& another)            = delete;
@@ -50,10 +54,11 @@ public:
     void  setRange(qreal min, qreal max) override;
 
 protected:
-    QStringList mCategories;
-    QString     mMinCategory;
-    QString     mMaxCategory;
-    qreal       mMin;
-    qreal       mMax;
-    int         mCount;
+    IChartiumPresenter* mPresenter;
+    QStringList         mCategories;
+    QString             mMinCategory;
+    QString             mMaxCategory;
+    qreal               mMin;
+    qreal               mMax;
+    int                 mCount;
 };

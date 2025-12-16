@@ -1,11 +1,14 @@
 #include "src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxis.h"
 
+#include "src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxisx.h"
+#include "src/qtchartium/axis/barcategoryaxis/chartiumbarcategoryaxisy.h"
 #include "src/qtchartium/ichartiumchart.h"
 
 
 
-ChartiumBarCategoryAxis::ChartiumBarCategoryAxis(QObject* parent) :
+ChartiumBarCategoryAxis::ChartiumBarCategoryAxis(IChartiumPresenter* presenter, QObject* parent) :
     IChartiumBarCategoryAxis(parent),
+    mPresenter(presenter),
     mCategories(),
     mMinCategory(),
     mMaxCategory(),
@@ -320,17 +323,14 @@ void ChartiumBarCategoryAxis::initializeGraphics(QGraphicsItem* parent)
 {
     IChartiumAxisElement* axis = nullptr;
 
-    // TODO: Uncomment
-    /*
     if (orientation() == Qt::Vertical)
     {
-        axis = new ChartBarCategoryAxisY(q, parent);
+        axis = new ChartiumBarCategoryAxisY(this, mPresenter, parent);
     }
-    if (orientation() == Qt::Horizontal)
+    else if (orientation() == Qt::Horizontal)
     {
-        axis = new ChartBarCategoryAxisX(q, parent);
+        axis = new ChartiumBarCategoryAxisX(this, mPresenter, parent);
     }
-    */
 
     mItem = axis;
     IChartiumBarCategoryAxis::initializeGraphics(parent);

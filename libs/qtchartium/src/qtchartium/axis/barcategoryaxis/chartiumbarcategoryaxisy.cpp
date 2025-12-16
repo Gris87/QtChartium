@@ -60,7 +60,7 @@ QSizeF ChartiumBarCategoryAxisY::sizeHint(Qt::SizeHint which, const QSizeF& cons
             if (labelsVisible())
             {
                 QRectF boundingRect =
-                    presenter()->textBoundingRect(axis()->labelsFont(), QStringLiteral("..."), axis()->labelsAngle());
+                    mPresenter->textBoundingRect(axis()->labelsFont(), QStringLiteral("..."), axis()->labelsAngle());
                 width = boundingRect.width() + labelPadding() + base.width() + 1.0;
 
                 if (base.width() > 0.0)
@@ -85,7 +85,7 @@ QSizeF ChartiumBarCategoryAxisY::sizeHint(Qt::SizeHint which, const QSizeF& cons
 
                 for (const QString& s : ticksList)
                 {
-                    QRectF rect = presenter()->textBoundingRect(axis()->labelsFont(), s, axis()->labelsAngle());
+                    QRectF rect = mPresenter->textBoundingRect(axis()->labelsFont(), s, axis()->labelsAngle());
                     labelWidth  = qMax(rect.width(), labelWidth);
                 }
 
@@ -160,8 +160,8 @@ void ChartiumBarCategoryAxisY::handleCategoriesChanged()
 {
     QGraphicsLayoutItem::updateGeometry();
 
-    if (presenter())
+    if (mPresenter)
     {
-        presenter()->layout()->invalidate();
+        mPresenter->layout()->invalidate();
     }
 }

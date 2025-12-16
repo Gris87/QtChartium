@@ -404,6 +404,15 @@ QStringList ChartiumAxisElement::createColorLabels(qreal min, qreal max, int tic
     return labels;
 }
 
+QRectF ChartiumAxisElement::boundingRect() const
+{
+    return QRectF();
+}
+
+void ChartiumAxisElement::paint(QPainter*, const QStyleOptionGraphicsItem*, QWidget*)
+{
+}
+
 bool ChartiumAxisElement::labelsEditable() const
 {
     return mLabelsEditable;

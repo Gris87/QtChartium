@@ -68,6 +68,9 @@ public:
     QStringList createDateTimeLabels(qreal max, qreal min, int ticks, const QString& format) const override;
     QStringList createColorLabels(qreal min, qreal max, int ticks) const override;
 
+    QRectF boundingRect() const override;
+    void   paint(QPainter*, const QStyleOptionGraphicsItem*, QWidget*) override;
+
     bool labelsEditable() const override;
     void setLabelsEditable(bool labelsEditable) override;
     bool labelsVisible() const override;

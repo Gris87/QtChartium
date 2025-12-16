@@ -477,7 +477,7 @@ void ChartiumDataSet::createAxes(IChartiumAxis::AxisTypes type, Qt::Orientation 
             axis = new ChartiumValueAxis(this);
             break;
         case IChartiumAxis::AxisTypeBarCategory:
-            axis = new ChartiumBarCategoryAxis(this);
+            axis = new ChartiumBarCategoryAxis(mChart->presenter(), this);
             break;
         case IChartiumAxis::AxisTypeDateTime:
             axis = new ChartiumDateTimeAxis(this);
@@ -495,7 +495,7 @@ void ChartiumDataSet::createAxes(IChartiumAxis::AxisTypes type, Qt::Orientation 
         qreal max = 0;
         findMinMaxForSeries(mSeriesList, orientation, min, max);
 
-        foreach(IChartiumSeries* s, mSeriesList)
+        for (IChartiumSeries* s : mSeriesList)
         {
             attachAxis(s, axis);
         }
@@ -505,11 +505,11 @@ void ChartiumDataSet::createAxes(IChartiumAxis::AxisTypes type, Qt::Orientation 
     else
     {
         // Create separate axis for each series
-        foreach(IChartiumSeries* s, mSeriesList)
+        for (IChartiumSeries* s : mSeriesList)
         {
             IChartiumAxis* axis = s->createDefaultAxis(orientation);
 
-            if (axis)
+            if (axis != nullptr)
             {
                 addAxis(axis, orientation == Qt::Horizontal ? Qt::AlignBottom : Qt::AlignLeft);
                 attachAxis(s, axis);
