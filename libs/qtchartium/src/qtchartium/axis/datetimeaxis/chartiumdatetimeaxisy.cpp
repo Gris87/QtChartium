@@ -46,7 +46,7 @@ QSizeF ChartiumDateTimeAxisY::sizeHint(Qt::SizeHint which, const QSizeF& constra
             if (labelsVisible())
             {
                 QRectF boundingRect =
-                    presenter()->textBoundingRect(axis()->labelsFont(), QStringLiteral("..."), axis()->labelsAngle());
+                    mPresenter->textBoundingRect(axis()->labelsFont(), QStringLiteral("..."), axis()->labelsAngle());
                 width  = boundingRect.width() + labelPadding() + base.width() + 1.0;
                 height = boundingRect.height() / 2.0;
             }
@@ -69,7 +69,7 @@ QSizeF ChartiumDateTimeAxisY::sizeHint(Qt::SizeHint which, const QSizeF& constra
 
                 for (const QString& s : ticksList)
                 {
-                    QRectF rect = presenter()->textBoundingRect(axis()->labelsFont(), s, axis()->labelsAngle());
+                    QRectF rect = mPresenter->textBoundingRect(axis()->labelsFont(), s, axis()->labelsAngle());
                     labelWidth  = qMax(rect.width(), labelWidth);
                     height      = rect.height();
 
@@ -135,9 +135,9 @@ void ChartiumDateTimeAxisY::handleTickCountChanged(int tick)
 {
     QGraphicsLayoutItem::updateGeometry();
 
-    if (presenter())
+    if (mPresenter)
     {
-        presenter()->layout()->invalidate();
+        mPresenter->layout()->invalidate();
     }
 }
 
@@ -145,8 +145,8 @@ void ChartiumDateTimeAxisY::handleFormatChanged(const QString& format)
 {
     QGraphicsLayoutItem::updateGeometry();
 
-    if (presenter())
+    if (mPresenter)
     {
-        presenter()->layout()->invalidate();
+        mPresenter->layout()->invalidate();
     }
 }

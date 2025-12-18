@@ -1,5 +1,7 @@
 #include "src/qtchartium/axis/datetimeaxis/chartiumdatetimeaxis.h"
 
+#include "src/qtchartium/axis/datetimeaxis/chartiumdatetimeaxisx.h"
+#include "src/qtchartium/axis/datetimeaxis/chartiumdatetimeaxisy.h"
 #include "src/qtchartium/axis/ichartiumcartesianaxis.h"
 #include "src/qtchartium/ichartiumchart.h"
 
@@ -104,21 +106,18 @@ void ChartiumDateTimeAxis::initializeGraphics(QGraphicsItem* parent)
 
     if (mChart->chartType() == IChartiumChart::ChartTypeCartesian)
     {
-        // TODO: Uncomment
-        /*
         if (orientation() == Qt::Vertical)
         {
-            axis = new ChartDateTimeAxisY(q, parent);
+            axis = new ChartiumDateTimeAxisY(this, mChart->presenter(), parent);
         }
         else if (orientation() == Qt::Horizontal)
         {
-            axis = new ChartDateTimeAxisX(q, parent);
+            axis = new ChartiumDateTimeAxisX(this, mChart->presenter(), parent);
         }
         else
         {
             qFatal() << "Unexpected behaviour";
         }
-        */
 
         axis->setLabelsEditable(labelsEditable());
     }

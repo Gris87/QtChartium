@@ -1,6 +1,8 @@
 #include "src/qtchartium/axis/valueaxis/chartiumvalueaxis.h"
 
 #include "src/qtchartium/axis/ichartiumaxiselement.h"
+#include "src/qtchartium/axis/valueaxis/chartiumvalueaxisx.h"
+#include "src/qtchartium/axis/valueaxis/chartiumvalueaxisy.h"
 #include "src/qtchartium/chartiumhelpers.h"
 #include "src/qtchartium/ichartiumchart.h"
 
@@ -64,6 +66,8 @@ void ChartiumValueAxis::setRange(qreal min, qreal max)
 
     if (!isValidValue(min, max))
     {
+        qWarning() << "Attempting to set invalid range for value axis: [" << min << " - " << max << "]";
+
         return;
     }
 
@@ -177,49 +181,25 @@ QString ChartiumValueAxis::labelFormat() const
     return mFormat;
 }
 
-void ChartiumValueAxis::applyNiceNumbers()
-{
-    if (mApplying)
-    {
-        return;
-    }
-
-    qreal min   = mMin;
-    qreal max   = mMax;
-    int   ticks = mTickCount;
-
-    mDomain->looseNiceNumbers(min, max, ticks);
-
-    mApplying = true;
-
-    setRange(min, max);
-    setTickCount(ticks);
-
-    mApplying = false;
-}
-
 void ChartiumValueAxis::initializeGraphics(QGraphicsItem* parent)
 {
     IChartiumAxisElement* axis = nullptr;
 
     if (mChart->chartType() == IChartiumChart::ChartTypeCartesian)
     {
-        // TODO: Uncomment
-        /*
         if (orientation() == Qt::Vertical)
         {
-            axis = new ChartValueAxisY(q, parent);
+            axis = new ChartiumValueAxisY(this, mChart->presenter(), parent);
         }
         else
         if (orientation() == Qt::Horizontal)
         {
-            axis = new ChartValueAxisX(q, parent);
+            axis = new ChartiumValueAxisX(this, mChart->presenter(), parent);
         }
         else
         {
             qFatal() << "Unexpected behaviour";
         }
-        */
 
         axis->setLabelsEditable(labelsEditable());
     }
@@ -287,4 +267,35 @@ void ChartiumValueAxis::setRange(const QVariant& min, const QVariant& max)
     {
         setRange(value1, value2);
     }
+}
+
+qreal ChartiumValueAxis::minReal()
+{
+    return mMin;
+}
+
+qreal ChartiumValueAxis::maxReal()
+{
+    return mMax;
+}
+
+void ChartiumValueAxis::applyNiceNumbers()
+{
+    if (mApplying)
+    {
+        return;
+    }
+
+    qreal min   = mMin;
+    qreal max   = mMax;
+    int   ticks = mTickCount;
+
+    mDomain->looseNiceNumbers(min, max, ticks);
+
+    mApplying = true;
+
+    setRange(min, max);
+    setTickCount(ticks);
+
+    mApplying = false;
 }

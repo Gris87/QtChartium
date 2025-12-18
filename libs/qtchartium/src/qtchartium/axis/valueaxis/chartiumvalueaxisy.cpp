@@ -45,7 +45,7 @@ QSizeF ChartiumValueAxisY::sizeHint(Qt::SizeHint which, const QSizeF& constraint
             if (labelsVisible())
             {
                 QRectF boundingRect =
-                    presenter()->textBoundingRect(axis()->labelsFont(), QStringLiteral("..."), axis()->labelsAngle());
+                    mPresenter->textBoundingRect(axis()->labelsFont(), QStringLiteral("..."), axis()->labelsAngle());
                 width  = boundingRect.width() + labelPadding() + base.width() + 1.0;
                 height = boundingRect.height() / 2.0;
             }
@@ -65,7 +65,7 @@ QSizeF ChartiumValueAxisY::sizeHint(Qt::SizeHint which, const QSizeF& constraint
                 qreal firstHeight = -1.0;
                 for (const QString& s : ticksList)
                 {
-                    QRectF rect = presenter()->textBoundingRect(axis()->labelsFont(), s, axis()->labelsAngle());
+                    QRectF rect = mPresenter->textBoundingRect(axis()->labelsFont(), s, axis()->labelsAngle());
                     labelWidth  = qMax(rect.width(), labelWidth);
                     height      = rect.height();
                     if (firstHeight < 0.0)
@@ -159,9 +159,9 @@ void ChartiumValueAxisY::handleTickCountChanged(int tick)
     Q_UNUSED(tick);
     QGraphicsLayoutItem::updateGeometry();
 
-    if (presenter())
+    if (mPresenter)
     {
-        presenter()->layout()->invalidate();
+        mPresenter->layout()->invalidate();
     }
 }
 
@@ -170,9 +170,9 @@ void ChartiumValueAxisY::handleMinorTickCountChanged(int tick)
     Q_UNUSED(tick);
     QGraphicsLayoutItem::updateGeometry();
 
-    if (presenter())
+    if (mPresenter)
     {
-        presenter()->layout()->invalidate();
+        mPresenter->layout()->invalidate();
     }
 }
 
@@ -181,9 +181,9 @@ void ChartiumValueAxisY::handleLabelFormatChanged(const QString& format)
     Q_UNUSED(format);
     QGraphicsLayoutItem::updateGeometry();
 
-    if (presenter())
+    if (mPresenter)
     {
-        presenter()->layout()->invalidate();
+        mPresenter->layout()->invalidate();
     }
 }
 
@@ -192,9 +192,9 @@ void ChartiumValueAxisY::handleTickIntervalChanged(qreal interval)
     Q_UNUSED(interval);
     QGraphicsLayoutItem::updateGeometry();
 
-    if (presenter())
+    if (mPresenter)
     {
-        presenter()->layout()->invalidate();
+        mPresenter->layout()->invalidate();
     }
 }
 
@@ -203,9 +203,9 @@ void ChartiumValueAxisY::handleTickAnchorChanged(qreal anchor)
     Q_UNUSED(anchor);
     QGraphicsLayoutItem::updateGeometry();
 
-    if (presenter())
+    if (mPresenter)
     {
-        presenter()->layout()->invalidate();
+        mPresenter->layout()->invalidate();
     }
 }
 
@@ -214,8 +214,8 @@ void ChartiumValueAxisY::handleTickTypeChanged(IChartiumValueAxis::TickType type
     Q_UNUSED(type);
     QGraphicsLayoutItem::updateGeometry();
 
-    if (presenter())
+    if (mPresenter)
     {
-        presenter()->layout()->invalidate();
+        mPresenter->layout()->invalidate();
     }
 }

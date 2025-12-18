@@ -39,10 +39,6 @@ public:
     void    setLabelFormat(const QString& format) override;
     QString labelFormat() const override;
 
-public slots:
-    void applyNiceNumbers() override;
-
-protected:
     void initializeGraphics(QGraphicsItem* parent) override;
     void initializeDomain(IChartiumDomain* domain) override;
 
@@ -50,6 +46,13 @@ protected:
     void setMax(const QVariant& max) override;
     void setRange(const QVariant& min, const QVariant& max) override;
 
+    qreal minReal() override;
+    qreal maxReal() override;
+
+public slots:
+    void applyNiceNumbers() override;
+
+protected:
     IChartiumDomain* mDomain;
     qreal            mMin;
     qreal            mMax;

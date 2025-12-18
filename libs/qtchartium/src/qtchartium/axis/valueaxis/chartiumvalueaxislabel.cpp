@@ -42,6 +42,7 @@ void ChartiumValueAxisLabel::keyPressEvent(QKeyEvent* event)
     if (event->text().size() >= 1)
     {
         QLocale locale;
+
         if (!event->text().at(0).isDigit() && event->text().at(0) != locale.decimalPoint() &&
             event->text().at(0) != locale.negativeSign() && event->text().at(0) != locale.exponential() &&
             event->key() != Qt::Key_Backspace && event->key() != Qt::Key_Delete)

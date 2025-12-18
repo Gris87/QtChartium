@@ -6,9 +6,8 @@
 
 
 
-ChartiumBarCategoryAxis::ChartiumBarCategoryAxis(IChartiumPresenter* presenter, QObject* parent) :
+ChartiumBarCategoryAxis::ChartiumBarCategoryAxis(QObject* parent) :
     IChartiumBarCategoryAxis(parent),
-    mPresenter(presenter),
     mCategories(),
     mMinCategory(),
     mMaxCategory(),
@@ -325,11 +324,15 @@ void ChartiumBarCategoryAxis::initializeGraphics(QGraphicsItem* parent)
 
     if (orientation() == Qt::Vertical)
     {
-        axis = new ChartiumBarCategoryAxisY(this, mPresenter, parent);
+        axis = new ChartiumBarCategoryAxisY(this, mChart->presenter(), parent);
     }
     else if (orientation() == Qt::Horizontal)
     {
-        axis = new ChartiumBarCategoryAxisX(this, mPresenter, parent);
+        axis = new ChartiumBarCategoryAxisX(this, mChart->presenter(), parent);
+    }
+    else
+    {
+        qFatal() << "Unexpected behaviour";
     }
 
     mItem = axis;

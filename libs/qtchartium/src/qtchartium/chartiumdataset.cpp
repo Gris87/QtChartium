@@ -477,7 +477,7 @@ void ChartiumDataSet::createAxes(IChartiumAxis::AxisTypes type, Qt::Orientation 
             axis = new ChartiumValueAxis(this);
             break;
         case IChartiumAxis::AxisTypeBarCategory:
-            axis = new ChartiumBarCategoryAxis(mChart->presenter(), this);
+            axis = new ChartiumBarCategoryAxis(this);
             break;
         case IChartiumAxis::AxisTypeDateTime:
             axis = new ChartiumDateTimeAxis(this);

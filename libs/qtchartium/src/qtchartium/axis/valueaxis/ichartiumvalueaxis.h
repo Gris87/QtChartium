@@ -11,9 +11,9 @@ class IChartiumValueAxis : public ChartiumAxis
     Q_OBJECT
 
 public:
-    enum TickType
+    enum TickType : quint8
     {
-        TicksDynamic = 0,
+        TicksDynamic,
         TicksFixed
     };
 
